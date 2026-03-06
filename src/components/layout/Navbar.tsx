@@ -7,7 +7,7 @@ export function Navbar() {
                         <img
                             alt="ConectaDev Logo"
                             className="w-10 h-10 object-contain"
-                            src="/assets/logo.png"
+                            src="/assets/logo.png?v=v8.1"
                         />
                         <span className="font-bold flex flex-col justify-center hidden sm:flex">
                             <span className="text-[10px] md:text-xs text-text-light/80 dark:text-text-dark/80 tracking-wider">

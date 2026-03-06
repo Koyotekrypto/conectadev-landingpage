@@ -11,4 +11,5 @@
 ## MCP Infrastructure
 - **Stitch MCP**: Remote server proxy for specialized Google-powered tools. Used to generate and assemble the high-end landing page.
 - **Firecrawl MCP**: Local node-based MCP server for high-performance web scraping.
+- **Premium Components**: `ShaderAnimation` for dynamic background visuals and `RevealImageList` for interactive expertise showcasing.
 - Connected via `mcp_config.json` in the `.gemini/antigravity` directory.

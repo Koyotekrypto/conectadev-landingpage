@@ -1,4 +1,9 @@
+import { useState } from 'react';
+import { FounderModal } from '../ui/founder-modal';
+
 export function Manifesto() {
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
     return (
         <section className="py-32 bg-background-dark grid-pattern relative border-y border-white/5 z-10 pt-48" id="manifesto">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -20,29 +25,37 @@ export function Manifesto() {
                         <p className="text-sm font-bold text-white uppercase tracking-wider mb-10">
                             Se o seu negócio exige o estado da arte em tecnologia, você está no lugar certo.
                         </p>
-                        <div className="flex items-center gap-4">
+                        <button
+                            onClick={() => setIsModalOpen(true)}
+                            className="flex items-center gap-4 group cursor-pointer text-left focus:outline-none"
+                        >
                             <div className="flex -space-x-4">
                                 <img
-                                    alt="Specialist 1"
-                                    className="w-12 h-12 rounded-full border-2 border-background-dark object-cover filter grayscale hover:grayscale-0 transition-all"
+                                    alt="Anderson - Founder"
+                                    className="w-12 h-12 rounded-full border-2 border-background-dark object-cover mix-blend-luminosity group-hover:mix-blend-normal transition-all duration-500 relative z-20"
                                     src="https://lh3.googleusercontent.com/aida-public/AB6AXuDGyJTDRB2PU71H-KFgAfuWRT8A1C5qaPfWKjUnaeUPlio_YRehz5uOChULeQBvMS6mgu5CreGQgBGVYqiFmF21iDLtJ9zbfMDzB2_xY1lN6NBsEyc0DTiT6SuwTv2J4cmTm92dj_moEs9coDof9i6nY-2iaUmQtFwXbQKNIpfEYLqzNLnsn_-sqZJpVG3kPzWtfqUO92W83MAekxGSjYSjR6Sb57oMMQ0ik8S0fqSL5BdYFZTKOdO7pJemjgChc08jl_lBCyyNH0du"
                                 />
                                 <img
-                                    alt="Specialist 2"
-                                    className="w-12 h-12 rounded-full border-2 border-background-dark object-cover filter grayscale hover:grayscale-0 transition-all"
+                                    alt="Co-Founder"
+                                    className="w-12 h-12 rounded-full border-2 border-background-dark object-cover mix-blend-luminosity group-hover:mix-blend-normal transition-all duration-500 relative z-10"
                                     src="https://lh3.googleusercontent.com/aida-public/AB6AXuAGXX0WbwVXnJrm5slKGonk9BL_0H4kzua5YO7siNOTCObrY9wX1EVoH-XEQL_eip0IrK9cSqSDgZEjZtudY2z9v0ZoYaeT28EodLkTRIJ6ONuuYNUqrrVrUaMXvF5NMP554mf0f1QkiF7zSRHmPisXrn4aunxRb83K-macNkubYQP3hfdMs9EOZopMygp7PxurUyrDfAeDQYNYYSYHpU_xyX3hhNV7yzt6Jfd2O1F1pwhhjMdLu46ng-mUdbDy7XxMyPY1-WbQF7T1"
                                 />
-                                <img
-                                    alt="Specialist 3"
-                                    className="w-12 h-12 rounded-full border-2 border-background-dark object-cover filter grayscale hover:grayscale-0 transition-all"
-                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuBlPU34eq4JmSoWjRzxYid0l9cmg5ebRgYM0WsVGDfK_1UpcdmCZlESh9h3F7y8douc8LTFDkOKxX0BpcAnZWrzhSRmt0VuSErFM58UGVnV90hy_CIIzvDN2JSe6w7GYjE9w5xz6ORPZl1JhETtKtdj4AaZgJtoUj7aHhyhNmy6_2DB1wjh4q539tFFkqsRM4Cdwemj_LnlSPG3-rDredgL9TzIJ71_Y2zhwWyDZaU0H2_O0qdt1kVhg-rayk4U_WfA_qAWibIFNfhG"
-                                />
                             </div>
-                            <span className="text-primary text-xs font-bold uppercase tracking-widest">Conheça Nosso Time</span>
-                        </div>
+                            <span className="text-primary text-xs font-bold uppercase tracking-widest flex items-center gap-2 group-hover:text-white transition-colors duration-300">
+                                Nossos fundadores
+                                <span className="inline-block border border-primary/30 rounded-full p-1 group-hover:border-white/50 transition-colors">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-arrow-right group-hover:translate-x-1 transition-transform"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
+                                </span>
+                            </span>
+                        </button>
                     </div>
                 </div>
             </div>
+
+            <FounderModal
+                isOpen={isModalOpen}
+                onClose={() => setIsModalOpen(false)}
+            />
         </section>
     );
 }

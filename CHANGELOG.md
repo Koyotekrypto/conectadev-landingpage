@@ -9,7 +9,14 @@
 - **Design Cinematográfico (Sprint 1 & 2)**: Implementação de scroll-reveals e parallax sutis em todas as seções principais (Hero, OperationalFlow, ServiceMatrix, ValidationLog, Authority), garantindo uma experiência visual de alto impacto.
 - **Dark Mode Obsidian Elite**: Transição completa para paleta Slate 950/Zinc, purgando completamente tons azul/ciano/esmeralda em prol do preto, cinza, prata e accent laranja.
 - **Design System Semântico**: Substituição de classes `navy-*` por variáveis CSS padrão do Shadcn (`background`, `muted-foreground`, etc.).
-- **Integração Firecrawl MCP**: Instalado e configurado o servidor Firecrawl para extração de dados e web scraping.
+- [x] Implement mobile-first landing page design.
+- [x] Integrate ShaderAnimation Component (New Hero).
+- [x] Integrate RevealImageList Component (Expertise Section).
+- [x] Integrate with Stripe for payments.
+- **Premium Components**: `ShaderAnimation` for dynamic background visuals and `RevealImageList` for interactive expertise showcasing.
+- Connected via `mcp_config.json` in the `.gemini/antigravity` directory.
+- **Integração de Componentes Premium (New Hero & Expertise)**: Adição do `ShaderAnimation` (Three.js) para fundo dinâmico e `RevealImageList` para showcase interativo de especialidades.
+- **Cache-Busting de Logo**: Implementação de query parameters no logo para garantir exibição imediata após substituição de arquivo.
 - **Árvore de Decisão Consultiva (Progressive Profiling)**: Upgrade no Funil de Leads para 6 passos dinâmicos que se adaptam por nicho, capturando Dores Reais, Maturidade da Empresa, Urgência e Expectativa de Investimento B2B/B2C para máxima qualificação.
 
 ### Corrigido

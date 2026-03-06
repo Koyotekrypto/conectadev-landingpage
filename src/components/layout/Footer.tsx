@@ -8,7 +8,7 @@ export function Footer() {
                             <img
                                 alt="Logo ConectaDev"
                                 className="w-12 h-12 object-contain"
-                                src="/assets/logo.png"
+                                src="/assets/logo.png?v=v8.1"
                             />
                             <span className="font-bold text-2xl tracking-tight">Conecta<span className="text-primary">Dev</span></span>
                         </div>
