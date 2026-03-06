@@ -1,36 +1,32 @@
-import { FC } from 'react';
+import { FunnelOption, FunnelStepDefinition } from './funnelPaths';
 
-export type FunnelOption = {
-    id: string;
-    label: string;
-    icon: string;
-};
-
-export type FunnelStepDefinition = {
-    id: string;
-    title: string;
-    subtitle: string;
-    options: FunnelOption[];
-};
-
-export type FunnelPath = {
-    id: string;
-    steps: FunnelStepDefinition[];
+export type FunnelData = {
+    profile: string;
+    profileLabel: string;
+    subniche: string;
+    step2_answer: string;
+    step3_answer: string;
+    timeline: string;
+    budget: string;
+    name: string;
+    email: string;
+    whatsapp: string;
+    contextUrl: string;
 };
 
 export const initialProfiles: FunnelOption[] = [
-    { id: 'saude', label: 'Saúde / Clínica Médica', icon: '🩺' },
-    { id: 'consultoria', label: 'Consultoria / Assessoria', icon: '📈' },
-    { id: 'marketing', label: 'Marketing / Publicidade', icon: '📣' },
-    { id: 'beleza', label: 'Salão de Beleza / Barbearia', icon: '✂️' },
-    { id: 'gastronomia', label: 'Gastronomia / Delivery', icon: '🍔' },
-    { id: 'ecommerce', label: 'E-commerce / Varejo', icon: '🛒' },
-    { id: 'tech', label: 'SaaS / Tech / Startup', icon: '🚀' },
+    { id: 'saude', label: 'Saúde / Clínicas', icon: '🩺' },
     { id: 'direito', label: 'Advocacia / Jurídico', icon: '⚖️' },
-    { id: 'imobiliaria', label: 'Imobiliária / Construção', icon: '🏠' },
-    { id: 'educacao', label: 'Educação / Infoprodutos', icon: '🎓' },
-    { id: 'b2b', label: 'Serviços B2B / Agência', icon: '💼' },
-    { id: 'outro', label: 'Outro', icon: '💡' },
+    { id: 'imobiliaria', label: 'Imobiliário / Construtora', icon: '🏠' },
+    { id: 'tech', label: 'Tech / B2B / SaaS', icon: '🚀' },
+    { id: 'gastronomia', label: 'Gastronomia / Restaurante', icon: '🍔' },
+    { id: 'ecommerce', label: 'E-commerce / Varejo', icon: '🛒' },
+    { id: 'educacao', label: 'Educação / Cursos', icon: '🎓' },
+    { id: 'automotivo', label: 'Automotivo / Oficina', icon: '🚗' },
+    { id: 'agro', label: 'Agro / Agronegócio', icon: '🚜' },
+    { id: 'eventos', label: 'Eventos / Produção', icon: '🎉' },
+    { id: 'industria', label: 'Indústria / Logística', icon: '🏭' },
+    { id: 'outro', label: 'Outro Negócio', icon: '💡' },
 ];
 
 export const commonFinalSteps: FunnelStepDefinition[] = [
@@ -59,155 +55,375 @@ export const commonFinalSteps: FunnelStepDefinition[] = [
 ];
 
 export const funnelPathsMap: Record<string, FunnelStepDefinition[]> = {
-    // ROTA SAÚDE E BEM-ESTAR
     'saude': [
+        {
+            id: 'subniche',
+            title: 'Qual a especialidade da sua unidade?',
+            subtitle: 'Personalizamos a estratégia para o seu nicho médico.',
+            options: [
+                { id: 'medica', label: 'Clínica Médica / Especialista', icon: 'medical_services' },
+                { id: 'odonto', label: 'Odontologia / Estética Bucal', icon: 'dentistry' },
+                { id: 'estetica', label: 'Estética / Harmonização', icon: 'face' },
+                { id: 'vet', label: 'Veterinária / Pet Care', icon: 'pets' },
+                { id: 'psico', label: 'Psicologia / Saúde Mental', icon: 'psychology' },
+                { id: 'fisio', label: 'Fisioterapia / Reabilitação', icon: 'fitness_center' },
+                { id: 'hospitalar', label: 'Hospital / Centro Cirúrgico', icon: 'domain' },
+            ]
+        },
         {
             id: 'pain',
             title: 'Qual é o seu maior desafio hoje?',
             subtitle: 'Onde a tecnologia pode te ajudar imediatamente?',
             options: [
                 { id: 'captar_pacientes', label: 'Captar pacientes particulares', icon: 'group_add' },
-                { id: 'reduzir_faltas', label: 'Reduzir faltas com sistema', icon: 'event_busy' },
-                { id: 'autoridade', label: 'Site Médico p/ Autoridade', icon: 'military_tech' },
-                { id: 'app_interno', label: 'Criar App Próprio / Telemedicina', icon: 'health_and_safety' },
+                { id: 'reduzir_faltas', label: 'Automatizar Agendamentos', icon: 'event_busy' },
+                { id: 'autoridade', label: 'Branding e Autoridade Digital', icon: 'military_tech' },
+                { id: 'app_interno', label: 'Sistemas Internos / Apps', icon: 'health_and_safety' },
             ]
         },
         {
             id: 'maturity',
-            title: 'Qual é a sua estrutura de atendimento?',
-            subtitle: 'Nosso time adapta sistemas para qualquer tamanho.',
+            title: 'Qual o tamanho da operação?',
+            subtitle: 'Dimensionamos a infraestrutura ideal.',
             options: [
-                { id: 'sozinho', label: 'Atendo sozinho', icon: 'person' },
-                { id: 'clinica_pequena', label: 'Equipe Pequena (2-5 docs)', icon: 'groups' },
-                { id: 'clinica_media', label: 'Clínica Média/Grande', icon: 'domain' },
-                { id: 'rede', label: 'Rede de Clínicas', icon: 'location_city' },
+                { id: 'sozinho', label: 'Atendimento Individual', icon: 'person' },
+                { id: 'pequena', label: 'Equipe Pequena (2-5 docs)', icon: 'groups' },
+                { id: 'media', label: 'Clínica Média/Grande', icon: 'location_city' },
             ]
         }
     ],
-
-    // ROTA ADVOCACIA
     'direito': [
         {
-            id: 'pain',
-            title: 'Onde o digital faria mais diferença para o escritório?',
-            subtitle: 'Foco na conversão do seu nicho jurídico.',
+            id: 'subniche',
+            title: 'Qual a principal área de atuação?',
+            subtitle: 'O marketing jurídico varia conforme o nicho.',
             options: [
-                { id: 'captar_leads', label: 'Captar leads no Google/Meta', icon: 'ads_click' },
-                { id: 'institucional', label: 'Site Institucional Premium', icon: 'account_balance' },
-                { id: 'crm', label: 'Sistema de Acompanhamento (CRM)', icon: 'contact_page' },
-                { id: 'cursos', label: 'Venda de Infoprodutos / Cursos', icon: 'school' },
+                { id: 'civel', label: 'Direito Cível / Família', icon: 'family_restroom' },
+                { id: 'trabalhista', label: 'Trabalhista / Previdenciário', icon: 'work' },
+                { id: 'tributario', label: 'Tributário / Fiscal', icon: 'request_quote' },
+                { id: 'empresarial', label: 'Empresarial / Societário', icon: 'corporate_fare' },
+                { id: 'criminal', label: 'Criminal / Penal', icon: 'gavel' },
+            ]
+        },
+        {
+            id: 'pain',
+            title: 'Onde está o foco do escritório?',
+            subtitle: 'Tecnologia p/ conversão jurídica.',
+            options: [
+                { id: 'captar_leads', label: 'LPs de Alta Performance', icon: 'ads_click' },
+                { id: 'institucional', label: 'Site Premium Autoritativo', icon: 'account_balance' },
+                { id: 'crm', label: 'Gestão de Leads (CRM)', icon: 'contact_page' },
             ]
         },
         {
             id: 'maturity',
-            title: 'Quantos profissionais compõem a banca/escritório?',
-            subtitle: 'Para dimensionar o tráfego ou os usuários do sistema.',
+            title: 'Tamanho da banca/escritório?',
+            subtitle: 'Para dimensionar o volume de leads.',
             options: [
-                { id: 'individual', label: 'Advocacia Individual', icon: 'person' },
+                { id: 'individual', label: 'Boutique / Individual', icon: 'person' },
                 { id: 'pequena', label: 'Sociedade Enxuta (2-5)', icon: 'group' },
                 { id: 'media', label: 'Médio / Grande Porte', icon: 'business' },
             ]
         }
     ],
-
-    // ROTA B2B SERVICES & TECH
-    'b2b_tech': [
+    'imobiliaria': [
+        {
+            id: 'subniche',
+            title: 'Qual o seu modelo de negócio?',
+            subtitle: 'Mapeamos a jornada do seu cliente.',
+            options: [
+                { id: 'imobiliaria', label: 'Imobiliária (Venda/Aluguel)', icon: 'real_estate_agent' },
+                { id: 'construtora', label: 'Construtora / Incorporadora', icon: 'foundation' },
+                { id: 'arquitetura', label: 'Arquitetura / Interiores', icon: 'architecture' },
+                { id: 'planejados', label: 'Móveis Planejados', icon: 'chair' },
+                { id: 'engenharia', label: 'Engenharia / Reformas', icon: 'engineering' },
+            ]
+        },
         {
             id: 'pain',
-            title: 'Qual o principal gargalo da sua operação hoje?',
-            subtitle: 'Tecnologia p/ escalar receita ou resolver processos.',
+            title: 'Onde precisamos atuar?',
+            subtitle: 'Foco em geração de oportunidades.',
             options: [
-                { id: 'vendas_b2b', label: 'Máquina de Vendas / Leads', icon: 'trending_up' },
-                { id: 'produto', label: 'Criar um SaaS/App (MVPs)', icon: 'code' },
-                { id: 'retencao', label: 'Portal do Cliente / Retenção', icon: 'handshake' },
-                { id: 'processos', label: 'Automação de Processos Internos', icon: 'memory' },
+                { id: 'lancamentos', label: 'Páginas de Lançamentos', icon: 'rocket_launch' },
+                { id: 'estoque', label: 'Catálogo / Site de Imóveis', icon: 'domain' },
+                { id: 'automacao', label: 'Automação de Atendimento', icon: 'robot_2' },
             ]
         },
         {
             id: 'maturity',
-            title: 'Qual é o tamanho atual da equipe?',
-            subtitle: 'Entendendo a sua máquina atual.',
+            title: 'Volume médio de negócios?',
+            subtitle: 'Para alinhar a robustez do sistema.',
             options: [
-                { id: 'founder', label: 'Fundador Solo (Bootstrapped)', icon: 'emoji_objects' },
-                { id: 'pequena', label: 'Equipe de Crescimento (2-10)', icon: 'groups' },
-                { id: 'media', label: 'Operação Ativa (11-50)', icon: 'corporate_fare' },
-                { id: 'grande', label: 'Estrutura Corporativa (50+)', icon: 'apartment' },
+                { id: 'pequeno', label: 'Operação Local', icon: 'store' },
+                { id: 'medio', label: 'Atuação Regional', icon: 'map' },
+                { id: 'alto', label: 'Nível Nacional / Grande Volume', icon: 'public' },
             ]
         }
     ],
-
-    // ROTA E-COMMERCE / VAREJO
-    'ecommerce': [
+    'educacao': [
+        {
+            id: 'subniche',
+            title: 'Qual o formato do ensino?',
+            subtitle: 'Criamos experiências de aprendizado.',
+            options: [
+                { id: 'escola', label: 'Escola / Faculdade / EAD', icon: 'school' },
+                { id: 'cursos', label: 'Cursos Livres / Profissionalizantes', icon: 'auto_stories' },
+                { id: 'mentoria', label: 'Mentorias / High-Ticket', icon: 'co_present' },
+                { id: 'infoproduto', label: 'Infoprodutos / Lançamentos', icon: 'video_library' },
+                { id: 'b2b', label: 'Treinamento Corporativo (B2B)', icon: 'business_center' },
+            ]
+        },
         {
             id: 'pain',
-            title: 'O que você comercializa ou pretende comercializar?',
-            subtitle: 'O modelo de loja perfeito para a sua operação.',
+            title: 'Maior necessidade educacional?',
+            subtitle: 'Tecnologia que ensina e vende.',
             options: [
-                { id: 'produto_fisico', label: 'Produtos Físicos (Estoque/Dropship)', icon: 'inventory_2' },
-                { id: 'infoproduto', label: 'Infoprodutos / Cursos', icon: 'ondemand_video' },
-                { id: 'assinatura', label: 'Clube de Assinaturas (Recorrência)', icon: 'card_membership' },
-                { id: 'b2b_atacado', label: 'Venda B2B / Atacado', icon: 'pallet' },
+                { id: 'vendas', label: 'Funis de Vendas Perpétuo', icon: 'shopping_cart' },
+                { id: 'plataforma', label: 'Plataforma de Alunos (LMS)', icon: 'laptop_chromebook' },
+                { id: 'captacao', label: 'Captação de Matrículas', icon: 'person_add' },
             ]
         },
         {
             id: 'maturity',
-            title: 'Qual a tração de faturamento mensal online hoje?',
-            subtitle: 'Para indicarmos a plataforma mais estável.',
+            title: 'Volume de alunos ativos?',
+            subtitle: 'Escalabilidade é o nosso foco.',
             options: [
-                { id: 'zero', label: 'Vou começar agora', icon: 'rocket_launch' },
-                { id: 'ate_50k', label: 'Até R$ 50k / mês', icon: 'show_chart' },
-                { id: 'acima_50k', label: 'Acima de R$ 50k / mês', icon: 'moving' },
+                { id: 'zero', label: 'Iniciando do Zero', icon: 'rocket' },
+                { id: 'ate_500', label: 'Até 500 Alunos', icon: 'groups' },
+                { id: 'acima_500', label: 'Escala (500+ Alunos)', icon: 'trending_up' },
             ]
         }
     ],
-
-    // ROTA GASTRONOMIA
+    'tech': [
+        {
+            id: 'subniche',
+            title: 'Qual a categoria da sua Tech?',
+            subtitle: 'Falamos a língua da inovação.',
+            options: [
+                { id: 'saas', label: 'SaaS / Software as a Service', icon: 'cloud_queue' },
+                { id: 'consultoria', label: 'Consultoria de TI / Dev Shop', icon: 'code' },
+                { id: 'cyber', label: 'Cybersecurity / Infra', icon: 'security' },
+                { id: 'rh', label: 'Recrutamento / HR Tech', icon: 'badge' },
+                { id: 'fintech', label: 'Fintech / Crypto / Pay', icon: 'account_balance' },
+            ]
+        },
+        {
+            id: 'pain',
+            title: 'Gargalo tecnológico principal?',
+            subtitle: 'Otimizando seu motor de crescimento.',
+            options: [
+                { id: 'vendas_b2b', label: 'Máquina de Aquisição B2B', icon: 'hub' },
+                { id: 'mvp', label: 'Desenvolvimento de MVP / Produto', icon: 'biotech' },
+                { id: 'automacao', label: 'Escala e Automatização', icon: 'precision_manufacturing' },
+            ]
+        },
+        {
+            id: 'maturity',
+            title: 'Fase atual da empresa?',
+            subtitle: 'Ajustamos o pitch conforme o momento.',
+            options: [
+                { id: 'early', label: 'Early Stage / Ideação', icon: 'lightbulb' },
+                { id: 'growth', label: 'Growth / Scale-up', icon: 'trending_up' },
+                { id: 'enterprise', label: 'Enterprise / Consolidada', icon: 'corporate_fare' },
+            ]
+        }
+    ],
     'gastronomia': [
         {
-            id: 'pain',
-            title: 'Onde está a maior dor com pedidos ou clientes?',
-            subtitle: 'Tecnologia que aumenta a margem do restaurante.',
+            id: 'subniche',
+            title: 'Qual o perfil do seu estabelecimento?',
+            subtitle: 'Sabor e tecnologia caminham juntos.',
             options: [
-                { id: 'novo_delivery', label: 'App de Delivery Próprio', icon: 'delivery_dining' },
-                { id: 'cardapio', label: 'Cardápio Digital / QR Code no Local', icon: 'qr_code_2' },
-                { id: 'taxas', label: 'Cansado de altas taxas (iFood)', icon: 'money_off' },
-                { id: 'pdv', label: 'Totem de Autoatendimento / PDV', icon: 'point_of_sale' },
+                { id: 'restaurante', label: 'Restaurante / Cozinha Autoral', icon: 'restaurant' },
+                { id: 'delivery', label: 'Delivery / Dark Kitchen', icon: 'delivery_dining' },
+                { id: 'cafeteria', label: 'Cafeteria / Padaria / Bar', icon: 'coffee' },
+                { id: 'buffet', label: 'Buffet / Eventos / Catering', icon: 'celebration' },
+                { id: 'franquia', label: 'Rede / Franquia Alimentícia', icon: 'hub' },
+            ]
+        },
+        {
+            id: 'pain',
+            title: 'Qual a dor mais latente?',
+            subtitle: 'Aumentando a margem da sua operação.',
+            options: [
+                { id: 'delivery_proprio', label: 'Sair das taxas (App Próprio)', icon: 'money_off' },
+                { id: 'digitalizacao', label: 'Cardápio / Autoatendimento', icon: 'qr_code_scanner' },
+                { id: 'fidelizacao', label: 'Fidelização e CRM', icon: 'loyalty' },
             ]
         },
         {
             id: 'maturity',
-            title: 'Qual é o seu volume médio diário de pedidos?',
-            subtitle: 'Para entendermos a infraestrutura de servidor necessária.',
+            title: 'Volume médio de pedidos?',
+            subtitle: 'Infraestrutura para não cair no pico.',
             options: [
-                { id: 'pequeno', label: 'Iniciando / Até 50 pedidos', icon: 'storefront' },
-                { id: 'medio', label: 'Até 200 pedidos ao dia', icon: 'local_shipping' },
-                { id: 'alto', label: 'Rede/Franquia (Alto volume)', icon: 'food_bank' },
+                { id: 'iniciante', label: 'Iniciando / Pequeno volume', icon: 'lunch_dining' },
+                { id: 'consolidado', label: 'Operação Consolidada', icon: 'flatware' },
+                { id: 'alto', label: 'Alta Demanda / Rede', icon: 'factory' },
             ]
         }
     ],
-
-    // ROTA OUTROS (Genérico Profissional)
-    'outro': [
+    'automotivo': [
+        {
+            id: 'subniche',
+            title: 'Qual o foco da sua empresa?',
+            subtitle: 'Acelerando sua presença digital.',
+            options: [
+                { id: 'concessionaria', label: 'Concessionária / Revenda', icon: 'directions_car' },
+                { id: 'oficina', label: 'Oficina Mecânica / Elétrica', icon: 'build' },
+                { id: 'estetica', label: 'Estética Automotiva / Detail', icon: 'auto_fix_high' },
+                { id: 'locacao', label: 'Locação / Aluguel de Frotas', icon: 'car_rental' },
+            ]
+        },
         {
             id: 'pain',
-            title: 'Qual objetivo te trouxe até aqui hoje?',
-            subtitle: 'Seja claro para encontrarmos a melhor saída.',
+            title: 'Objetivo de aceleração?',
+            subtitle: 'Convertendo km em leads.',
             options: [
-                { id: 'landing_page', label: 'Landing Page de Alta Conversão', icon: 'web' },
-                { id: 'sistema_web', label: 'Sistema Web Exclusivo', icon: 'data_object' },
-                { id: 'app_mobile', label: 'Aplicativo Mobile (iOS/Android)', icon: 'smartphone' },
-                { id: 'consultoria', label: 'Consultoria de Tecnologia Otimizada', icon: 'psychology' },
+                { id: 'agendamento', label: 'Sistema de Agendamento Online', icon: 'calendar_month' },
+                { id: 'leads', label: 'Captação de leads qualificados', icon: 'person_search' },
+                { id: 'estoque', label: 'Catálogo Digital de Veículos', icon: 'view_list' },
             ]
         },
         {
             id: 'maturity',
-            title: 'Como está a estruturada da sua empresa atualmente?',
+            title: 'Tamanho da sua frota/pátio?',
+            subtitle: 'Para dimensionar a visibilidade.',
+            options: [
+                { id: 'pequeno', label: 'Loja / Oficina Local', icon: 'garage' },
+                { id: 'medio', label: 'Média Operação / Showroom', icon: 'directions_car' },
+                { id: 'grande', label: 'Rede / Grupo Automotivo', icon: 'location_city' },
+            ]
+        }
+    ],
+    'agro': [
+        {
+            id: 'subniche',
+            title: 'Qual setor do Agro?',
+            subtitle: 'Conectando o campo à tecnologia.',
+            options: [
+                { id: 'produtor', label: 'Produtor Rural / Fazenda', icon: 'agriculture' },
+                { id: 'maquinas', label: 'Máquinas e Implementos', icon: 'settings_suggest' },
+                { id: 'agtech', label: 'Agtech / Software para Agro', icon: 'satellite_alt' },
+                { id: 'consultoria', label: 'Consultoria / Engenharia Agron.', icon: 'psychology' },
+            ]
+        },
+        {
+            id: 'pain',
+            title: 'Desafio no agronegócio?',
+            subtitle: 'Modernizando a gestão e vendas.',
+            options: [
+                { id: 'site', label: 'Presença Digital de Autoridade', icon: 'public' },
+                { id: 'vendas', label: 'Plataforma de Negociação / B2B', icon: 'handshake' },
+                { id: 'monitoramento', label: 'Dashboard de Dados / Monitoram.', icon: 'data_thresholding' },
+            ]
+        },
+        {
+            id: 'maturity',
+            title: 'Porte da operação rural?',
+            subtitle: 'Tecnologia que escala com a safra.',
+            options: [
+                { id: 'pequena', label: 'Pequena Propriedade', icon: 'home' },
+                { id: 'media', label: 'Média Produção', icon: 'grass' },
+                { id: 'grande', label: 'Grande Grupo Agroindustrial', icon: 'domain' },
+            ]
+        }
+    ],
+    'eventos': [
+        {
+            id: 'subniche',
+            title: 'Qual o seu tipo de evento?',
+            subtitle: 'Tecnologia que transforma momentos.',
+            options: [
+                { id: 'social', label: 'Casamentos / Eventos Sociais', icon: 'favorite' },
+                { id: 'corporativo', label: 'Congressos / Corporativo', icon: 'groups_3' },
+                { id: 'producao', label: 'Produção / Shows / Festivais', icon: 'confirmation_number' },
+                { id: 'casting', label: 'Casting / Agenciamento', icon: 'person_pin' },
+            ]
+        },
+        {
+            id: 'pain',
+            title: 'Gargalo na organização?',
+            subtitle: 'Simplificando a experiência do convidado.',
+            options: [
+                { id: 'ticketing', label: 'Venda de Ingressos Online', icon: 'shopping_bag' },
+                { id: 'rsvps', label: 'Gestão de RSVPs e Convidados', icon: 'assignment_ind' },
+                { id: 'portfolio', label: 'Site / Portfólio de Impacto', icon: 'photo_camera' },
+            ]
+        },
+        {
+            id: 'maturity',
+            title: 'Frequência de produções?',
+            subtitle: 'Para alinhar a sustentação técnica.',
+            options: [
+                { id: 'ocasional', label: 'Eventos Ocasionais', icon: 'event' },
+                { id: 'frequente', label: 'Calendário Ativo de Eventos', icon: 'event_repeat' },
+                { id: 'grande', label: 'Grandes Produções Massivas', icon: 'stadium' },
+            ]
+        }
+    ],
+    'industria': [
+        {
+            id: 'subniche',
+            title: 'Qual o seu segmento industrial?',
+            subtitle: 'Sincronizando a produção ao digital.',
+            options: [
+                { id: 'usinagem', label: 'Metalurgia / Usinagem', icon: 'precision_manufacturing' },
+                { id: 'textil', label: 'Têxtil / Confecção', icon: 'checkroom' },
+                { id: 'alimentos', label: 'Indústria Alimentícia', icon: 'set_meal' },
+                { id: 'logistica', label: 'Logística / Transportadora', icon: 'local_shipping' },
+            ]
+        },
+        {
+            id: 'pain',
+            title: 'Principal desafio fabril?',
+            subtitle: 'Otimização 4.0 para o seu negócio.',
+            options: [
+                { id: 'b2b', label: 'Catálogo de Produtos B2B', icon: 'category' },
+                { id: 'processos', label: 'Automação de Orçamentos', icon: 'request_page' },
+                { id: 'dashboard', label: 'Dashboards de Produção (BI)', icon: 'bar_chart' },
+            ]
+        },
+        {
+            id: 'maturity',
+            title: 'Tamanho do parque industrial?',
+            subtitle: 'Alinhando robustez e tecnologia.',
+            options: [
+                { id: 'pequeno', label: 'Fábrica Local / Enxuta', icon: 'home_repair_service' },
+                { id: 'medio', label: 'Média Indústria', icon: 'domain' },
+                { id: 'grande', label: 'Planta Industrial Grande/Global', icon: 'factory' },
+            ]
+        }
+    ],
+    'outro': [
+        {
+            id: 'subniche',
+            title: 'Qual o perfil do seu negócio?',
+            subtitle: 'Explique brevemente seu campo de atuação.',
+            options: [
+                { id: 'servicos', label: 'Prestação de Serviços', icon: 'handyman' },
+                { id: 'comercio', label: 'Comércio / Loja Física', icon: 'storefront' },
+                { id: 'infoproduto', label: 'Infoproduto / Digital', icon: 'sensors' },
+                { id: 'consultoria', label: 'Consultoria / Mentorias', icon: 'emoji_objects' },
+            ]
+        },
+        {
+            id: 'pain',
+            title: 'Qual objetivo te trouxe aqui?',
+            subtitle: 'Defina a prioridade tecnológica.',
+            options: [
+                { id: 'site', label: 'Criar um Site Profissional', icon: 'web' },
+                { id: 'vendas', label: 'Aumentar minhas vendas', icon: 'trending_up' },
+                { id: 'sistema', label: 'Sistema / Automação', icon: 'settings_input_component' },
+            ]
+        },
+        {
+            id: 'maturity',
+            title: 'Como está seu negócio hoje?',
             subtitle: 'Para prepararmos a melhor apresentação.',
             options: [
-                { id: 'ideacao', label: 'Ainda é apenas uma ideia', icon: 'wb_incandescent' },
-                { id: 'startup', label: 'Startup Early-Stage', icon: 'rocket' },
-                { id: 'pme', label: 'PME (Já rodando operando firmemente)', icon: 'business' },
-                { id: 'enterprise', label: 'Grande Empresa / Corporação', icon: 'corporate_fare' },
+                { id: 'ideia', label: 'Ainda é uma ideia/projeto', icon: 'wb_incandescent' },
+                { id: 'operando', label: 'Já está rodando no mercado', icon: 'rocket_launch' },
+                { id: 'escalando', label: 'Estou em fase de escala', icon: 'trending_up' },
             ]
         }
     ],

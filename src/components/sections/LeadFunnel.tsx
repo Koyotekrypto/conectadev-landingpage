@@ -7,19 +7,21 @@ import { MagneticButton } from '../ui/MagneticButton';
 type FunnelData = {
     profile: string; // id
     profileLabel: string;
-    step2_answer: string; // label
-    step3_answer: string; // label
+    subniche: string; // NEW
+    step2_answer: string; // pain
+    step3_answer: string; // maturity
     timeline: string;
     budget: string;
     name: string;
     email: string;
     whatsapp: string;
-    contextUrl: string; // replacing context with optional URL/LinkedIn
+    contextUrl: string;
 };
 
 const initialData: FunnelData = {
     profile: '',
     profileLabel: '',
+    subniche: '',
     step2_answer: '',
     step3_answer: '',
     timeline: '',
@@ -56,45 +58,75 @@ export const LeadFunnel: React.FC = () => {
     const [isSubmitting, setIsSubmitting] = useState(false);
 
     const WHATSAPP_NUMBER = "5585981096763";
+    // Endpoint para Formspree ou similar (substituir pelo real se houver)
+    const EMAIL_ENDPOINT = "https://formspree.io/f/xvgzlowz";
 
     const updateData = (field: keyof FunnelData, value: string) => {
         setFormData(prev => ({ ...prev, [field]: value }));
     };
 
     const nextStep = () => {
-        if (step < 6) setStep(step + 1);
+        if (step < 7) setStep(step + 1);
     };
 
     const prevStep = () => {
         if (step > 1) setStep(step - 1);
     };
 
-    const handleSubmit = () => {
+    const sendToEmail = async () => {
+        try {
+            await fetch(EMAIL_ENDPOINT, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    subject: `Novo Lead Qualificado: ${formData.name} (${formData.profileLabel})`,
+                    ...formData,
+                    source: 'Site Oficial - Funil Multi-Etapas'
+                })
+            });
+            console.log("Email enviado com sucesso.");
+        } catch (error) {
+            console.error("Erro ao enviar email:", error);
+        }
+    };
+
+    const handleSubmit = async () => {
         setIsSubmitting(true);
 
-        const message = `Olá ConectaDev! 👋 Sou *${formData.name}* e vim pela consultoria do site.
+        const message = `*SOLICITAÇÃO DE BLUEPRINT ESTRATÉGICO*
 
-📋 *Segmento:* ${formData.profileLabel}
-🎯 *Maior Desafio:* ${formData.step2_answer}
-🏢 *Tamanho/Maturidade:* ${formData.step3_answer}
-⏱️ *Urgência:* ${formData.timeline}
-💰 *Investimento Previsto:* ${formData.budget}
-📧 *E-mail:* ${formData.email}
-📱 *WhatsApp:* ${formData.whatsapp}
-🔗 *URL/LinkedIn:* ${formData.contextUrl || 'Não informado'}
+⚡ *NOVO LEAD QUALIFICADO - SITE OFICIAL*
 
-Aguardo o contato para a nossa sessão estratégica!`;
+Olá, ConectaDev! 👋
+Me chamo *${formData.name}* e concluí agora o funil de qualificação. 
+Gostaria de agendar minha análise estratégica baseada no perfil abaixo:
+
+👤 *CLIENTE:* ${formData.name}
+💼 *SETOR:* ${formData.profileLabel} (${formData.subniche})
+🚀 *OBJETIVO:* ${formData.step2_answer}
+📊 *PORTES:* ${formData.step3_answer}
+⌛ *STATUS:* ${formData.timeline}
+💰 *BUDGET:* ${formData.budget}
+
+📬 *CANAIS:*
+📧 ${formData.email}
+🌐 ${formData.contextUrl || 'Não informado'}
+
+*Qual o próximo passo para iniciarmos o diagnóstico? Aguardo o retorno para validarmos essas métricas.*`;
 
         const encodedMessage = encodeURIComponent(message);
         const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`;
 
+        // Envia para o email simultaneamente
+        sendToEmail();
+
         // Inicia o "UX Teatral"
-        setStep(7);
+        setStep(8);
 
         setTimeout(() => {
             window.open(whatsappUrl, '_blank');
             setIsSubmitting(false);
-            setStep(8); // Success Step final
+            setStep(9); // Success Step final
         }, 3500);
     };
 
@@ -102,7 +134,7 @@ Aguardo o contato para a nossa sessão estratégica!`;
         const [stage, setStage] = useState(0);
         const stages = [
             "Autenticando requisição segura...",
-            "Mapeando ecossistema tecnológico...",
+            "Mapeando ecossistema de sub-nicho...",
             "Analisando métricas de maturidade...",
             "Gerando blueprint arquitetural...",
             "Sincronizando com central estratégica..."
@@ -167,12 +199,12 @@ Aguardo o contato para a nossa sessão estratégica!`;
             <div className="absolute left-0 top-1/2 -translate-y-1/2 w-full h-1 bg-gray-800/50 rounded-full z-0"></div>
             <motion.div
                 initial={{ width: 0 }}
-                animate={{ width: `${((Math.min(step, 6) - 1) / 5) * 100}%` }}
+                animate={{ width: `${((Math.min(step, 7) - 1) / 6) * 100}%` }}
                 transition={{ duration: 0.5, ease: "easeOut" }}
                 className="absolute left-0 top-1/2 -translate-y-1/2 h-1 bg-gradient-to-r from-primary to-cyan-400 rounded-full z-0 shadow-neon-glow"
             ></motion.div>
 
-            {[1, 2, 3, 4, 5, 6].map((i) => (
+            {[1, 2, 3, 4, 5, 6, 7].map((i) => (
                 <div
                     key={i}
                     className={`relative z-10 flex items-center justify-center w-8 h-8 rounded-full text-xs font-bold transition-all duration-300 ${step === i
@@ -255,7 +287,7 @@ Aguardo o contato para a nossa sessão estratégica!`;
             <h3 className="text-2xl font-bold text-white mb-2 font-display uppercase tracking-tight">{title}</h3>
             <p className="text-muted-foreground text-sm mb-6">{subtitle}</p>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-4 mb-8 flex-1 overflow-y-auto pr-2 custom-scrollbar" style={{ maxHeight: '60vh' }}>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8 flex-1 overflow-y-auto pr-2 custom-scrollbar" style={{ maxHeight: '60vh' }}>
                 {options.map((opt, idx) => (
                     <SelectionCard
                         key={opt.id}
@@ -265,24 +297,16 @@ Aguardo o contato para a nossa sessão estratégica!`;
                         isSelected={currentValue === opt.label}
                         onClick={() => {
                             updateData(fieldKey, opt.label);
+                            // Auto-advance
+                            setTimeout(nextStep, 200);
                         }}
                     />
                 ))}
             </div>
 
             <div className="flex justify-between mt-auto pt-6 border-t border-gray-800/50 relative z-20">
-                {stepNumber > 1 && (
-                    <Button variant="ghost" onClick={prevStep} className="text-gray-400 hover:text-white border border-gray-800 hover:bg-gray-800/50 rounded-full h-12 px-6">
-                        <span className="material-symbols-outlined text-sm mr-2">arrow_back</span> Voltar
-                    </Button>
-                )}
-                <Button
-                    variant="neon"
-                    onClick={nextStep}
-                    disabled={!currentValue}
-                    className={`px-8 h-12 rounded-full shadow-neon-glow font-bold tracking-widest uppercase text-xs ${stepNumber === 1 ? 'ml-auto' : ''}`}
-                >
-                    Próximo <span className="material-symbols-outlined text-sm ml-2">arrow_forward</span>
+                <Button variant="ghost" onClick={prevStep} className="text-gray-400 hover:text-white border border-gray-800 hover:bg-gray-800/50 rounded-full h-12 px-6">
+                    <span className="material-symbols-outlined text-sm mr-2">arrow_back</span> Voltar
                 </Button>
             </div>
         </motion.div>
@@ -297,15 +321,14 @@ Aguardo o contato para a nossa sessão estratégica!`;
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.8 }}
-            className="w-full max-w-5xl mx-auto bg-slate-900/60 backdrop-blur-2xl p-8 md:p-12 rounded-[2rem] border border-primary/10 shadow-glow-container relative overflow-hidden my-24"
+            className="w-full max-w-6xl mx-auto bg-slate-900/60 backdrop-blur-2xl p-8 md:p-12 rounded-[2rem] border border-primary/10 shadow-glow-container relative overflow-hidden my-24"
         >
-            {/* Glossy top overlay */}
             <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent"></div>
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[80%] h-32 bg-primary/10 blur-[80px] rounded-full pointer-events-none"></div>
 
-            {step <= 6 && renderStepIndicator()}
+            {step <= 7 && renderStepIndicator()}
 
-            <div className="relative z-10 min-h-[400px] flex flex-col">
+            <div className="relative z-10 min-h-[450px] flex flex-col">
                 <AnimatePresence mode="wait">
                     {step === 1 && (
                         <motion.div
@@ -316,8 +339,8 @@ Aguardo o contato para a nossa sessão estratégica!`;
                             exit="exit"
                             className="flex-1 flex flex-col"
                         >
-                            <h3 className="text-2xl md:text-3xl font-bold text-white mb-2 font-display uppercase tracking-tight">Identificação de Cenário</h3>
-                            <p className="text-muted-foreground text-sm md:text-base mb-6">Inicie o diagnóstico selecionando o ecossistema que mais se aproxima da sua realidade hoje.</p>
+                            <h3 className="text-2xl md:text-3xl font-bold text-white mb-2 font-display uppercase tracking-tight">Qual seu nicho?</h3>
+                            <p className="text-muted-foreground text-sm md:text-base mb-6">Selecione o setor da sua empresa para começarmos o diagnóstico.</p>
 
                             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-8 flex-1 overflow-y-auto pr-2 custom-scrollbar" style={{ maxHeight: '60vh' }}>
                                 {initialProfiles.map((opt, idx) => (
@@ -332,49 +355,56 @@ Aguardo o contato para a nossa sessão estratégica!`;
                                                 ...prev,
                                                 profile: opt.id,
                                                 profileLabel: opt.label,
+                                                subniche: '',
                                                 step2_answer: '',
                                                 step3_answer: ''
                                             }));
+                                            // Auto-advance
+                                            setTimeout(nextStep, 200);
                                         }}
                                     />
                                 ))}
                             </div>
 
                             <div className="flex justify-end mt-auto pt-6 border-t border-gray-800/50">
-                                <Button variant="neon" onClick={nextStep} disabled={!formData.profile} className="px-8 h-12 rounded-full shadow-neon-glow font-bold tracking-widest uppercase text-xs">
-                                    Próximo <span className="material-symbols-outlined text-sm ml-2">arrow_forward</span>
-                                </Button>
+                                {/* Auto-advance active: Botão removido para fluxo mais rápido */}
                             </div>
                         </motion.div>
                     )}
 
                     {step === 2 && dynamicSteps[0] && (
                         <React.Fragment key="step2">
-                            {renderDynamicStep(2, dynamicSteps[0].title, dynamicSteps[0].subtitle, dynamicSteps[0].options, formData.step2_answer, 'step2_answer')}
+                            {renderDynamicStep(2, dynamicSteps[0].title, dynamicSteps[0].subtitle, dynamicSteps[0].options, formData.subniche, 'subniche')}
                         </React.Fragment>
                     )}
 
                     {step === 3 && dynamicSteps[1] && (
                         <React.Fragment key="step3">
-                            {renderDynamicStep(3, dynamicSteps[1].title, dynamicSteps[1].subtitle, dynamicSteps[1].options, formData.step3_answer, 'step3_answer')}
+                            {renderDynamicStep(3, dynamicSteps[1].title, dynamicSteps[1].subtitle, dynamicSteps[1].options, formData.step2_answer, 'step2_answer')}
                         </React.Fragment>
                     )}
 
-                    {step === 4 && (
+                    {step === 4 && dynamicSteps[2] && (
                         <React.Fragment key="step4">
-                            {renderDynamicStep(4, commonFinalSteps[0].title, commonFinalSteps[0].subtitle, commonFinalSteps[0].options, formData.timeline, 'timeline')}
+                            {renderDynamicStep(4, dynamicSteps[2].title, dynamicSteps[2].subtitle, dynamicSteps[2].options, formData.step3_answer, 'step3_answer')}
                         </React.Fragment>
                     )}
 
                     {step === 5 && (
                         <React.Fragment key="step5">
-                            {renderDynamicStep(5, commonFinalSteps[1].title, commonFinalSteps[1].subtitle, commonFinalSteps[1].options, formData.budget, 'budget')}
+                            {renderDynamicStep(5, commonFinalSteps[0].title, commonFinalSteps[0].subtitle, commonFinalSteps[0].options, formData.timeline, 'timeline')}
                         </React.Fragment>
                     )}
 
                     {step === 6 && (
+                        <React.Fragment key="step6">
+                            {renderDynamicStep(6, commonFinalSteps[1].title, commonFinalSteps[1].subtitle, commonFinalSteps[1].options, formData.budget, 'budget')}
+                        </React.Fragment>
+                    )}
+
+                    {step === 7 && (
                         <motion.div
-                            key="step6"
+                            key="step7"
                             variants={stepVariants}
                             initial="hidden"
                             animate="visible"
@@ -387,7 +417,7 @@ Aguardo o contato para a nossa sessão estratégica!`;
                                 </div>
                                 <div>
                                     <h3 className="text-2xl font-bold text-white font-display tracking-tight uppercase">Protocolo de Iniciação</h3>
-                                    <p className="text-muted-foreground text-sm mt-1">Forneça as coordenadas finais para gerarmos seu blueprint arquitetural.</p>
+                                    <p className="text-muted-foreground text-sm mt-1">Forneça os dados finais para gerarmos seu blueprint estratégico.</p>
                                 </div>
                             </div>
 
@@ -417,18 +447,18 @@ Aguardo o contato para a nossa sessão estratégica!`;
                                 </div>
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
                                     <div className="flex flex-col gap-2">
-                                        <label className="text-[10px] font-bold text-gray-400 uppercase tracking-[0.2em] pl-1">Comunicação Assíncrona</label>
+                                        <label className="text-[10px] font-bold text-gray-400 uppercase tracking-[0.2em] pl-1">Email Corporativo</label>
                                         <input
                                             type="email"
                                             value={formData.email}
                                             onChange={(e) => updateData('email', e.target.value)}
                                             className={`bg-slate-950/50 border ${formData.email.length > 0 && !isValidEmail(formData.email) ? 'border-destructive/50 focus:border-destructive' : 'border-gray-800 focus:border-primary/50'} p-4 text-white text-sm focus:outline-none focus:ring-1 focus:ring-primary/50 transition-all rounded-xl placeholder:text-gray-600 shadow-sm`}
-                                            placeholder="root@empresa.com.br"
+                                            placeholder="corporativo@empresa.com"
                                         />
                                     </div>
                                     <div className="flex flex-col gap-2">
                                         <label className="flex items-center justify-between pl-1">
-                                            <span className="text-[10px] font-bold text-gray-400 uppercase tracking-[0.2em]">Contexto Adicional</span>
+                                            <span className="text-[10px] font-bold text-gray-400 uppercase tracking-[0.2em]">Contexto / Site / LinkedIn</span>
                                             <span className="text-muted-foreground font-normal normal-case text-[10px] bg-slate-800/50 px-2 py-0.5 rounded-md border border-gray-700/50">Opcional</span>
                                         </label>
                                         <input
@@ -436,7 +466,7 @@ Aguardo o contato para a nossa sessão estratégica!`;
                                             value={formData.contextUrl}
                                             onChange={(e) => updateData('contextUrl', e.target.value)}
                                             className="bg-slate-950/50 border border-gray-800 p-4 text-white text-sm focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/50 transition-all rounded-xl placeholder:text-gray-600 shadow-sm"
-                                            placeholder="https://linkedin.com/in/... ou Site"
+                                            placeholder="https://sitedasuaempresa.com"
                                         />
                                     </div>
                                 </div>
@@ -456,7 +486,7 @@ Aguardo o contato para a nossa sessão estratégica!`;
                                         {isSubmitting ? (
                                             <span className="material-symbols-outlined text-xl animate-spin">refresh</span>
                                         ) : (
-                                            <>INICIAR TRANSMISSÃO <span className="material-symbols-outlined text-sm ml-2">send</span></>
+                                            <>GERAR ESTRATÉGIA NO WHATSAPP <span className="material-symbols-outlined text-sm ml-2">send</span></>
                                         )}
                                     </Button>
                                 </MagneticButton>
@@ -464,9 +494,9 @@ Aguardo o contato para a nossa sessão estratégica!`;
                         </motion.div>
                     )}
 
-                    {step === 7 && (
+                    {step === 8 && (
                         <motion.div
-                            key="step7"
+                            key="step8"
                             variants={stepVariants}
                             initial="hidden"
                             animate="visible"
@@ -477,9 +507,9 @@ Aguardo o contato para a nossa sessão estratégica!`;
                         </motion.div>
                     )}
 
-                    {step === 8 && (
+                    {step === 9 && (
                         <motion.div
-                            key="step8"
+                            key="step9"
                             initial={{ scale: 0.9, opacity: 0 }}
                             animate={{ scale: 1, opacity: 1 }}
                             transition={{ type: "spring", bounce: 0.5 }}
@@ -490,15 +520,15 @@ Aguardo o contato para a nossa sessão estratégica!`;
                                 <span className="material-symbols-outlined text-5xl text-primary drop-shadow-neon-cyan">check_circle</span>
                             </div>
                             <div>
-                                <h3 className="text-3xl font-bold text-white mb-3 font-display uppercase tracking-tight">Handshake Completo</h3>
+                                <h3 className="text-3xl font-bold text-white mb-3 font-display uppercase tracking-tight">Transmissão Concluída</h3>
                                 <p className="text-muted-foreground text-sm max-w-sm mx-auto leading-relaxed">
-                                    Os dados foram empacotados e estão sendo redirecionados para a central segura no WhatsApp. <br /><br />
-                                    <span className="opacity-70 text-xs">Se o roteamento falhar, </span>
-                                    <a href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent('Tenho interesse na ConectaDev!')}`} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-bold text-xs">force a conexão manual aqui</a>.
+                                    Os dados foram processados e enviados simultaneamente para nosso email e central estratégica do WhatsApp. <br /><br />
+                                    <span className="opacity-70 text-xs">Se o WhatsApp não abriu automaticamente, </span>
+                                    <a href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent('Olá ConectaDev, acabei de enviar meus dados pelo formulário do site!')}`} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-bold text-xs">clique aqui para forçar a conexão</a>.
                                 </p>
                             </div>
                             <Button variant="outline" onClick={() => { setStep(1); setFormData(initialData); }} className="mt-8 border-gray-800 text-gray-300 hover:text-white hover:bg-gray-800/50 rounded-full text-xs font-bold uppercase tracking-widest px-8">
-                                Resetar Formulário
+                                Iniciar Novo Diagnóstico
                             </Button>
                         </motion.div>
                     )}

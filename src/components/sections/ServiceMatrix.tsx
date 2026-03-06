@@ -35,13 +35,23 @@ export const ServiceMatrix: React.FC = () => {
                             viewport={{ once: true, margin: "-50px" }}
                             transition={{ duration: 0.6, delay: index * 0.15 }}
                             whileHover={{ y: -5 }}
-                            className="h-full"
+                            className="h-full relative group"
+                            onMouseMove={(e) => {
+                                const rect = e.currentTarget.getBoundingClientRect();
+                                const x = e.clientX - rect.left;
+                                const y = e.clientY - rect.top;
+                                e.currentTarget.style.setProperty("--mouse-x", `${x}px`);
+                                e.currentTarget.style.setProperty("--mouse-y", `${y}px`);
+                            }}
                         >
                             <Card
-                                className="glass-panel group border-primary/5 hover:border-primary/40 relative overflow-hidden flex flex-col h-full bg-card/40 backdrop-blur-2xl rounded-[2rem] transition-all duration-300 shadow-lg hover:shadow-[0_0_30px_rgba(0,180,216,0.15)]"
+                                className="glass-panel border-primary/5 hover:border-primary/40 relative overflow-hidden flex flex-col h-full bg-card/40 backdrop-blur-2xl rounded-[2rem] transition-all duration-300 shadow-lg hover:shadow-[0_0_30px_rgba(0,180,216,0.15)]"
+                                style={{
+                                    background: `radial-gradient(600px circle at var(--mouse-x) var(--mouse-y), rgba(255,111,0,0.1), transparent 40%)`
+                                } as React.CSSProperties}
                             >
-                                {/* Hover background effect */}
-                                <div className="absolute top-0 right-0 p-32 bg-primary/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 group-hover:bg-primary/20 transition-colors duration-500"></div>
+                                {/* Static glow backup */}
+                                <div className="absolute top-0 right-0 p-32 bg-primary/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 group-hover:bg-primary/10 transition-colors duration-500 pointer-events-none"></div>
 
                                 <CardHeader className="relative z-10">
                                     {/* Icon */}

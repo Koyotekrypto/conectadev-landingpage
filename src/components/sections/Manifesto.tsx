@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { FounderModal } from '../ui/founder-modal';
+import { FounderModal } from '../ui/FounderModal';
 
 export function Manifesto() {
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -31,14 +31,14 @@ export function Manifesto() {
                         >
                             <div className="flex -space-x-4">
                                 <img
-                                    alt="Anderson - Founder"
+                                    alt="Anderson Cardoso - Founder"
                                     className="w-12 h-12 rounded-full border-2 border-background-dark object-cover mix-blend-luminosity group-hover:mix-blend-normal transition-all duration-500 relative z-20"
-                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuDGyJTDRB2PU71H-KFgAfuWRT8A1C5qaPfWKjUnaeUPlio_YRehz5uOChULeQBvMS6mgu5CreGQgBGVYqiFmF21iDLtJ9zbfMDzB2_xY1lN6NBsEyc0DTiT6SuwTv2J4cmTm92dj_moEs9coDof9i6nY-2iaUmQtFwXbQKNIpfEYLqzNLnsn_-sqZJpVG3kPzWtfqUO92W83MAekxGSjYSjR6Sb57oMMQ0ik8S0fqSL5BdYFZTKOdO7pJemjgChc08jl_lBCyyNH0du"
+                                    src="/assets/Anderson Cardoso.png"
                                 />
                                 <img
-                                    alt="Co-Founder"
+                                    alt="Breno Moreira - Co-Founder"
                                     className="w-12 h-12 rounded-full border-2 border-background-dark object-cover mix-blend-luminosity group-hover:mix-blend-normal transition-all duration-500 relative z-10"
-                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuAGXX0WbwVXnJrm5slKGonk9BL_0H4kzua5YO7siNOTCObrY9wX1EVoH-XEQL_eip0IrK9cSqSDgZEjZtudY2z9v0ZoYaeT28EodLkTRIJ6ONuuYNUqrrVrUaMXvF5NMP554mf0f1QkiF7zSRHmPisXrn4aunxRb83K-macNkubYQP3hfdMs9EOZopMygp7PxurUyrDfAeDQYNYYSYHpU_xyX3hhNV7yzt6Jfd2O1F1pwhhjMdLu46ng-mUdbDy7XxMyPY1-WbQF7T1"
+                                    src="/assets/Breno Moreira.jpg"
                                 />
                             </div>
                             <span className="text-primary text-xs font-bold uppercase tracking-widest flex items-center gap-2 group-hover:text-white transition-colors duration-300">

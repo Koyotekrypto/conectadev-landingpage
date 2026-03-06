@@ -1,8 +1,10 @@
 # ARCHITECTURE OVERVIEW
 
 ## System Components
-- **Frontend**: React + Vite application componentized into sections (`Hero.tsx`, `Manifesto.tsx`, `Portfolio.tsx`, etc.). Styled with Tailwind CSS and custom `.grid-pattern` para estética premium.
-- **Backend/Tools**: Antigravity AI Agent with MCP integrations.
+- **Frontend**: React + Vite + `react-router-dom`. Architecture evolved from a single-page landing page to a multi-page ecosystem (`/`, `/blog`, `/cases`).
+- **Structure**: Modular components in `src/components/` (sections and UI) and page-level components in `src/pages/`.
+- **Data Layer**: `src/data/contentData.ts` serves as the Single Source of Truth for marketing content, blog posts, and case studies.
+- **Styling**: Tailwind CSS with custom variables and a "Total Obsidian Elite" theme.
 
 ## Design System & Localization
 - **Theme**: "Total Obsidian Elite" (V8.0) - Foco em tons monocromáticos (Slate 950, Zinc, Black) com accent laranja, proporcionando visual premium e cinematográfico.

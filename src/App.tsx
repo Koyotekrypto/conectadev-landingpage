@@ -1,40 +1,42 @@
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { AnimatePresence } from 'framer-motion';
 import { Navbar } from './components/layout/Navbar';
 import { Footer } from './components/layout/Footer';
-import { NewHero } from './components/sections/NewHero';
-import { Hero } from './components/sections/Hero';
-import { Manifesto } from './components/sections/Manifesto';
-import { Services } from './components/sections/Services';
-import { Portfolio } from './components/sections/Portfolio';
-import { ExpertiseReveal } from './components/sections/ExpertiseReveal';
-import { Stats } from './components/sections/Stats';
-import { Marquee } from './components/sections/Marquee';
-import { Process } from './components/sections/Process';
-import { FAQ } from './components/sections/FAQ';
-import { Partners } from './components/sections/Partners';
-import { Testimonials } from './components/sections/Testimonials';
-import { Contact } from './components/sections/Contact';
+import { CustomCursor } from './components/ui/CustomCursor';
+import { Home } from './pages/Home';
+import { Blog } from './pages/Blog';
+import { Cases } from './pages/Cases';
+import BlogPost from './pages/BlogPost';
+import CaseDetail from './pages/CaseDetail';
+import ScrollToTop from './components/utils/ScrollToTop';
+
+function AnimatedRoutes() {
+    const location = useLocation();
+
+    return (
+        <AnimatePresence mode="wait">
+            <Routes location={location} key={location.pathname}>
+                <Route path="/" element={<Home />} />
+                <Route path="/blog" element={<Blog />} />
+                <Route path="/blog/:slug" element={<BlogPost />} />
+                <Route path="/cases" element={<Cases />} />
+                <Route path="/cases/:slug" element={<CaseDetail />} />
+            </Routes>
+        </AnimatePresence>
+    );
+}
 
 function App() {
     return (
-        <div className="min-h-screen bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark font-display selection:bg-primary/30 selection:text-primary">
-            <Navbar />
-            <main>
-                <NewHero />
-                <Hero />
-                <Manifesto />
-                <Services />
-                <Portfolio />
-                <ExpertiseReveal />
-                <Stats />
-                <Marquee />
-                <Process />
-                <FAQ />
-                <Partners />
-                <Testimonials />
-                <Contact />
-            </main>
-            <Footer />
-        </div>
+        <Router>
+            <div className="min-h-screen bg-black text-white font-display selection:bg-orange-500/30 selection:text-orange-500">
+                <ScrollToTop />
+                <CustomCursor />
+                <Navbar />
+                <AnimatedRoutes />
+                <Footer />
+            </div>
+        </Router>
     );
 }
 

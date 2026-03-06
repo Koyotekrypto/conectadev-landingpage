@@ -1,6 +1,7 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Linkedin, Mail, ArrowUpRight } from 'lucide-react';
 import { useEffect } from 'react';
+import { createPortal } from 'react-dom';
 
 interface Founder {
     name: string;
@@ -17,33 +18,34 @@ interface Founder {
 const founders: Founder[] = [
     {
         name: 'Anderson Cardoso',
-        role: 'CEO & Engenheiro de Software',
-        image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDGyJTDRB2PU71H-KFgAfuWRT8A1C5qaPfWKjUnaeUPlio_YRehz5uOChULeQBvMS6mgu5CreGQgBGVYqiFmF21iDLtJ9zbfMDzB2_xY1lN6NBsEyc0DTiT6SuwTv2J4cmTm92dj_moEs9coDof9i6nY-2iaUmQtFwXbQKNIpfEYLqzNLnsn_-sqZJpVG3kPzWtfqUO92W83MAekxGSjYSjR6Sb57oMMQ0ik8S0fqSL5BdYFZTKOdO7pJemjgChc08jl_lBCyyNH0du',
-        bio: 'Bacharel em Engenharia de Software (UFC) com foco em Qualidade e Otimização de Processos. Especialista em converter complexidade técnica em eficiência operacional, Anderson lidera a ConectaDev unindo o rigor acadêmico à agilidade da Indústria 4.0 para criar ativos digitais de alta performance.',
+        role: 'CEO & Founder | Engenheiro de Software (UFC)',
+        image: '/assets/Anderson Cardoso.png',
+        bio: 'Bacharel em Engenharia de Software pela Universidade Federal do Ceará (UFC), Anderson fundou a ConectaDev com uma missão clara: transformar tecnologia bruta em arte funcional. Com expertise em Engenharia de Qualidade e Otimização, ele utiliza o rigor acadêmico para construir ativos digitais que não apenas funcionam, mas dominam o mercado através de performance impecável.',
         experience: [
-            'Otimização de Sistemas & Performance',
-            'Arquitetura & Engenharia de Software',
-            'Gestão de Equipes & Governança (KPIs)',
-            'Qualidade & Testes Estruturais (QA)'
+            'Engenharia de Qualidade (QA)',
+            'Otimização de Processos Industriais',
+            'Arquitetura de Software Escalável',
+            'Desenvolvimento Ágil & Lean'
         ],
         social: {
             linkedin: 'https://www.linkedin.com/in/anderson-cardoso-0a8919b1/',
-            email: '#'
+            email: 'contato@conectadev.com.br'
         }
     },
     {
-        name: 'Co-Fundador',
-        role: 'CTO & Engenheiro Chefe',
-        image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAGXX0WbwVXnJrm5slKGonk9BL_0H4kzua5YO7siNOTCObrY9wX1EVoH-XEQL_eip0IrK9cSqSDgZEjZtudY2z9v0ZoYaeT28EodLkTRIJ6ONuuYNUqrrVrUaMXvF5NMP554mf0f1QrcrVrUaMXvF5NMP554mf0f1QkiF7zSRHmPisXrn4aunxRb83K-macNkubYQP3hfdMs9EOZopMygp7PxurUyrDfAeDQYNYYSjHpHpU_xyX3hhNV7yzt6Jfd2O1F1pwhhjMdLu46ng-mUdbDy7XxMyPY1-WbQF7T1',
-        bio: 'Mestre na engenharia de software e infraestrutura escalável. Especialista em garantir que a estética ande de mãos dadas com performance ultrarrápida (SaaS), estabilidade e uma fundação à prova de balas.',
+        name: 'Breno Moreira',
+        role: 'COO & Co-Founder | Engenheiro Mecânico (UFC)',
+        image: '/assets/Breno Moreira.jpg',
+        bio: 'Engenheiro Mecânico pela Universidade Federal do Ceará (UFC), Breno combina a precisão da engenharia com uma visão estratégica de mercado. Com vasta experiência em Marketing, Design e Vendas, ele é o arquiteto por trás da experiência estética e do crescimento comercial da ConectaDev, garantindo que cada solução técnica seja entregue com design impecável e alto impacto de conversão.',
         experience: [
-            'Desenvolvimento Cloud-Native',
-            'Infraestrutura Escalável',
-            'Segurança de Dados & Backends'
+            'Growth Marketing & Vendas',
+            'UX/UI Design Estratégico',
+            'Engenharia de Produto',
+            'Gestão de Operações'
         ],
         social: {
             linkedin: '#',
-            email: '#'
+            email: 'breno@conectadev.com.br'
         }
     }
 ];
@@ -75,7 +77,7 @@ export function FounderModal({ isOpen, onClose }: FounderModalProps) {
         return () => window.removeEventListener('keydown', handleEsc);
     }, [onClose]);
 
-    return (
+    return createPortal(
         <AnimatePresence>
             {isOpen && (
                 <>
@@ -85,22 +87,22 @@ export function FounderModal({ isOpen, onClose }: FounderModalProps) {
                         animate={{ opacity: 1, backdropFilter: 'blur(16px)' }}
                         exit={{ opacity: 0, backdropFilter: 'blur(0px)' }}
                         transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-                        className="fixed inset-0 z-[100] bg-background-dark/80"
+                        className="fixed inset-0 z-[9998] bg-black/80"
                         onClick={onClose}
                     />
 
                     {/* Modal Container */}
-                    <div className="fixed inset-0 z-[101] flex items-center justify-center p-4 sm:p-6 lg:p-8 pointer-events-none">
+                    <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4 sm:p-6 lg:p-8 pointer-events-none">
                         <motion.div
                             initial={{ opacity: 0, y: 40, scale: 0.95 }}
                             animate={{ opacity: 1, y: 0, scale: 1 }}
                             exit={{ opacity: 0, y: 20, scale: 0.95 }}
                             transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-                            className="w-full max-w-5xl bg-surface-dark border border-white/10 rounded-3xl overflow-hidden shadow-[0_0_100px_rgba(0,0,0,0.8)] relative pointer-events-auto"
+                            className="w-full max-w-5xl bg-[#0a0a0a] border border-white/10 rounded-3xl overflow-hidden shadow-[0_0_100px_rgba(0,0,0,0.8)] relative pointer-events-auto"
                             onClick={(e) => e.stopPropagation()}
                         >
                             {/* Decorative Subtle Glow */}
-                            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[80%] h-32 bg-primary/20 blur-[100px] pointer-events-none rounded-full" />
+                            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[80%] h-32 bg-primary/10 blur-[100px] pointer-events-none rounded-full" />
 
                             {/* Close Button */}
                             <button
@@ -116,12 +118,12 @@ export function FounderModal({ isOpen, onClose }: FounderModalProps) {
                                         Nossos Fundadores
                                     </h3>
                                     <p className="text-gray-400 font-serif italic text-lg">
-                                        A mente e a máquina por trás da ConectaDev.
+                                        A excelência técnica que impulsiona sua evolução digital.
                                     </p>
                                 </div>
 
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 relative">
-                                    {/* Divisória Vertical Sutil em Desktop */}
+                                    {/* Divisória Vertical Sutil */}
                                     <div className="hidden md:block absolute top-0 bottom-0 left-1/2 w-px bg-gradient-to-b from-transparent via-white/10 to-transparent -translate-x-1/2" />
 
                                     {founders.map((founder, index) => (
@@ -139,33 +141,33 @@ export function FounderModal({ isOpen, onClose }: FounderModalProps) {
                                                     <img
                                                         src={founder.image}
                                                         alt={founder.name}
-                                                        className="w-24 h-24 rounded-full object-cover border-2 border-white/10 group-hover:border-primary/50 transition-colors duration-500 relative z-10 mix-blend-luminosity hover:mix-blend-normal"
+                                                        className="w-24 h-24 rounded-full object-cover border-2 border-white/10 group-hover:border-primary/50 transition-colors duration-500 relative z-10 mix-blend-luminosity group-hover:mix-blend-normal"
                                                     />
                                                 </div>
                                                 <div>
                                                     <h4 className="text-2xl font-bold text-white mb-1 group-hover:text-primary transition-colors">
                                                         {founder.name}
                                                     </h4>
-                                                    <span className="inline-block px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-semibold text-gray-300 uppercase tracking-widest">
+                                                    <span className="inline-block px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[10px] font-bold text-primary uppercase tracking-widest">
                                                         {founder.role}
                                                     </span>
                                                 </div>
                                             </div>
 
                                             {/* Bio */}
-                                            <p className="text-gray-400 leading-relaxed mb-8 flex-grow">
+                                            <p className="text-gray-400 leading-relaxed mb-8 flex-grow text-sm md:text-base">
                                                 {founder.bio}
                                             </p>
 
-                                            {/* Experience Tags & Socials */}
+                                            {/* Experience Tags */}
                                             <div className="mt-auto space-y-6">
                                                 <div className="space-y-3">
-                                                    <p className="text-xs font-bold text-white/40 uppercase tracking-widest">Expertise</p>
+                                                    <p className="text-[10px] font-black text-white/40 uppercase tracking-[0.2em]">Expertise Técnica</p>
                                                     <div className="flex flex-wrap gap-2">
                                                         {founder.experience.map((exp) => (
                                                             <span
                                                                 key={exp}
-                                                                className="px-3 py-1.5 rounded-md bg-white/5 text-sm text-gray-300 border border-white/5"
+                                                                className="px-3 py-1.5 rounded-md bg-white/5 text-xs text-gray-300 border border-white/5 hover:border-primary/30 transition-colors"
                                                             >
                                                                 {exp}
                                                             </span>
@@ -175,19 +177,17 @@ export function FounderModal({ isOpen, onClose }: FounderModalProps) {
 
                                                 <div className="flex items-center gap-3 pt-6 border-t border-white/5">
                                                     {founder.social.linkedin && (
-                                                        <a href={founder.social.linkedin} className="p-2 rounded-md bg-white/5 hover:bg-primary/20 text-gray-400 hover:text-primary transition-colors flex items-center justify-center group/btn">
+                                                        <a href={founder.social.linkedin} target="_blank" rel="noopener noreferrer" className="p-2 rounded-md bg-white/5 hover:bg-primary/20 text-gray-400 hover:text-primary transition-colors flex items-center justify-center">
                                                             <Linkedin className="w-5 h-5" />
-                                                            <span className="sr-only">LinkedIn</span>
                                                         </a>
                                                     )}
                                                     {founder.social.email && (
-                                                        <a href={founder.social.email} className="p-2 rounded-md bg-white/5 hover:bg-white/10 text-gray-400 hover:text-white transition-colors flex items-center justify-center group/btn">
+                                                        <a href={`mailto:${founder.social.email}`} className="p-2 rounded-md bg-white/5 hover:bg-white/10 text-gray-400 hover:text-white transition-colors flex items-center justify-center">
                                                             <Mail className="w-5 h-5" />
-                                                            <span className="sr-only">Email</span>
                                                         </a>
                                                     )}
-                                                    <div className="ml-auto text-xs font-semibold text-gray-500 bg-white/5 px-3 py-2 rounded-md flex items-center gap-2 group-hover:text-primary transition-colors">
-                                                        CONECTAR <ArrowUpRight className="w-3 h-3 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                                                    <div className="ml-auto text-xs font-bold text-white/40 group-hover:text-primary transition-colors flex items-center gap-2">
+                                                        CONECTAR <ArrowUpRight className="w-4 h-4" />
                                                     </div>
                                                 </div>
                                             </div>
@@ -199,6 +199,7 @@ export function FounderModal({ isOpen, onClose }: FounderModalProps) {
                     </div>
                 </>
             )}
-        </AnimatePresence>
+        </AnimatePresence>,
+        document.body
     );
 }
