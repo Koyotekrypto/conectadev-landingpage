@@ -7,8 +7,8 @@ export const NAV_LINKS = [
 export const SYSTEM_STATS = {
     coreVersion: 'v3.0.4',
     latency: '12MS',
-    status: 'ACTIVE',
-    location: 'SAO PAULO, BR / GLOBAL NETWORK',
+    status: 'ATIVO',
+    location: 'SÃO PAULO, BR / REDE GLOBAL',
 };
 
 export const HERO_CONTENT = {
@@ -97,8 +97,8 @@ export const VALIDATION_LOGS = [
 ];
 
 export const FOOTER_LINKS = [
-    { label: 'System Docs', icon: 'data_object', href: '#' },
-    { label: 'Privacy Protocol', icon: 'security', href: '#' },
-    { label: 'Operational Terms', icon: 'gavel', href: '#' },
-    { label: 'Network Status', icon: 'router', href: '#' },
+    { label: 'Documentação do Sistema', icon: 'data_object', href: '#' },
+    { label: 'Política de Privacidade', icon: 'security', href: '#' },
+    { label: 'Termos de Uso', icon: 'gavel', href: '#' },
+    { label: 'Status da Rede', icon: 'router', href: '#' },
 ];

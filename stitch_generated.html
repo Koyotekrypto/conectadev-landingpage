@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ConectaDev High-End Landing Page</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#CEF02E",
+                        "background-light": "#ffffff",
+                        "background-dark": "#0e1111",
+                        "surface-light": "#f3f4f6",
+                        "surface-dark": "#1a1d1d",
+                        "text-light": "#1f2937",
+                        "text-dark": "#f9fafb",
+                        "text-muted-light": "#6b7280",
+                        "text-muted-dark": "#9ca3af",
+                    },
+                    fontFamily: {
+                        display: ["Inter", "sans-serif"],
+                        serif: ['Playfair Display', 'serif'],
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.5rem",
+                    },
+                },
+            },
+        };
+    </script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .grid-pattern {
+            background-image: linear-gradient(to right, rgba(255,255,255,0.05) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(255,255,255,0.05) 1px, transparent 1px);
+            background-size: 50px 50px;
+        }
+        .dark .grid-pattern {
+            background-image: linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px);
+        }
+        .text-outline {
+            color: transparent;
+            -webkit-text-stroke: 1px rgba(255,255,255,0.1);
+        }
+        .dark .text-outline {
+            -webkit-text-stroke: 1px rgba(255,255,255,0.05);
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark antialiased overflow-x-hidden">
+<nav class="fixed w-full z-50 top-0 transition-all duration-300 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-gray-200 dark:border-white/10 py-4">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex justify-between items-center h-12">
+<div class="flex-shrink-0 flex items-center gap-2">
+<img alt="ConectaDev Logo" class="w-8 h-8" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD2yzMfT2JkEeaAUXbm-96JQb_5XNVtoZCL-rcUV1UG6sgZj9VmObRldqFeayjlA9zrKKIDE-uJjXoWnEFx51bTtIwItbmLDWV9iTfGGlweJd4kjHmaVLVBGgTx6HBsQSOU_umhw-hIG8l5awK6FbIZLu91C5jTKlzLeYd-rvbGupMgjNjSZYfkjPKQuHToU1XzgQ12G-5jh4_aTlEFcc3yv345eJYc_78FrIGHW8eWKt9JDj2eIUcBUFndMddrg8FfJhg0qDVxfmnn"/>
+<span class="font-bold text-xl tracking-tight hidden sm:block">Conecta<span class="text-primary">Dev</span></span>
+</div>
+<div class="hidden md:flex space-x-8 items-center">
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#services">Services</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#portfolio">Portfolio</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#process">Process</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#faq">FAQ</a>
+</div>
+<div class="hidden md:flex items-center">
+<a class="bg-primary text-black font-semibold text-sm px-6 py-2.5 rounded-full hover:bg-opacity-90 transition-all transform hover:scale-105 shadow-[0_0_15px_rgba(206,240,46,0.3)]" href="#contact">
+                        Book a Strategy Call
+                    </a>
+</div>
+<div class="md:hidden flex items-center">
+<button class="text-text-light dark:text-text-dark hover:text-primary focus:outline-none">
+<span class="material-symbols-outlined text-3xl">menu</span>
+</button>
+</div>
+</div>
+</div>
+</nav>
+<section class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden bg-background-dark text-white grid-pattern">
+<div class="absolute top-1/4 left-1/2 -translate-x-1/2 w-full text-center pointer-events-none select-none z-0 hidden lg:block overflow-hidden">
+<h1 class="text-[15rem] font-black tracking-tighter text-outline opacity-50 whitespace-nowrap">CONECTA</h1>
+</div>
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+<div class="text-center max-w-4xl mx-auto mb-16">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/10 bg-white/5 backdrop-blur-sm mb-6 uppercase tracking-widest text-xs font-semibold text-gray-300">
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+                    High-End Digital Agency
+                </div>
+<h1 class="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-8 leading-[1.1]">
+                    Nós construímos ativos digitais que transformam dados em <span class="text-primary relative inline-block">lucro real.<svg class="absolute w-full h-3 -bottom-1 left-0 text-primary opacity-50" preserveAspectRatio="none" viewBox="0 0 100 10"><path d="M0,5 Q50,10 100,5" fill="none" stroke="currentColor" stroke-width="2"></path></svg></span>
+</h1>
+<p class="text-lg md:text-xl text-gray-400 mb-10 max-w-2xl mx-auto font-light leading-relaxed">
+                    Especialistas em high-performance web engineering e cinematic design utilizando React, Vite, Tailwind, e Shadcn UI.
+                </p>
+<div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+<div class="flex items-center gap-4 bg-white/5 border border-white/10 rounded-full pl-2 pr-6 py-2 backdrop-blur-sm">
+<div class="flex -space-x-3">
+<img alt="Client 1" class="w-10 h-10 rounded-full border-2 border-[#0e1111]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCy4r4mjhtfW17Wr_8oR9AstBs6KO-Hfee_B_gaIrJAneZ5Z28I3lFquX1kQh8-41d5I3GIkBwEQXb1DOFoSzg9nt2FXD_JL_bWdp1EkJ2SEb4IvE2vDPm0DM2W87p221QAWvjY6_m8t7wCNVKwYCTTv_b0apGM2kvWQRYffzS4m9f35npKP-KS1k_qdtZYBIcp2UCme_OLDdzMX3IYJxwN5IWrNABOjigRdRhpBRvpgs2g4cHSa6bGmn5Sfratn7d7swrhXU71eDRV"/>
+<img alt="Client 2" class="w-10 h-10 rounded-full border-2 border-[#0e1111]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB1oUjzYF4WqozvzOiVlQ37nTAUKFxOCz2_JWYGgokNh86uJiHmj32DFe8gV5Z4EJizOq_EhHh-NcrKzWSnecxb70qnUDzIVhEDtkDUeAvmhQOI0UWrZ_g9Dg57FrDkBTKKj4TcNwret87eqPzZxSZ7Ra7-H0aOj7YAFB5HKET9IjjNrUswMi1eiGyWLuGsrW5HUEufSpuATc88GRn3xyi8nQ9sIF5MyJRDXqRpX4Hv_TNYPe8ETGgF7ZiYXuhxkYG7skOXeiF3kO7M"/>
+<img alt="Client 3" class="w-10 h-10 rounded-full border-2 border-[#0e1111]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDbZQTfM225evRjlxtGCTgag6ewudHdWO91gHkyG0Q5RtXhUrul2t4j8S1PtqZR_zmFP3Ohft4OnMnMFoJJh9JfG4UOSToVU9-XFx0CCVB7yv7jYJ55MzD0j3H75sVp87P1n5t5TwtP8fyL8D5JiztyEcUXhpXAPMjT3Xy547cK_7kY89mOuB1W_2pkgMDZQbQALytStR-wYEke1t5pdLRqWXYR6P4GcHXShie_r4BvYoUZp2zc3YNcMhKpyT0HCCXlJZ87hZD-RG7O"/>
+<div class="w-10 h-10 rounded-full border-2 border-[#0e1111] bg-primary flex items-center justify-center text-black font-bold text-xs">
+                                +
+                            </div>
+</div>
+<div class="text-left ml-2">
+<div class="text-white font-bold text-sm">12k+</div>
+<div class="text-gray-400 text-xs">Happy Clients</div>
+</div>
+</div>
+</div>
+</div>
+<div class="relative max-w-5xl mx-auto mt-12 mb-[-150px] z-20 group">
+<div class="absolute inset-0 bg-gradient-to-t from-background-light dark:from-background-dark via-transparent to-transparent z-10 rounded-3xl"></div>
+<div class="absolute -inset-1 bg-gradient-to-r from-primary/30 to-purple-500/30 rounded-3xl blur-2xl opacity-50 group-hover:opacity-70 transition duration-500"></div>
+<img alt="Cinematic Tech Team" class="relative rounded-3xl w-full object-cover h-[400px] md:h-[600px] shadow-2xl transition-all duration-700 border border-white/10" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCQWj40GyKlMfPZ5fxyxtZhQFeP9YNBbxdUoDMvs0GtBC97CElhSyHQXCi2IkPvXXAXAkVu6HX2Hyd9iWagz3uJfaHmzxmTstTNUBHkqM8h8FFgLm1j3Mdeoaj3UhxQpjVfCKvyjdBTg_1lr4yy9e3uB8UAqrMFU_BnKC33NaCs2BHWxvGbIfD-9w2Z6cEkHkWy2-tsTudEIiTRoiPIOL6BFPoOXGzUOhBsCHXwD6YwToX83yB8uDw5vibrms8xbvsNfGgIpMLs4004"/>
+<div class="absolute top-10 left-10 z-20 bg-background-dark/80 backdrop-blur-md border border-white/10 rounded-full px-4 py-2 flex items-center gap-2 transform -translate-y-4 opacity-0 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 delay-100">
+<span class="material-symbols-outlined text-primary text-sm">rocket_launch</span>
+<span class="text-xs font-semibold text-white">High Performance</span>
+</div>
+<div class="absolute bottom-20 right-10 z-20 bg-background-dark/80 backdrop-blur-md border border-white/10 rounded-full px-4 py-2 flex items-center gap-2 transform translate-y-4 opacity-0 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 delay-200">
+<span class="material-symbols-outlined text-primary text-sm">code</span>
+<span class="text-xs font-semibold text-white">Clean Code</span>
+</div>
+</div>
+</div>
+</section>
+<section class="py-32 bg-background-dark grid-pattern relative border-y border-white/5 z-10 pt-48" id="manifesto">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+<div>
+<h2 class="text-5xl md:text-6xl font-black text-white mb-2 tracking-tight uppercase leading-none drop-shadow-[0_0_10px_rgba(255,255,255,0.3)]">
+                Tecnologia com<br/>Intenção.
+            </h2>
+<p class="font-serif italic text-4xl text-white mb-8 drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]">
+                design com alma
+            </p>
+<div class="w-16 h-1 bg-white/20 mt-8"></div>
+</div>
+<div class="bg-surface-dark/50 backdrop-blur-xl border-l-4 border-primary p-8 rounded-r-2xl shadow-[0_20px_50px_rgba(0,0,0,0.5)] relative">
+<div class="absolute -inset-1 bg-gradient-to-r from-primary/10 to-transparent blur-xl -z-10 rounded-2xl opacity-50"></div>
+<p class="text-lg text-gray-300 leading-relaxed mb-8">
+                Na ConectaDev, não apenas "entregamos código". Nós construímos ativos digitais. Unimos o impacto visual do Design Cinematográfico à robustez de SaaS de alta performance. Nossa especialização não é genérica: mergulhamos no dia a dia de Clínicas Médicas e Restaurantes para criar CRMs que realmente eliminam gargalos operacionais e transformam dados em lucro real.
+            </p>
+<p class="text-sm font-bold text-white uppercase tracking-wider mb-10">
+                Se o seu negócio exige o estado da arte em tecnologia, você está no lugar certo.
+            </p>
+<div class="flex items-center gap-4">
+<div class="flex -space-x-4">
+<img alt="Specialist 1" class="w-12 h-12 rounded-full border-2 border-background-dark object-cover filter grayscale hover:grayscale-0 transition-all" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDGyJTDRB2PU71H-KFgAfuWRT8A1C5qaPfWKjUnaeUPlio_YRehz5uOChULeQBvMS6mgu5CreGQgBGVYqiFmF21iDLtJ9zbfMDzB2_xY1lN6NBsEyc0DTiT6SuwTv2J4cmTm92dj_moEs9coDof9i6nY-2iaUmQtFwXbQKNIpfEYLqzNLnsn_-sqZJpVG3kPzWtfqUO92W83MAekxGSjYSjR6Sb57oMMQ0ik8S0fqSL5BdYFZTKOdO7pJemjgChc08jl_lBCyyNH0du"/>
+<img alt="Specialist 2" class="w-12 h-12 rounded-full border-2 border-background-dark object-cover filter grayscale hover:grayscale-0 transition-all" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAGXX0WbwVXnJrm5slKGonk9BL_0H4kzua5YO7siNOTCObrY9wX1EVoH-XEQL_eip0IrK9cSqSDgZEjZtudY2z9v0ZoYaeT28EodLkTRIJ6ONuuYNUqrrVrUaMXvF5NMP554mf0f1QkiF7zSRHmPisXrn4aunxRb83K-macNkubYQP3hfdMs9EOZopMygp7PxurUyrDfAeDQYNYYSYHpU_xyX3hhNV7yzt6Jfd2O1F1pwhhjMdLu46ng-mUdbDy7XxMyPY1-WbQF7T1"/>
+<img alt="Specialist 3" class="w-12 h-12 rounded-full border-2 border-background-dark object-cover filter grayscale hover:grayscale-0 transition-all" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBlPU34eq4JmSoWjRzxYid0l9cmg5ebRgYM0WsVGDfK_1UpcdmCZlESh9h3F7y8douc8LTFDkOKxX0BpcAnZWrzhSRmt0VuSErFM58UGVnV90hy_CIIzvDN2JSe6w7GYjE9w5xz6ORPZl1JhETtKtdj4AaZgJtoUj7aHhyhNmy6_2DB1wjh4q539tFFkqsRM4Cdwemj_LnlSPG3-rDredgL9TzIJ71_Y2zhwWyDZaU0H2_O0qdt1kVhg-rayk4U_WfA_qAWibIFNfhG"/>
+</div>
+<span class="text-primary text-xs font-bold uppercase tracking-widest">Conheça Nosso Time</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="pt-24 pb-24 bg-background-light dark:bg-background-dark relative z-10" id="services">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="text-center mb-20">
+<p class="text-sm font-bold tracking-widest text-text-muted-light dark:text-text-muted-dark uppercase mb-3">Our Services</p>
+<h2 class="text-4xl md:text-5xl font-bold">What <span class="text-primary">Services</span> We are<br/>offering</h2>
+<p class="mt-6 text-text-muted-light dark:text-text-muted-dark max-w-2xl mx-auto">
+                    We deliver comprehensive digital solutions tailored to elevate your brand and drive measurable results.
+                </p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+<div class="bg-surface-light dark:bg-surface-dark rounded-2xl p-8 border border-gray-200 dark:border-white/5 hover:border-primary/50 transition-all group relative overflow-hidden flex flex-col h-full">
+<div class="absolute top-0 right-0 p-6 text-6xl font-black text-gray-200 dark:text-white/5 group-hover:text-primary/10 transition-colors z-0">01</div>
+<div class="relative z-10 flex-grow">
+<div class="w-14 h-14 bg-white dark:bg-background-dark rounded-xl flex items-center justify-center mb-6 shadow-sm border border-gray-100 dark:border-white/10 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-2xl text-text-light dark:text-text-dark group-hover:text-primary transition-colors">design_services</span>
+</div>
+<h3 class="text-xl font-bold mb-4">UI/UX Design</h3>
+<p class="text-text-muted-light dark:text-text-muted-dark text-sm leading-relaxed mb-6">
+                            Cinematic and intuitive interfaces that engage users and elevate brand perception.
+                        </p>
+<div class="flex flex-wrap gap-2 mt-auto">
+<span class="text-[10px] uppercase tracking-wider font-semibold border border-gray-300 dark:border-gray-700 rounded-full px-3 py-1">Wireframe</span>
+<span class="text-[10px] uppercase tracking-wider font-semibold border border-gray-300 dark:border-gray-700 rounded-full px-3 py-1">Prototyping</span>
+</div>
+</div>
+<div class="mt-8 flex justify-end relative z-10">
+<a class="w-10 h-10 rounded-full bg-gray-200 dark:bg-gray-800 flex items-center justify-center group-hover:bg-primary group-hover:text-black transition-colors" href="#">
+<span class="material-symbols-outlined text-sm">arrow_forward</span>
+</a>
+</div>
+</div>
+<div class="bg-surface-light dark:bg-surface-dark rounded-2xl p-8 border border-gray-200 dark:border-white/5 hover:border-primary/50 transition-all group relative overflow-hidden flex flex-col h-full">
+<div class="absolute top-0 right-0 p-6 text-6xl font-black text-gray-200 dark:text-white/5 group-hover:text-primary/10 transition-colors z-0">02</div>
+<div class="relative z-10 flex-grow">
+<div class="w-14 h-14 bg-white dark:bg-background-dark rounded-xl flex items-center justify-center mb-6 shadow-sm border border-gray-100 dark:border-white/10 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-2xl text-text-light dark:text-text-dark group-hover:text-primary transition-colors">developer_mode</span>
+</div>
+<h3 class="text-xl font-bold mb-4">Web Development</h3>
+<p class="text-text-muted-light dark:text-text-muted-dark text-sm leading-relaxed mb-6">
+                            High-performance engineering using React, Vite, Tailwind, and Shadcn UI.
+                        </p>
+<div class="flex flex-wrap gap-2 mt-auto">
+<span class="text-[10px] uppercase tracking-wider font-semibold border border-gray-300 dark:border-gray-700 rounded-full px-3 py-1">React</span>
+<span class="text-[10px] uppercase tracking-wider font-semibold border border-gray-300 dark:border-gray-700 rounded-full px-3 py-1">Tailwind</span>
+</div>
+</div>
+<div class="mt-8 flex justify-end relative z-10">
+<a class="w-10 h-10 rounded-full bg-gray-200 dark:bg-gray-800 flex items-center justify-center group-hover:bg-primary group-hover:text-black transition-colors" href="#">
+<span class="material-symbols-outlined text-sm">arrow_forward</span>
+</a>
+</div>
+</div>
+<div class="bg-surface-light dark:bg-surface-dark rounded-2xl p-8 border border-gray-200 dark:border-white/5 hover:border-primary/50 transition-all group relative overflow-hidden flex flex-col h-full">
+<div class="absolute top-0 right-0 p-6 text-6xl font-black text-gray-200 dark:text-white/5 group-hover:text-primary/10 transition-colors z-0">03</div>
+<div class="relative z-10 flex-grow">
+<div class="w-14 h-14 bg-white dark:bg-background-dark rounded-xl flex items-center justify-center mb-6 shadow-sm border border-gray-100 dark:border-white/10 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-2xl text-text-light dark:text-text-dark group-hover:text-primary transition-colors">trending_up</span>
+</div>
+<h3 class="text-xl font-bold mb-4">SEO Optimization</h3>
+<p class="text-text-muted-light dark:text-text-muted-dark text-sm leading-relaxed mb-6">
+                            Data-driven strategies to dominate search rankings and drive organic traffic.
+                        </p>
+<div class="flex flex-wrap gap-2 mt-auto">
+<span class="text-[10px] uppercase tracking-wider font-semibold border border-gray-300 dark:border-gray-700 rounded-full px-3 py-1">Analytics</span>
+<span class="text-[10px] uppercase tracking-wider font-semibold border border-gray-300 dark:border-gray-700 rounded-full px-3 py-1">Strategy</span>
+</div>
+</div>
+<div class="mt-8 flex justify-end relative z-10">
+<a class="w-10 h-10 rounded-full bg-gray-200 dark:bg-gray-800 flex items-center justify-center group-hover:bg-primary group-hover:text-black transition-colors" href="#">
+<span class="material-symbols-outlined text-sm">arrow_forward</span>
+</a>
+</div>
+</div>
+<div class="bg-surface-light dark:bg-surface-dark rounded-2xl p-8 border border-gray-200 dark:border-white/5 hover:border-primary/50 transition-all group relative overflow-hidden flex flex-col h-full">
+<div class="absolute top-0 right-0 p-6 text-6xl font-black text-gray-200 dark:text-white/5 group-hover:text-primary/10 transition-colors z-0">04</div>
+<div class="relative z-10 flex-grow">
+<div class="w-14 h-14 bg-white dark:bg-background-dark rounded-xl flex items-center justify-center mb-6 shadow-sm border border-gray-100 dark:border-white/10 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-2xl text-text-light dark:text-text-dark group-hover:text-primary transition-colors">cloud_sync</span>
+</div>
+<h3 class="text-xl font-bold mb-4">DevOps Services</h3>
+<p class="text-text-muted-light dark:text-text-muted-dark text-sm leading-relaxed mb-6">
+                            Streamlined deployment pipelines and scalable cloud infrastructure.
+                        </p>
+<div class="flex flex-wrap gap-2 mt-auto">
+<span class="text-[10px] uppercase tracking-wider font-semibold border border-gray-300 dark:border-gray-700 rounded-full px-3 py-1">CI/CD</span>
+<span class="text-[10px] uppercase tracking-wider font-semibold border border-gray-300 dark:border-gray-700 rounded-full px-3 py-1">Cloud</span>
+</div>
+</div>
+<div class="mt-8 flex justify-end relative z-10">
+<a class="w-10 h-10 rounded-full bg-gray-200 dark:bg-gray-800 flex items-center justify-center group-hover:bg-primary group-hover:text-black transition-colors" href="#">
+<span class="material-symbols-outlined text-sm">arrow_forward</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="py-24 bg-background-dark grid-pattern relative border-y border-white/5" id="portfolio">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="text-center md:text-left mb-16 md:flex justify-between items-end">
+<div>
+<p class="text-sm font-bold tracking-widest text-text-muted-dark uppercase mb-3">Our Projects</p>
+<h2 class="text-4xl md:text-5xl font-bold text-white">Discover Our Latest <span class="text-primary">Projects</span></h2>
+</div>
+<a class="hidden md:inline-flex items-center gap-2 text-white hover:text-primary transition-colors font-semibold uppercase tracking-wider text-sm mt-6 md:mt-0" href="#">
+                View All Projects <span class="material-symbols-outlined">arrow_right_alt</span>
+</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<div class="group relative overflow-hidden rounded-3xl aspect-[4/3] bg-surface-dark border border-white/10">
+<img alt="Project 1" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-70 group-hover:opacity-100" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDQUQukTXfdp-hRffDuefPKTqdy0bOoVFEAh-61cacvzvBlVH4UYfhFMDrr4tW6w16KFz8asYdpk3D6a8T9QGKF_uD2HJ4pihBRxTeH0VpFStHwPakvm8PV11dS9P2v9DNO87il9dhVC7HuEDSrPISTTXGB5cEw2c5fovPYulbj24xzQgOpG91-J6zXH3QeyT06t93LG_gejn3dqBT_vkA-M8Q-hRM6-16nR4l0Wv9aPfdTWOJLtMyxztzzAp7TXLwHQrlGmnDy3QPu"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-300"></div>
+<div class="absolute bottom-0 left-0 p-8 translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+<span class="text-primary text-xs font-bold uppercase tracking-widest mb-2 block">SaaS Platform</span>
+<h3 class="text-2xl font-bold text-white mb-2">Fintech Dashboard</h3>
+<p class="text-gray-400 text-sm mb-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100 max-w-sm">A comprehensive financial dashboard with real-time data visualization and analytics.</p>
+<a class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-primary text-black hover:scale-110 transition-transform shadow-[0_0_15px_rgba(206,240,46,0.3)]" href="#">
+<span class="material-symbols-outlined">north_east</span>
+</a>
+</div>
+</div>
+<div class="group relative overflow-hidden rounded-3xl aspect-[4/3] bg-surface-dark border border-white/10">
+<img alt="Project 2" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-70 group-hover:opacity-100" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAMyQWLFWjTbo7HieEPfTw9whnkljbLHfWC5Qh2txw9Wmfq6D_ghk3xePhzEwzn3egff33bmTpsuKnVcQvtRtQeZuSpQXouBFC_QjEMNx_m16V21Y3IMYes8WZ8XZ-3jI7vFhP65MmCgfM1HhRK14IfMSSekgjIGk_dP9qT41NPlV1oamp2s2CKCYfJu2XpENGB-Jgfb1GpSFWC9DfGvK69_t2OXeLybnCys682esss2DG9HZmfAAWCpedsjBJAh1jFoYUgcuyrU4Wk"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-300"></div>
+<div class="absolute bottom-0 left-0 p-8 translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+<span class="text-primary text-xs font-bold uppercase tracking-widest mb-2 block">CRM System</span>
+<h3 class="text-2xl font-bold text-white mb-2">HealthTech CRM</h3>
+<p class="text-gray-400 text-sm mb-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100 max-w-sm">Streamlined patient management system for modern healthcare clinics.</p>
+<a class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-primary text-black hover:scale-110 transition-transform shadow-[0_0_15px_rgba(206,240,46,0.3)]" href="#">
+<span class="material-symbols-outlined">north_east</span>
+</a>
+</div>
+</div>
+</div>
+<div class="mt-8 text-center md:hidden">
+<a class="inline-flex items-center gap-2 text-white hover:text-primary transition-colors font-semibold uppercase tracking-wider text-sm" href="#">
+                View All Projects <span class="material-symbols-outlined">arrow_right_alt</span>
+</a>
+</div>
+</div>
+</section>
+<section class="py-20 bg-[#0a0c0c] border-b border-white/5 relative overflow-hidden">
+<div class="absolute top-0 right-0 w-96 h-96 bg-primary/10 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-12 divide-y md:divide-y-0 md:divide-x divide-white/10">
+<div class="text-center px-4 pt-6 md:pt-0">
+<h3 class="text-5xl lg:text-7xl font-black text-white mb-2 tracking-tighter">120<span class="text-primary">+</span></h3>
+<p class="text-gray-400 font-medium uppercase tracking-widest text-sm">Successful Projects</p>
+</div>
+<div class="text-center px-4 pt-12 md:pt-0">
+<h3 class="text-5xl lg:text-7xl font-black text-white mb-2 tracking-tighter">12k<span class="text-primary">+</span></h3>
+<p class="text-gray-400 font-medium uppercase tracking-widest text-sm">Happy Clients</p>
+</div>
+<div class="text-center px-4 pt-12 md:pt-0">
+<h3 class="text-5xl lg:text-7xl font-black text-white mb-2 tracking-tighter">5<span class="text-primary">+</span></h3>
+<p class="text-gray-400 font-medium uppercase tracking-widest text-sm">Years of Excellence</p>
+</div>
+</div>
+</div>
+</section>
+<div class="w-full bg-primary text-black py-4 overflow-hidden border-y border-black/10 dark:border-white/10 flex whitespace-nowrap">
+<div class="flex animate-[marquee_20s_linear_infinite] items-center gap-8 px-4 font-bold uppercase tracking-widest text-sm">
+<span>✧ UX/UI Design</span>
+<span>✧ Cloud Services</span>
+<span>✧ Search Engine Optimization</span>
+<span>✧ Mobile App Development</span>
+<span>✧ Website Design</span>
+<span>✧ UX/UI Design</span>
+<span>✧ Cloud Services</span>
+<span>✧ Search Engine Optimization</span>
+<span>✧ Mobile App Development</span>
+<span>✧ Website Design</span>
+</div>
+<style>
+            @keyframes marquee {
+                0% { transform: translateX(0); }
+                100% { transform: translateX(-50%); }
+            }
+        </style>
+</div>
+<section class="py-24 bg-background-light dark:bg-background-dark" id="process">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="mb-16">
+<p class="text-sm font-bold tracking-widest text-text-muted-light dark:text-text-muted-dark uppercase mb-3">How it works</p>
+<h2 class="text-4xl md:text-5xl font-bold">Our Working <span class="text-primary">Process</span></h2>
+<p class="mt-4 text-text-muted-light dark:text-text-muted-dark max-w-xl">
+                    A streamlined, transparent approach to bringing your digital vision to life efficiently and effectively.
+                </p>
+</div>
+<div class="relative">
+<div class="absolute top-1/2 left-0 w-full h-0.5 bg-gray-200 dark:bg-gray-800 -translate-y-1/2 hidden lg:block z-0 border-t border-dashed border-gray-400 dark:border-gray-600"></div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 relative z-10">
+<div class="relative group">
+<div class="flex items-center justify-center lg:justify-start mb-6 lg:mb-12">
+<div class="w-16 h-16 rounded-full bg-primary flex items-center justify-center shadow-[0_0_20px_rgba(206,240,46,0.4)] group-hover:scale-110 transition-transform relative z-10 border-4 border-background-light dark:border-background-dark">
+<span class="material-symbols-outlined text-black text-2xl">description</span>
+</div>
+</div>
+<div class="text-center lg:text-left">
+<span class="text-xs font-bold text-text-muted-light dark:text-text-muted-dark uppercase tracking-widest block mb-2">Step 1</span>
+<h3 class="text-xl font-bold mb-3">Briefing</h3>
+<p class="text-sm text-text-muted-light dark:text-text-muted-dark leading-relaxed">
+                                We dive deep into your goals, target audience, and specific requirements to ensure perfect alignment.
+                            </p>
+</div>
+</div>
+<div class="relative group">
+<div class="flex items-center justify-center lg:justify-start mb-6 lg:mb-12">
+<div class="w-16 h-16 rounded-full bg-primary flex items-center justify-center shadow-[0_0_20px_rgba(206,240,46,0.4)] group-hover:scale-110 transition-transform relative z-10 border-4 border-background-light dark:border-background-dark">
+<span class="material-symbols-outlined text-black text-2xl">lightbulb</span>
+</div>
+</div>
+<div class="text-center lg:text-left">
+<span class="text-xs font-bold text-text-muted-light dark:text-text-muted-dark uppercase tracking-widest block mb-2">Step 2</span>
+<h3 class="text-xl font-bold mb-3">Idea</h3>
+<p class="text-sm text-text-muted-light dark:text-text-muted-dark leading-relaxed">
+                                Our creative and technical teams brainstorm innovative solutions and architectural strategies.
+                            </p>
+</div>
+</div>
+<div class="relative group">
+<div class="flex items-center justify-center lg:justify-start mb-6 lg:mb-12">
+<div class="w-16 h-16 rounded-full bg-primary flex items-center justify-center shadow-[0_0_20px_rgba(206,240,46,0.4)] group-hover:scale-110 transition-transform relative z-10 border-4 border-background-light dark:border-background-dark">
+<span class="material-symbols-outlined text-black text-2xl">settings</span>
+</div>
+</div>
+<div class="text-center lg:text-left">
+<span class="text-xs font-bold text-text-muted-light dark:text-text-muted-dark uppercase tracking-widest block mb-2">Step 3</span>
+<h3 class="text-xl font-bold mb-3">Processing</h3>
+<p class="text-sm text-text-muted-light dark:text-text-muted-dark leading-relaxed">
+                                Agile development cycles, rigorous testing, and continuous feedback loops ensure quality.
+                            </p>
+</div>
+</div>
+<div class="relative group">
+<div class="flex items-center justify-center lg:justify-start mb-6 lg:mb-12">
+<div class="w-16 h-16 rounded-full bg-primary flex items-center justify-center shadow-[0_0_20px_rgba(206,240,46,0.4)] group-hover:scale-110 transition-transform relative z-10 border-4 border-background-light dark:border-background-dark">
+<span class="material-symbols-outlined text-black text-2xl">task_alt</span>
+</div>
+</div>
+<div class="text-center lg:text-left">
+<span class="text-xs font-bold text-text-muted-light dark:text-text-muted-dark uppercase tracking-widest block mb-2">Step 4</span>
+<h3 class="text-xl font-bold mb-3">Finishing</h3>
+<p class="text-sm text-text-muted-light dark:text-text-muted-dark leading-relaxed">
+                                Final optimization, deployment, and seamless handover with ongoing support options.
+                            </p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="py-24 bg-surface-dark border-t border-white/5" id="faq">
+<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="text-center mb-16">
+<h2 class="text-4xl md:text-5xl font-bold text-white mb-4">Frequently Asked <span class="text-primary">Questions</span></h2>
+<p class="text-gray-400 max-w-2xl mx-auto">Everything you need to know about our services and how we work.</p>
+</div>
+<div class="space-y-4">
+<details class="group bg-white/5 border border-white/10 rounded-2xl p-6 open:bg-white/10 transition-colors duration-300">
+<summary class="flex justify-between items-center font-bold text-lg text-white cursor-pointer list-none">
+                    Is a web agency profitable?
+                    <span class="transition group-open:rotate-180">
+<span class="material-symbols-outlined text-primary">expand_more</span>
+</span>
+</summary>
+<p class="text-gray-400 mt-4 leading-relaxed text-sm">Yes, building highly customized, high-performance web applications and digital assets can generate significant ROI by increasing conversion rates, streamlining operations, and elevating brand perception.</p>
+</details>
+<details class="group bg-white/5 border border-white/10 rounded-2xl p-6 open:bg-white/10 transition-colors duration-300">
+<summary class="flex justify-between items-center font-bold text-lg text-white cursor-pointer list-none">
+                    How do I market my web agency?
+                    <span class="transition group-open:rotate-180">
+<span class="material-symbols-outlined text-primary">expand_more</span>
+</span>
+</summary>
+<p class="text-gray-400 mt-4 leading-relaxed text-sm">We focus on SEO optimization, delivering exceptional case studies, and creating cinematic landing pages that speak for themselves. Word of mouth and organic traffic are key drivers.</p>
+</details>
+<details class="group bg-white/5 border border-white/10 rounded-2xl p-6 open:bg-white/10 transition-colors duration-300">
+<summary class="flex justify-between items-center font-bold text-lg text-white cursor-pointer list-none">
+                    Why choose web design agency?
+                    <span class="transition group-open:rotate-180">
+<span class="material-symbols-outlined text-primary">expand_more</span>
+</span>
+</summary>
+<p class="text-gray-400 mt-4 leading-relaxed text-sm">An elite agency brings cross-disciplinary expertise—combining high-end UI/UX, robust frontend engineering, and strategic SEO—that is difficult to build in-house efficiently.</p>
+</details>
+<details class="group bg-white/5 border border-white/10 rounded-2xl p-6 open:bg-white/10 transition-colors duration-300">
+<summary class="flex justify-between items-center font-bold text-lg text-white cursor-pointer list-none">
+                    Can I create a website in one day?
+                    <span class="transition group-open:rotate-180">
+<span class="material-symbols-outlined text-primary">expand_more</span>
+</span>
+</summary>
+<p class="text-gray-400 mt-4 leading-relaxed text-sm">While simple templates can be deployed quickly, our high-end, custom-engineered digital assets typically require a structured process of briefing, ideation, and careful processing to ensure maximum impact and quality.</p>
+</details>
+</div>
+</div>
+</section>
+<section class="py-16 bg-surface-light dark:bg-surface-dark border-y border-gray-200 dark:border-white/5">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+<p class="text-sm font-bold tracking-widest text-text-muted-light dark:text-text-muted-dark uppercase mb-8">Our Partner</p>
+<h2 class="text-3xl font-bold mb-12">Our Trusted <span class="text-primary">Clients</span> &amp; Partners</h2>
+<div class="flex flex-wrap justify-center items-center gap-12 md:gap-20 opacity-60 grayscale hover:grayscale-0 transition-all duration-500 dark:invert-0 invert">
+<div class="text-2xl font-bold font-sans flex items-center gap-2"><span class="material-symbols-outlined text-3xl">search</span> Google</div>
+<div class="text-2xl font-bold font-sans flex items-center gap-2"><span class="material-symbols-outlined text-3xl">podcasts</span> Spotify</div>
+<div class="text-2xl font-bold font-sans flex items-center gap-2"><span class="material-symbols-outlined text-3xl">house</span> Airbnb</div>
+<div class="text-2xl font-bold font-sans flex items-center gap-2"><span class="material-symbols-outlined text-3xl">shopping_bag</span> Shopify</div>
+<div class="text-2xl font-bold font-sans flex items-center gap-2"><span class="material-symbols-outlined text-3xl">shopping_cart</span> Amazon</div>
+</div>
+</div>
+</section>
+<section class="py-24 bg-background-light dark:bg-background-dark overflow-hidden">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+<div>
+<p class="text-sm font-bold tracking-widest text-text-muted-light dark:text-text-muted-dark uppercase mb-3">5-Star Service, Every Time</p>
+<h2 class="text-4xl md:text-5xl font-bold mb-6">What <span class="text-primary">our client</span> say<br/>about us</h2>
+<p class="text-text-muted-light dark:text-text-muted-dark mb-10 max-w-md">
+                        Don't just take our word for it. Read what our partners have to say about the transformative digital assets we've built together.
+                    </p>
+<div class="flex items-center gap-4">
+<div class="flex -space-x-3">
+<img alt="Client 1" class="w-12 h-12 rounded-full border-2 border-background-light dark:border-background-dark" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDGyJTDRB2PU71H-KFgAfuWRT8A1C5qaPfWKjUnaeUPlio_YRehz5uOChULeQBvMS6mgu5CreGQgBGVYqiFmF21iDLtJ9zbfMDzB2_xY1lN6NBsEyc0DTiT6SuwTv2J4cmTm92dj_moEs9coDof9i6nY-2iaUmQtFwXbQKNIpfEYLqzNLnsn_-sqZJpVG3kPzWtfqUO92W83MAekxGSjYSjR6Sb57oMMQ0ik8S0fqSL5BdYFZTKOdO7pJemjgChc08jl_lBCyyNH0du"/>
+<img alt="Client 2" class="w-12 h-12 rounded-full border-2 border-background-light dark:border-background-dark" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAGXX0WbwVXnJrm5slKGonk9BL_0H4kzua5YO7siNOTCObrY9wX1EVoH-XEQL_eip0IrK9cSqSDgZEjZtudY2z9v0ZoYaeT28EodLkTRIJ6ONuuYNUqrrVrUaMXvF5NMP554mf0f1QkiF7zSRHmPisXrn4aunxRb83K-macNkubYQP3hfdMs9EOZopMygp7PxurUyrDfAeDQYNYYSYHpU_xyX3hhNV7yzt6Jfd2O1F1pwhhjMdLu46ng-mUdbDy7XxMyPY1-WbQF7T1"/>
+<img alt="Client 3" class="w-12 h-12 rounded-full border-2 border-background-light dark:border-background-dark" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBlPU34eq4JmSoWjRzxYid0l9cmg5ebRgYM0WsVGDfK_1UpcdmCZlESh9h3F7y8douc8LTFDkOKxX0BpcAnZWrzhSRmt0VuSErFM58UGVnV90hy_CIIzvDN2JSe6w7GYjE9w5xz6ORPZl1JhETtKtdj4AaZgJtoUj7aHhyhNmy6_2DB1wjh4q539tFFkqsRM4Cdwemj_LnlSPG3-rDredgL9TzIJ71_Y2zhwWyDZaU0H2_O0qdt1kVhg-rayk4U_WfA_qAWibIFNfhG"/>
+</div>
+<div>
+<div class="font-bold text-xl">12k+</div>
+<div class="text-text-muted-light dark:text-text-muted-dark text-sm">Our Happy Clients</div>
+</div>
+</div>
+</div>
+<div class="relative">
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-primary/5 rounded-full blur-3xl -z-10"></div>
+<div class="bg-surface-light dark:bg-surface-dark rounded-3xl p-8 md:p-10 shadow-xl border border-gray-200 dark:border-white/5 relative z-10 transform transition-transform hover:-translate-y-2">
+<div class="absolute -top-6 -right-6 text-primary opacity-20">
+<span class="material-symbols-outlined text-8xl">format_quote</span>
+</div>
+<div class="flex justify-between items-start mb-8 relative z-10">
+<div class="flex gap-1 text-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<span class="text-sm text-text-muted-light dark:text-text-muted-dark">Mar 10, 2024</span>
+</div>
+<p class="text-lg md:text-xl font-medium mb-10 leading-relaxed relative z-10">
+                            "The team at ConectaDev completely transformed our digital presence. Their attention to detail, modern design aesthetics, and technical expertise delivered a platform that significantly increased our user engagement and conversion rates. Truly a cinematic experience!"
+                        </p>
+<div class="flex items-center gap-4 relative z-10">
+<img alt="Devon Lane" class="w-14 h-14 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBDmvhH9GO6GaSJ-Zl4Kek2nh2jjEFO1qwcYTcKRpRqnaWTD5iVH2LgeQO3A54d7b0e55efPZ8cZ-BT7iGwEXG0eUGGMRpLxKb0pKA0Lkbr1WHruVKU9__yIYOY0Uo-2IuE8WbyCXPB1r_UJZLpseUzqThZlYLacK33hceBj4LjqX_gWhLlYY8Mi51zacOlaOm4tNCfqRx340nYOUoWJjCACvOvQ9_Q-PbYx9ObG9hq62ib6zDGsnJt9eaJcVvjRm3_TweknYEHqw0m"/>
+<div>
+<h4 class="font-bold text-lg">Devon Lane</h4>
+<p class="text-sm text-text-muted-light dark:text-text-muted-dark">CTO, TechFlow</p>
+</div>
+</div>
+<div class="absolute -bottom-5 right-10 flex gap-2">
+<button class="w-10 h-10 rounded-full bg-white dark:bg-gray-800 shadow-lg border border-gray-100 dark:border-gray-700 flex items-center justify-center hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-sm">arrow_back</span>
+</button>
+<button class="w-10 h-10 rounded-full bg-primary text-black shadow-lg shadow-primary/30 flex items-center justify-center hover:bg-white transition-colors">
+<span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="py-32 bg-background-dark grid-pattern relative overflow-hidden border-t border-white/5" id="contact">
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full text-center pointer-events-none select-none z-0 overflow-hidden">
+<h2 class="text-[12rem] lg:text-[18rem] font-black tracking-tighter text-outline opacity-20 whitespace-nowrap">ESTRATÉGIA</h2>
+</div>
+<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+<div class="text-center mb-12">
+<p class="text-primary font-bold tracking-widest text-sm uppercase mb-4 animate-pulse">Descubra Seu Potencial</p>
+<h2 class="text-4xl md:text-5xl lg:text-6xl font-black text-white mb-6">Em menos de 60 segundos,<br/><span class="text-primary font-serif italic font-medium">desenharemos sua estratégia de elite.</span></h2>
+</div>
+<div class="bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-8 md:p-12 shadow-2xl relative overflow-hidden">
+<div class="absolute top-0 left-0 h-1 w-full bg-white/10">
+<div class="h-full w-1/4 bg-primary shadow-[0_0_15px_rgba(206,240,46,0.8)] transition-all duration-500"></div>
+</div>
+<div class="mb-10 text-center">
+<h3 class="text-2xl md:text-3xl font-bold text-white mb-2">Qual seu nicho?</h3>
+<p class="text-gray-400 text-sm">Selecione o setor da sua empresa para começarmos.</p>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-3 gap-4 mb-12">
+<button class="flex flex-col items-center justify-center gap-3 p-6 rounded-2xl border border-white/10 bg-white/5 hover:bg-primary/10 hover:border-primary/50 transition-all group">
+<span class="material-symbols-outlined text-3xl text-gray-400 group-hover:text-primary transition-colors">local_hospital</span>
+<span class="text-white font-semibold">Clínica</span>
+</button>
+<button class="flex flex-col items-center justify-center gap-3 p-6 rounded-2xl border border-white/10 bg-white/5 hover:bg-primary/10 hover:border-primary/50 transition-all group">
+<span class="material-symbols-outlined text-3xl text-gray-400 group-hover:text-primary transition-colors">restaurant</span>
+<span class="text-white font-semibold">Restaurante</span>
+</button>
+<button class="flex flex-col items-center justify-center gap-3 p-6 rounded-2xl border border-white/10 bg-white/5 hover:bg-primary/10 hover:border-primary/50 transition-all group">
+<span class="material-symbols-outlined text-3xl text-gray-400 group-hover:text-primary transition-colors">business</span>
+<span class="text-white font-semibold">Tech/B2B</span>
+</button>
+<button class="flex flex-col items-center justify-center gap-3 p-6 rounded-2xl border border-white/10 bg-white/5 hover:bg-primary/10 hover:border-primary/50 transition-all group">
+<span class="material-symbols-outlined text-3xl text-gray-400 group-hover:text-primary transition-colors">shopping_bag</span>
+<span class="text-white font-semibold">E-commerce</span>
+</button>
+<button class="flex flex-col items-center justify-center gap-3 p-6 rounded-2xl border border-white/10 bg-white/5 hover:bg-primary/10 hover:border-primary/50 transition-all group">
+<span class="material-symbols-outlined text-3xl text-gray-400 group-hover:text-primary transition-colors">gavel</span>
+<span class="text-white font-semibold">Advocacia</span>
+</button>
+<button class="flex flex-col items-center justify-center gap-3 p-6 rounded-2xl border border-white/10 bg-white/5 hover:bg-primary/10 hover:border-primary/50 transition-all group">
+<span class="material-symbols-outlined text-3xl text-gray-400 group-hover:text-primary transition-colors">more_horiz</span>
+<span class="text-white font-semibold">Outro</span>
+</button>
+</div>
+<div class="text-center">
+<button class="inline-flex items-center justify-center gap-2 bg-primary text-black font-bold text-lg px-8 py-4 rounded-full hover:bg-white transition-all transform hover:scale-105 shadow-[0_0_30px_rgba(206,240,46,0.4)] w-full sm:w-auto">
+<span class="material-symbols-outlined">chat</span>
+                    Gerar Estratégia no WhatsApp
+                </button>
+</div>
+</div>
+</div>
+</section>
+<footer class="bg-surface-light dark:bg-[#0a0c0c] pt-20 pb-10 border-t border-gray-200 dark:border-white/5">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+<div class="col-span-1 lg:col-span-2">
+<div class="flex items-center gap-2 mb-6">
+<img alt="ConectaDev Logo" class="w-10 h-10" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA0v2q1dws8iYmFYx82ff8G5A_dIjECw4BAPjM9APKCkJca-LYS5nkAPb8RJsl2i9hNE7SiaiLu45Ko73mkJBqJHDb627mWHqZ6W38DmfdiFKLF_FXczP5pIbeGDtgRsTXyezMWTfilGEqzlKhH7oj-uQ2wNErFj22uheK85g57SDib5pGDLjVRkomElwOBMECw0sVbDNcnbn6gvyBV1KOrXaId7JCPuDyZcdA5A89nSDlfQpVjgcLVIPGrjW-KXcTzSSGoxHZsVNhF"/>
+<span class="font-bold text-2xl tracking-tight">Conecta<span class="text-primary">Dev</span></span>
+</div>
+<p class="text-text-muted-light dark:text-text-muted-dark mb-8 max-w-sm">
+                        Building high-end digital assets that transform data into real profit through elite web engineering and cinematic design.
+                    </p>
+<div class="flex gap-4">
+<a class="w-10 h-10 rounded-full bg-gray-200 dark:bg-white/5 flex items-center justify-center hover:bg-primary hover:text-black transition-colors" href="#">
+<span class="text-sm font-bold">In</span>
+</a>
+<a class="w-10 h-10 rounded-full bg-gray-200 dark:bg-white/5 flex items-center justify-center hover:bg-primary hover:text-black transition-colors" href="#">
+<span class="text-sm font-bold">X</span>
+</a>
+<a class="w-10 h-10 rounded-full bg-gray-200 dark:bg-white/5 flex items-center justify-center hover:bg-primary hover:text-black transition-colors" href="#">
+<span class="text-sm font-bold">Be</span>
+</a>
+</div>
+</div>
+<div>
+<h4 class="font-bold text-lg mb-6">Quick Links</h4>
+<ul class="space-y-4 text-text-muted-light dark:text-text-muted-dark">
+<li><a class="hover:text-primary transition-colors" href="#">Home</a></li>
+<li><a class="hover:text-primary transition-colors" href="#services">Services</a></li>
+<li><a class="hover:text-primary transition-colors" href="#portfolio">Portfolio</a></li>
+<li><a class="hover:text-primary transition-colors" href="#process">How it works</a></li>
+<li><a class="hover:text-primary transition-colors" href="#contact">Contact</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-bold text-lg mb-6">Contact Us</h4>
+<ul class="space-y-4 text-text-muted-light dark:text-text-muted-dark">
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary text-xl">location_on</span>
+<span>123 Innovation Drive, Tech City, TC 90210</span>
+</li>
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-xl">mail</span>
+<span>hello@conectadev.com</span>
+</li>
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-xl">call</span>
+<span>+1 (555) 123-4567</span>
+</li>
+</ul>
+</div>
+</div>
+<div class="pt-8 border-t border-gray-200 dark:border-white/10 flex flex-col md:flex-row justify-between items-center gap-4">
+<p class="text-text-muted-light dark:text-text-muted-dark text-sm">
+                    © 2024 ConectaDev Agency. All rights reserved.
+                </p>
+<div class="flex gap-6 text-sm text-text-muted-light dark:text-text-muted-dark">
+<a class="hover:text-white transition-colors" href="#">Privacy Policy</a>
+<a class="hover:text-white transition-colors" href="#">Terms of Service</a>
+</div>
+</div>
+</div>
+</footer>
+</body></html>

@@ -1,0 +1,28 @@
+{
+  "id": 1,
+  "jsonrpc": "2.0",
+  "result": {
+    "content": [
+      {
+        "text": "{\"name\":\"projects/16389679762953394272/screens/fa41be102d4f41f187f6f73c297a98e9\",\"title\":\"ConectaDev High-End Landing Page\",\"screenshot\":{\"name\":\"projects/16389679762953394272/files/20ea3f21a929464fa7dbd87050025f2d\",\"downloadUrl\":\"https://lh3.googleusercontent.com/aida/AOfcidVIWRS3GLPDEPIvOThSnBw-8wUIwMZjSm4Z0YSyz1ktKxUcq77tsa0xzaXWlv5UpkYUMQ5yDslfNHId_2ynJ9VSghwW2ejiuClY2LEKq7ZODUzBO_NxxYSleg6FFfs9WKHPUJW3zAvge6QI-9vTZwvSbuoSwFyiz1_BxYB4nnwCHwOgZha42QisX3Oq-mNRvY_haou0mQjUKfhEWynHMu8WcfbB9Zm_K8sxi4UyPkdEaNvTR0DO3soWTBXl\"},\"htmlCode\":{\"name\":\"projects/16389679762953394272/files/582a43f3909c43d0969089dd23259e2d\",\"downloadUrl\":\"https://contribution.usercontent.google.com/download?c=CgthaWRhX2NvZGVmeBJ8Eh1hcHBfY29tcGFuaW9uX2dlbmVyYXRlZF9maWxlcxpbCiVodG1sXzdhNzQzM2Y2ZjE3YTQ5YTBiN2Y0MzRkYzM0YTU2ZmFiEgsSBxCWx-G6uAsYAZIBJAoKcHJvamVjdF9pZBIWQhQxNjM4OTY3OTc2Mjk1MzM5NDI3Mg&filename=&opi=89354086\",\"mimeType\":\"text/html\"},\"width\":\"2560\",\"height\":\"15636\",\"deviceType\":\"DESKTOP\"}",
+        "type": "text"
+      }
+    ],
+    "structuredContent": {
+      "deviceType": "DESKTOP",
+      "height": "15636",
+      "htmlCode": {
+        "downloadUrl": "https://contribution.usercontent.google.com/download?c=CgthaWRhX2NvZGVmeBJ8Eh1hcHBfY29tcGFuaW9uX2dlbmVyYXRlZF9maWxlcxpbCiVodG1sXzdhNzQzM2Y2ZjE3YTQ5YTBiN2Y0MzRkYzM0YTU2ZmFiEgsSBxCWx-G6uAsYAZIBJAoKcHJvamVjdF9pZBIWQhQxNjM4OTY3OTc2Mjk1MzM5NDI3Mg&filename=&opi=89354086",
+        "mimeType": "text/html",
+        "name": "projects/16389679762953394272/files/582a43f3909c43d0969089dd23259e2d"
+      },
+      "name": "projects/16389679762953394272/screens/fa41be102d4f41f187f6f73c297a98e9",
+      "screenshot": {
+        "downloadUrl": "https://lh3.googleusercontent.com/aida/AOfcidVIWRS3GLPDEPIvOThSnBw-8wUIwMZjSm4Z0YSyz1ktKxUcq77tsa0xzaXWlv5UpkYUMQ5yDslfNHId_2ynJ9VSghwW2ejiuClY2LEKq7ZODUzBO_NxxYSleg6FFfs9WKHPUJW3zAvge6QI-9vTZwvSbuoSwFyiz1_BxYB4nnwCHwOgZha42QisX3Oq-mNRvY_haou0mQjUKfhEWynHMu8WcfbB9Zm_K8sxi4UyPkdEaNvTR0DO3soWTBXl",
+        "name": "projects/16389679762953394272/files/20ea3f21a929464fa7dbd87050025f2d"
+      },
+      "title": "ConectaDev High-End Landing Page",
+      "width": "2560"
+    }
+  }
+}
