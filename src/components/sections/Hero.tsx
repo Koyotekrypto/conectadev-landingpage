@@ -10,10 +10,10 @@ export function Hero() {
                         <span className="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
                         Agência Digital de Alto Nível
                     </div>
-                    <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-8 leading-[1.1]">
-                        Nós construímos ativos digitais que transformam dados em <span className="text-primary relative inline-block">lucro real.<svg className="absolute w-full h-3 -bottom-1 left-0 text-primary opacity-50" preserveAspectRatio="none" viewBox="0 0 100 10"><path d="M0,5 Q50,10 100,5" fill="none" stroke="currentColor" strokeWidth="2"></path></svg></span>
+                    <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-8 leading-[1.1]">
+                        Nós construímos ativos digitais que transformam dados em <span className="text-primary relative inline-block">lucro real.<svg className="absolute w-full h-2 md:h-3 -bottom-1 left-0 text-primary opacity-50" preserveAspectRatio="none" viewBox="0 0 100 10"><path d="M0,5 Q50,10 100,5" fill="none" stroke="currentColor" strokeWidth="2"></path></svg></span>
                     </h1>
-                    <p className="text-lg md:text-xl text-gray-400 mb-10 max-w-2xl mx-auto font-light leading-relaxed">
+                    <p className="text-base md:text-xl text-gray-400 mb-10 max-w-2xl mx-auto font-light leading-relaxed">
                         Especialistas em engenharia web de alta performance e design cinematográfico utilizando React, Vite, Tailwind, e Shadcn UI.
                     </p>
                     <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">

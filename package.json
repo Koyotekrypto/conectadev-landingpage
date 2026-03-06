@@ -12,6 +12,12 @@
     "preview": "vite preview",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not op_mini all",
+    "last 2 versions"
+  ],
   "keywords": [],
   "author": "",
   "license": "ISC",
