@@ -42,15 +42,15 @@ export function Navbar() {
 
     return (
         <nav className={`fixed w-full z-50 top-0 transition-all duration-300 border-b ${scrolled
-                ? 'bg-background-light/95 dark:bg-background-dark/95 backdrop-blur-md py-2 border-gray-200 dark:border-white/10'
-                : 'bg-transparent py-4 border-transparent'
+            ? 'bg-background-light/95 dark:bg-background-dark/95 backdrop-blur-md py-2 border-gray-200 dark:border-white/10'
+            : 'bg-transparent py-4 border-transparent'
             }`}>
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between items-center h-16">
                     <Link to="/" className="flex-shrink-0 flex items-center gap-2 group z-50">
                         <img
                             alt="ConectaDev Logo"
-                            className="h-8 md:h-10 lg:h-12 w-auto object-contain transition-transform group-hover:scale-105"
+                            className="h-12 sm:h-24 md:h-40 lg:h-56 w-auto object-contain transition-transform group-hover:scale-105"
                             src="/assets/logo.png?v=v9.0"
                         />
                         <span className="font-bold flex flex-col justify-center">

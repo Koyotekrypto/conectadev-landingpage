@@ -9,7 +9,7 @@ export function Footer() {
                         <div className="flex items-center gap-2 mb-6">
                             <img
                                 alt="Logo ConectaDev"
-                                className="h-10 md:h-12 w-auto object-contain"
+                                className="h-40 md:h-64 lg:h-96 w-auto object-contain"
                                 src="/assets/logo.png?v=v9.0"
                             />
                             <span className="font-bold text-2xl tracking-tight">Conecta<span className="text-primary">Dev</span></span>

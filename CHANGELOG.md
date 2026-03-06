@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## [2026-03-06] - Refinamento Elite & Auditoria Responsiva
+### Adicionado / Modificado
+- **Restauração de Impacto do Logo**: Retorno às dimensões imponentes (`h-56` no Navbar, `h-96` no Footer) com lógica de escala responsiva progressiva para evitar quebras.
+- **Menu Mobile VIBE DEV™**: Implementação de menu overlay animado com Framer Motion, garantindo navegação fluida em smartphones.
+- **Auditoria Mobile-First**: Ajuste de tipografia e espaçamentos para suporte total a dispositivos de 320px (iPhone SE legado).
+- **Compatibilidade Legada**: Configuração de `browserslist` para garantir prefixos CSS em navegadores antigos.
+
 ## [2026-03-06] - Sprint 6: Imersão e Conteúdo Dinâmico
 ### Adicionado
 - **Páginas Internas**: Lançamento de `BlogPost.tsx` e `CaseDetail.tsx` para leitura profunda.
