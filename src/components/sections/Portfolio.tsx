@@ -1,20 +1,294 @@
+import { useState, useEffect } from 'react';
+import { motion, AnimatePresence, useAnimation } from 'framer-motion';
+import { X, ExternalLink, ArrowRight, TrendingUp, Users, Clock, Quote } from 'lucide-react';
+import { useSanityQueries } from '../../hooks/useSanityQueries';
+import { urlFor } from '../../sanity/client';
+import { DeviceMockup } from '../ui/DeviceMockup';
+
+interface ProjectMetric {
+    label: string;
+    value: string;
+    icon: any;
+}
+
+interface Project {
+    id: number;
+    title: string;
+    category: string;
+    shortDescription: string;
+    fullDescription: string;
+    image: string;
+    images?: string[];
+    videoUrl?: string;
+    link: string;
+    metrics: ProjectMetric[];
+    testimonial?: {
+        quote: string;
+        author: string;
+        role: string;
+    };
+}
+
+// ----------------------------------------------------------------------
+// COMPONENTE DE SHOWROOM COM AUTO-SCROLL CINEMÁTICO E MÁSCARA
+// ----------------------------------------------------------------------
+const ShowroomIframe = ({ url, title }: { url: string, title: string }) => {
+    const controls = useAnimation();
+    const [isHovered, setIsHovered] = useState(false);
+
+    useEffect(() => {
+        if (!isHovered) {
+            controls.start({
+                y: ["0%", "-40%"],
+                transition: {
+                    ease: "linear",
+                    duration: 35,
+                    repeat: Infinity,
+                    repeatType: "reverse"
+                }
+            });
+        } else {
+            controls.stop();
+        }
+    }, [isHovered, controls]);
+
+    return (
+        <div
+            className="flex-1 h-[50vh] lg:h-full bg-black overflow-hidden lg:border-r border-white/5 relative group"
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+            style={{
+                maskImage: 'linear-gradient(to bottom, transparent 0%, black 5%, black 95%, transparent 100%)',
+                WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, black 5%, black 95%, transparent 100%)'
+            }}
+        >
+            <div className="absolute inset-0 flex items-center justify-center pointer-events-none -z-10 bg-surface-dark">
+                <div className="w-8 h-8 rounded-full border-t-2 border-primary animate-spin" />
+            </div>
+
+            <motion.iframe
+                animate={controls}
+                src={url}
+                className="w-full absolute top-0 left-0 bg-white/5"
+                style={{
+                    height: '2500px',
+                    border: 'none',
+                    scrollbarWidth: 'none'
+                }}
+                title={`Showroom Demo: ${title}`}
+                loading="lazy"
+            />
+
+            <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: isHovered ? 0 : 1, y: isHovered ? 10 : 0 }}
+                transition={{ duration: 1 }}
+                className="absolute bottom-6 left-1/2 -translate-x-1/2 px-4 py-2 rounded-full bg-black/60 backdrop-blur-md border border-white/10 flex items-center gap-2 pointer-events-none"
+            >
+                <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+                <span className="text-xs font-medium text-white/70 uppercase tracking-wider">Apresentação Automática</span>
+            </motion.div>
+        </div>
+    );
+};
+// ----------------------------------------------------------------------
+
+// ----------------------------------------------------------------------
+// PROJECT INFO PANEL COM ABAS E KPIs PROOF OF VALUE
+// ----------------------------------------------------------------------
+const ProjectInfoPanel = ({ project }: { project: Project }) => {
+    const [activeTab, setActiveTab] = useState<'overview' | 'impact'>('overview');
+
+    return (
+        <div className="w-full lg:w-[450px] min-h-[40vh] bg-black/40 backdrop-blur-xl p-6 lg:p-8 flex flex-col justify-between overflow-y-auto border-l border-white/5 z-10 relative">
+            <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-primary/30 to-transparent lg:hidden" />
+
+            <div>
+                {/* Custom Tabs */}
+                <div className="flex bg-white/5 p-1 rounded-lg mb-8 relative">
+                    <button
+                        onClick={() => setActiveTab('overview')}
+                        className={`flex-1 py-2 text-sm font-bold tracking-wide transition-colors z-10 ${activeTab === 'overview' ? 'text-black' : 'text-gray-400 hover:text-white'}`}
+                    >
+                        Visão Geral
+                    </button>
+                    <button
+                        onClick={() => setActiveTab('impact')}
+                        className={`flex-1 py-2 text-sm font-bold tracking-wide transition-colors z-10 ${activeTab === 'impact' ? 'text-black' : 'text-gray-400 hover:text-white'}`}
+                    >
+                        Impacto (KPIs)
+                    </button>
+                    {/* Animated Background Selector */}
+                    <motion.div
+                        initial={false}
+                        animate={{ x: activeTab === 'overview' ? '0%' : '100%' }}
+                        className="absolute top-1 bottom-1 w-[calc(50%-4px)] bg-primary rounded-md z-0 shadow-[0_0_15px_rgba(206,240,46,0.3)]"
+                    />
+                </div>
+
+                {/* Tab Content */}
+                <AnimatePresence mode="wait">
+                    {activeTab === 'overview' ? (
+                        <motion.div
+                            key="overview"
+                            initial={{ opacity: 0, x: -10 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            exit={{ opacity: 0, x: -10 }}
+                            transition={{ duration: 0.2 }}
+                        >
+                            <h4 className="text-2xl font-bold text-white mb-4">Sobre a Plataforma</h4>
+                            <p className="text-gray-300 font-light leading-relaxed text-[15px]">
+                                {project.fullDescription}
+                            </p>
+
+                            {project.testimonial && (
+                                <div className="mt-8 p-5 rounded-xl bg-white/5 border border-white/10 relative">
+                                    <Quote className="absolute top-4 right-4 text-white/10 w-8 h-8" />
+                                    <p className="text-gray-300 italic text-sm mb-4">"{project.testimonial.quote}"</p>
+                                    <div>
+                                        <p className="text-white font-bold text-sm">{project.testimonial.author}</p>
+                                        <p className="text-primary text-xs uppercase tracking-widest">{project.testimonial.role}</p>
+                                    </div>
+                                </div>
+                            )}
+                        </motion.div>
+                    ) : (
+                        <motion.div
+                            key="impact"
+                            initial={{ opacity: 0, x: 10 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            exit={{ opacity: 0, x: 10 }}
+                            transition={{ duration: 0.2 }}
+                            className="flex flex-col gap-4"
+                        >
+                            <h4 className="text-2xl font-bold text-white mb-6">Resultados Gerados</h4>
+                            {project.metrics.map((metric, i) => (
+                                <motion.div
+                                    key={i}
+                                    initial={{ opacity: 0, y: 10 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ delay: i * 0.1 }}
+                                    className="flex items-center gap-4 p-4 rounded-xl bg-surface-dark border border-white/5 hover:border-primary/30 transition-colors group"
+                                >
+                                    <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
+                                        <metric.icon className="w-6 h-6" />
+                                    </div>
+                                    <div>
+                                        <p className="text-gray-400 text-xs uppercase tracking-wider font-bold mb-1">{metric.label}</p>
+                                        <p className="text-3xl font-bold text-white tracking-tighter shadow-primary/20 drop-shadow-lg">{metric.value}</p>
+                                    </div>
+                                </motion.div>
+                            ))}
+                        </motion.div>
+                    )}
+                </AnimatePresence>
+            </div>
+
+            <div className="mt-8 pt-6 border-t border-white/10">
+                <a
+                    href={project.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full flex items-center justify-center gap-2 px-6 py-4 bg-primary text-black rounded-xl hover:bg-primary/90 transition-all font-bold tracking-wide shadow-lg shadow-primary/20 hover:shadow-primary/40 hover:-translate-y-1"
+                >
+                    Acessar Plataforma Web
+                    <ExternalLink className="w-5 h-5" />
+                </a>
+            </div>
+        </div>
+    );
+}
+// ----------------------------------------------------------------------
+
 export function Portfolio() {
-    const projects = [
+    const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+    const { projects: sanityProjects, loading } = useSanityQueries();
+
+    // MOCK FALLBACK (Serão usados se o Sanity ainda estiver vazio)
+    const mockProjects: Project[] = [
         {
             id: 1,
-            title: "Dashboard Fintech",
-            category: "Plataforma SaaS",
-            description: "Um dashboard financeiro completo com visualização de dados em tempo real e análises.",
-            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDQUQukTXfdp-hRffDuefPKTqdy0bOoVFEAh-61cacvzvBlVH4UYfhFMDrr4tW6w16KFz8asYdpk3D6a8T9QGKF_uD2HJ4pihBRxTeH0VpFStHwPakvm8PV11dS9P2v9DNO87il9dhVC7HuEDSrPISTTXGB5cEw2c5fovPYulbj24xzQgOpG91-J6zXH3QeyT06t93LG_gejn3dqBT_vkA-M8Q-hRM6-16nR4l0Wv9aPfdTWOJLtMyxztzzAp7TXLwHQrlGmnDy3QPu"
+            title: "SOAPIA AI",
+            category: "Gestão HealthTech",
+            shortDescription: "Ecossistema completo de gestão clínica inteligente com IA adaptativa.",
+            fullDescription: "O ecossistema definitivo de gestão clínica inteligente. Uma plataforma end-to-end — do prontuário eletrônico ao controle financeiro avançado —, potencializada por Inteligência Artificial adaptativa para mais de 30 especialidades médicas. Transforme a rotina da sua clínica com automação e dados precisos.",
+            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuAMyQWLFWjTbo7HieEPfTw9whnkljbLHfWC5Qh2txw9Wmfq6D_ghk3xePhzEwzn3egff33bmTpsuKnVcQvtRtQeZuSpQXouBFC_QjEMNx_m16V21Y3IMYes8WZ8XZ-3jI7vFhP65MmCgfM1HhRK14IfMSSekgjIGk_dP9qT41NPlV1oamp2s2CKCYfJu2XpENGB-Jgfb1GpSFWC9DfGvK69_t2OXeLybnCys682esss2DG9HZmfAAWCpedsjBJAh1jFoYUgcuyrU4Wk",
+            images: [
+                "/assets/projects/soapia/1.png",
+                "/assets/projects/soapia/2.png",
+                "/assets/projects/soapia/3.png",
+                "/assets/projects/soapia/4.png",
+                "/assets/projects/soapia/5.png",
+                "/assets/projects/soapia/6.png"
+            ],
+            // videoUrl: "/videos/soapia-demo.mp4",
+            link: "https://www.soapiamed.com/",
+            metrics: [
+                { label: "Economia de Tempo Médico", value: "40%", icon: Clock },
+                { label: "Redução de Falhas/Glosas", value: "95%", icon: TrendingUp },
+                { label: "Clínicas Ativas", value: "+120", icon: Users }
+            ],
+            testimonial: {
+                quote: "A ConectaDev não construiu apenas um site, eles entregaram um verdadeiro motor em forma de SaaS. A arquitetura inteligente reduziu nossos custos de servidor enquanto triplicou a velocidade.",
+                author: "Dr. Arthur Lemos",
+                role: "CEO, ScioMed"
+            }
         },
         {
             id: 2,
-            title: "CRM HealthTech",
-            category: "Sistema CRM",
-            description: "Sistema otimizado de gestão de pacientes para clínicas de saúde modernas.",
-            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuAMyQWLFWjTbo7HieEPfTw9whnkljbLHfWC5Qh2txw9Wmfq6D_ghk3xePhzEwzn3egff33bmTpsuKnVcQvtRtQeZuSpQXouBFC_QjEMNx_m16V21Y3IMYes8WZ8XZ-3jI7vFhP65MmCgfM1HhRK14IfMSSekgjIGk_dP9qT41NPlV1oamp2s2CKCYfJu2XpENGB-Jgfb1GpSFWC9DfGvK69_t2OXeLybnCys682esss2DG9HZmfAAWCpedsjBJAh1jFoYUgcuyrU4Wk"
+            title: "VIBE FOOD™",
+            category: "Gestão Gastronômica High-Performance",
+            shortDescription: "Ecossistema SaaS focado em mobilidade, segurança e UX acelerada.",
+            fullDescription: "Plataforma SaaS de Gestão Gastronômica High-Performance. O VibeFood é um ecossistema projetado para restaurantes que buscam dominar sua operação. Focado em extrema mobilidade, segurança de dados e uma experiência do usuário acelerada para maximizar as conversões e o fluxo de pedidos.",
+            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDQUQukTXfdp-hRffDuefPKTqdy0bOoVFEAh-61cacvzvBlVH4UYfhFMDrr4tW6w16KFz8asYdpk3D6a8T9QGKF_uD2HJ4pihBRxTeH0VpFStHwPakvm8PV11dS9P2v9DNO87il9dhVC7HuEDSrPISTTXGB5cEw2c5fovPYulbj24xzQgOpG91-J6zXH3QeyT06t93LG_gejn3dqBT_vkA-M8Q-hRM6-16nR4l0Wv9aPfdTWOJLtMyxztzzAp7TXLwHQrlGmnDy3QPu",
+            images: [
+                "/assets/projects/vibefood/1.png",
+                "/assets/projects/vibefood/2.png",
+                "/assets/projects/vibefood/3.png",
+                "/assets/projects/vibefood/4.png",
+                "/assets/projects/vibefood/5.png"
+            ],
+            // videoUrl: "/videos/vibefood-demo.mp4",
+            link: "https://vibefood.vercel.app/",
+            metrics: [
+                { label: "Aumento em Pedidos Online", value: "3x", icon: TrendingUp },
+                { label: "Tempo de Resposta", value: "< 0.8s", icon: Clock },
+                { label: "Usuários Atendidos/Dia", value: "+5Mil", icon: Users }
+            ],
+            testimonial: {
+                quote: "A performance do cardápio digital redefiniu a forma como operamos nossos deliverys de alto volume. Sem crashes, sem lentidão. UX impecável.",
+                author: "Marcos Almeida",
+                role: "Diretor de Operações"
+            }
         }
     ];
+
+    // Se o Sanity retornar dados (mais que 0), mapeia eles. Senão, usa os mocks pre-definidos para não quebrar o visual da tela.
+    const projects = sanityProjects && sanityProjects.length > 0 ? sanityProjects.map((sp: any) => ({
+        id: sp._id,
+        title: sp.title,
+        category: sp.category,
+        shortDescription: sp.description?.substring(0, 100) + '...', // fallback caso shortDescription pare
+        fullDescription: sp.description,
+        image: sp.image ? urlFor(sp.image).url() : '',
+        images: sp.images?.map((img: any) => urlFor(img).url()) || [],
+        videoUrl: sp.videoUrl || '',
+        link: sp.link,
+        metrics: sp.metrics?.map((m: any) => ({
+            label: m.label,
+            value: m.value,
+            icon: m.icon === 'Clock' ? Clock : m.icon === 'TrendingUp' ? TrendingUp : Users
+        })) || [],
+    })) : mockProjects;
+
+    // Oculta scrollbar global quando o modal estiver aberto
+    if (typeof document !== "undefined") {
+        if (selectedProject) {
+            document.body.style.overflow = "hidden";
+        } else {
+            document.body.style.overflow = "unset";
+        }
+    }
 
     return (
         <section className="py-24 bg-background-dark grid-pattern relative border-y border-white/5" id="portfolio">
@@ -22,38 +296,114 @@ export function Portfolio() {
                 <div className="text-center md:text-left mb-16 md:flex justify-between items-end">
                     <div>
                         <p className="text-sm font-bold tracking-widest text-text-muted-dark uppercase mb-3">Nossos Projetos</p>
-                        <h2 className="text-4xl md:text-5xl font-bold text-white">Descubra Nossos Últimos <span className="text-primary">Projetos</span></h2>
+                        <h2 className="text-4xl md:text-5xl font-bold text-white">Resultados <span className="text-primary">SaaS</span></h2>
                     </div>
-                    <a className="hidden md:inline-flex items-center gap-2 text-white hover:text-primary transition-colors font-semibold uppercase tracking-wider text-sm mt-6 md:mt-0" href="#">
-                        Ver Todos os Projetos <span className="material-symbols-outlined">arrow_right_alt</span>
-                    </a>
                 </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    {projects.map((project) => (
-                        <div key={project.id} className="group relative overflow-hidden rounded-3xl aspect-[4/3] bg-surface-dark border border-white/10">
-                            <img
-                                alt={project.title}
-                                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-70 group-hover:opacity-100"
-                                src={project.image}
-                            />
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-300"></div>
-                            <div className="absolute bottom-0 left-0 p-8 translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                                <span className="text-primary text-xs font-bold uppercase tracking-widest mb-2 block">{project.category}</span>
-                                <h3 className="text-2xl font-bold text-white mb-2">{project.title}</h3>
-                                <p className="text-gray-400 text-sm mb-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100 max-w-sm">{project.description}</p>
-                                <a className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-primary text-black hover:scale-110 transition-transform shadow-[0_0_15px_rgba(206,240,46,0.3)]" href="#">
-                                    <span className="material-symbols-outlined">north_east</span>
-                                </a>
+
+                {/* Premium Device Mockups Grid */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-20 md:gap-16 mt-16">
+                    {projects.map((project) => {
+                        // Dynamic glow color based on branding
+                        const titleLower = project.title.toLowerCase();
+                        let glowColor = '#cefa2e'; // default primary
+                        if (titleLower.includes('soapia')) glowColor = '#a855f7'; // purple/lilac
+                        if (titleLower.includes('vibe food') || titleLower.includes('vibefood')) glowColor = '#f97316'; // orange
+
+                        return (
+                            <div
+                                key={project.id}
+                                onClick={() => setSelectedProject(project)}
+                                className="group flex flex-col gap-8 cursor-pointer relative"
+                            >
+                                {/* 3D Device Showcase */}
+                                <DeviceMockup
+                                    imageUrl={project.image}
+                                    images={project.images}
+                                    videoUrl={project.videoUrl}
+                                    altText={project.title}
+                                    themeColor={glowColor}
+                                />
+
+                                {/* Project Text Info */}
+                                <div className="flex flex-col items-center md:items-start text-center md:text-left px-4 md:px-8">
+                                    <span className="text-primary text-xs font-bold uppercase tracking-widest mb-2 block">{project.category}</span>
+                                    <h3 className="text-3xl font-bold text-white mb-3 group-hover:text-primary transition-colors">{project.title}</h3>
+                                    <p className="text-gray-400 text-sm mb-6 max-w-lg line-clamp-3">
+                                        {project.shortDescription}
+                                    </p>
+                                    <button className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white/5 backdrop-blur-md text-white border border-white/10 hover:bg-primary hover:text-black transition-all shadow-lg hover:shadow-[0_0_20px_rgba(206,240,46,0.3)] group/btn">
+                                        <span className="font-semibold text-sm tracking-wider uppercase">Ver Estudo de Caso</span>
+                                        <ArrowRight className="w-4 h-4 transition-transform group-hover/btn:translate-x-1" />
+                                    </button>
+                                </div>
                             </div>
-                        </div>
-                    ))}
-                </div>
-                <div className="mt-8 text-center md:hidden">
-                    <a className="inline-flex items-center gap-2 text-white hover:text-primary transition-colors font-semibold uppercase tracking-wider text-sm" href="#">
-                        Ver Todos os Projetos <span className="material-symbols-outlined">arrow_right_alt</span>
-                    </a>
+                        );
+                    })}
                 </div>
             </div>
+
+            {/* Interactive Iframe Modal */}
+            <AnimatePresence>
+                {selectedProject && (
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-8 bg-black/90 backdrop-blur-xl"
+                        style={{ perspective: 1200 }} // Propriedade 3D para o entrance effect
+                    >
+                        {/* Overlay invisível para fechar ao clicar fora */}
+                        <div
+                            className="absolute inset-0 cursor-pointer"
+                            onClick={() => setSelectedProject(null)}
+                        />
+
+                        <motion.div
+                            initial={{ scale: 0.9, rotateX: 10, y: 40, opacity: 0 }}
+                            animate={{ scale: 1, rotateX: 0, y: 0, opacity: 1 }}
+                            exit={{ scale: 0.9, rotateX: -10, y: 40, opacity: 0 }}
+                            transition={{ type: "spring", damping: 30, stiffness: 200, mass: 0.8 }}
+                            className="relative w-full max-w-7xl h-[90vh] bg-surface-dark border border-white/10 rounded-2xl flex flex-col overflow-hidden shadow-[0_0_50px_rgba(206,240,46,0.05)] ring-1 ring-white/10"
+                        >
+                            {/* Modal Header */}
+                            <div className="w-full flex items-center justify-between p-4 px-6 border-b border-white/5 bg-black/50 backdrop-blur-md z-10">
+                                <div>
+                                    <span className="text-primary text-xs tracking-widest uppercase font-bold">{selectedProject.category}</span>
+                                    <h3 className="text-xl font-bold text-white">{selectedProject.title}</h3>
+                                </div>
+                                <div className="flex gap-4 items-center">
+                                    <a
+                                        href={selectedProject.link}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="hidden md:flex items-center gap-2 px-4 py-2 bg-primary/10 hover:bg-primary text-primary hover:text-black rounded-lg transition-colors font-medium text-sm"
+                                    >
+                                        Visitar URL Real
+                                        <ExternalLink className="w-4 h-4" />
+                                    </a>
+                                    <button
+                                        onClick={() => setSelectedProject(null)}
+                                        className="p-2 rounded-full hover:bg-white/10 text-gray-400 hover:text-white transition-colors"
+                                    >
+                                        <X className="w-6 h-6" />
+                                    </button>
+                                </div>
+                            </div>
+
+                            {/* Modal Body Container */}
+                            <div className="flex flex-col lg:flex-row flex-1 overflow-hidden relative">
+
+                                {/* Iframe App Window com Auto-Scroll */}
+                                <ShowroomIframe url={selectedProject.link} title={selectedProject.title} />
+
+                                {/* Project Information Panel with Tabs */}
+                                <ProjectInfoPanel project={selectedProject} />
+
+                            </div>
+                        </motion.div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
         </section>
     );
 }

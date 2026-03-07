@@ -21,9 +21,11 @@ Landing page for the CONECTADEV platform, focusing on showcasing services and ca
 - [x] Integrate with Stripe for payments.
 - [x] Implement Modal de Fundadores com perfil real (Anderson Cardoso - Software Engineer UFC).
 - [x] Ajuste de escala do logo (Navbar: h-56, Footer: h-96) para máximo impacto.
-- [x] Sprint 4: O Legado da Autoridade (SEO, CustomCursor, Magic Glow).
+- [x] Sprint 4: O "Proof of Value" (Métricas KPIs, Tabs Animadas e Depoimentos no Portfólio, via Evolução Estratégica).
 - [x] Sprint 5: O Ecossistema de Conteúdo (Multi-página, Blog, Cases).
 - [x] Sprint 6: Imersão e Conteúdo Dinâmico (Páginas Internas e Transições).
-- [ ] Sprint 7: Performance & CMS Headless (Integração de conteúdo dinâmico externo).
+- [x] Sprint 7: Atmosfera & Interatividade (Lamp e 3D Cards).
+- [x] Integrate 3D Card Effects (Services Section Refinement).
+- [x] Sprint 7.1: Carrossel de Imagens Cinematográfico (Transições laterais, Auto-play 1.5s, Regras de Estabilidade).
 - [ ] Sprint 8: Automação Deep (Integração total com CRM e Automação de Marketing).
 - [ ] Sprint 9: Global Expansion (Suporte Multi-idioma e Performance Global).

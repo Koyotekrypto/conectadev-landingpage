@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Med.Health — Fluxos de Usuário</title>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0a0a1a;
+            color: #e0e0e0;
+            line-height: 1.6;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #0a0a1a 0%, #1a1a3e 50%, #0a3d62 100%);
+            padding: 60px 40px;
+            text-align: center;
+            border-bottom: 1px solid rgba(0, 212, 255, 0.2);
+        }
+
+        .header h1 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #00d4ff, #7b68ee, #ff6b6b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            color: #8899aa;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin: 50px 0 30px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid rgba(0, 212, 255, 0.3);
+        }
+
+        .section-title .badge {
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .badge-admin { background: linear-gradient(135deg, #7b68ee, #5a4fcf); color: #fff; }
+        .badge-medico { background: linear-gradient(135deg, #00d4ff, #0099cc); color: #fff; }
+        .badge-secretaria { background: linear-gradient(135deg, #2ecc71, #1abc9c); color: #fff; }
+        .badge-shared { background: linear-gradient(135deg, #e6b800, #cc9900); color: #1a1a2e; }
+
+        .section-title h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .diagram-card {
+            background: rgba(26, 26, 62, 0.6);
+            border: 1px solid rgba(0, 212, 255, 0.15);
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 30px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .diagram-card:hover {
+            border-color: rgba(0, 212, 255, 0.4);
+            box-shadow: 0 8px 32px rgba(0, 212, 255, 0.1);
+        }
+
+        .diagram-card h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #00d4ff;
+            margin-bottom: 8px;
+        }
+
+        .diagram-card .desc {
+            font-size: 0.9rem;
+            color: #8899aa;
+            margin-bottom: 20px;
+        }
+
+        .mermaid {
+            display: flex;
+            justify-content: center;
+            overflow-x: auto;
+            padding: 20px 0;
+        }
+
+        .mermaid svg {
+            max-width: 100%;
+        }
+
+        .permissions-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            font-size: 0.9rem;
+        }
+
+        .permissions-table th {
+            background: rgba(0, 212, 255, 0.15);
+            color: #00d4ff;
+            font-weight: 600;
+            padding: 12px 16px;
+            text-align: left;
+            border-bottom: 2px solid rgba(0, 212, 255, 0.3);
+        }
+
+        .permissions-table td {
+            padding: 10px 16px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            color: #ccc;
+        }
+
+        .permissions-table tr:hover td {
+            background: rgba(0, 212, 255, 0.05);
+        }
+
+        .permissions-table .yes { color: #2ecc71; font-weight: 700; }
+        .permissions-table .no { color: #ff6b6b; }
+        .permissions-table .partial { color: #e6b800; }
+
+        .legend {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            padding: 20px;
+            background: rgba(26, 26, 62, 0.4);
+            border-radius: 12px;
+            margin-top: 40px;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.85rem;
+            color: #aaa;
+        }
+
+        .legend-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 40px;
+            color: #555;
+            font-size: 0.85rem;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            margin-top: 60px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <h1>🗺️ Med.Health — Fluxos de Usuário</h1>
+    <p>Documento de referência para a equipe de desenvolvimento com todos os fluxos organizados por perfil de acesso.</p>
+</div>
+
+<div class="container">
+
+    <!-- ==================== COMPARTILHADOS ==================== -->
+    <div class="section-title">
+        <span class="badge badge-shared">TODOS</span>
+        <h2>Fluxos Compartilhados</h2>
+    </div>
+
+    <div class="diagram-card">
+        <h3>1.1 Autenticação & Onboarding</h3>
+        <p class="desc">Fluxo de entrada no sistema: Login, Cadastro e os 5 passos do Onboarding Wizard.</p>
+        <div class="mermaid">
+flowchart TD
+    A["🌐 Landing Page"] --> B{"Tem conta?"}
+    B --> |Sim| C["🔐 Login"]
+    B --> |Não| D["📝 Cadastro"]
+    D --> E["Firebase Auth"]
+    E --> F["✨ Onboarding Wizard"]
+    C --> G{"Onboarding Completo?"}
+    G --> |Não| F
+    G --> |Sim| H["🏠 Home"]
+    F --> F1["1️⃣ Perfil Profissional"]
+    F1 --> F2["2️⃣ Configurar Clínica"]
+    F2 --> F3["3️⃣ Notificações"]
+    F3 --> F4["4️⃣ Layout de Impressão"]
+    F4 --> F5["5️⃣ Configurar Agenda"]
+    F5 --> H
+        </div>
+    </div>
+
+    <div class="diagram-card">
+        <h3>1.2 Navegação Principal</h3>
+        <p class="desc">Menu lateral com todas as seções do sistema.</p>
+        <div class="mermaid">
+flowchart LR
+    Menu["📱 Menu"] --> Agenda["📅 Agenda"]
+    Menu --> Pacientes["👥 Pacientes"]
+    Menu --> Atendimentos["🩺 Atendimentos"]
+    Menu --> CaseAI["🤖 Case IA"]
+    Menu --> Financeiro["💰 Financeiro"]
+    Menu --> Relatorios["📊 Relatórios"]
+    Menu --> Tarefas["✅ Tarefas"]
+    Menu --> Modelos["📄 Modelos"]
+    Menu --> Config["⚙️ Configurações"]
+        </div>
+    </div>
+
+    <!-- ==================== MÉDICO/ADM ==================== -->
+    <div class="section-title">
+        <span class="badge badge-admin">ADMIN</span>
+        <h2>Médico/ADM (Administrador)</h2>
+    </div>
+
+    <div class="diagram-card">
+        <h3>2.1 Gestão Financeira Completa</h3>
+        <p class="desc">Dashboard financeiro com receitas, despesas, reconciliação, orçamentos e produtos.</p>
+        <div class="mermaid">
+flowchart TD
+    FIN["💰 Financeiro"] --> DASH["Dashboard"]
+    DASH --> R["📈 Receitas"]
+    DASH --> D["📉 Despesas"]
+    DASH --> REC["🔄 Reconciliação"]
+    DASH --> ORC["📋 Orçamentos"]
+    DASH --> PROD["🏷️ Produtos"]
+    R --> R1["Registrar Receita"]
+    R1 --> R2["Categoria + Valor"]
+    R2 --> R3["Gerar Recibo PDF"]
+    REC --> REC1["Consultas do Dia"]
+    REC1 --> REC2{"Pagamento?"}
+    REC2 --> |Sim| REC3["✅ Confirmar"]
+    REC2 --> |Cortesia| REC4["🎁 Cortesia"]
+    REC2 --> |Não| REC5["⏳ Pendente"]
+    ORC --> ORC1["Criar Orçamento"]
+    ORC1 --> ORC2["Paciente + Itens"]
+    ORC2 --> ORC3["Gerar PDF"]
+        </div>
+    </div>
+
+    <div class="diagram-card">
+        <h3>2.2 Relatórios e BI</h3>
+        <p class="desc">Relatórios consolidados de agendamentos, financeiro, pacientes e produtividade.</p>
+        <div class="mermaid">
+flowchart TD
+    REL["📊 Relatórios"] --> OVW["Dashboard Consolidado"]
+    REL --> RA["📅 Agendamentos"]
+    REL --> RF["💰 Financeiro"]
+    REL --> RP["👥 Pacientes"]
+    REL --> RAT["🩺 Atendimentos"]
+    REL --> RANIV["🎂 Aniversariantes"]
+    RA --> RA1["Filtrar Período"]
+    RA1 --> RA2["Gráficos"]
+    RA2 --> RA3["Exportar PDF/CSV"]
+    RAT --> RAT1["Produtividade por Médico"]
+    RAT1 --> RAT2["Tempo Médio de Consulta"]
+        </div>
+    </div>
+
+    <div class="diagram-card">
+        <h3>2.3 Configurações da Clínica</h3>
+        <p class="desc">Gerenciamento completo dos dados da clínica, layout de impressão e preferências.</p>
+        <div class="mermaid">
+flowchart TD
+    CFG["⚙️ Configurações"] --> CP["👤 Perfil"]
+    CFG --> CC["🏥 Clínica"]
+    CFG --> CL["🖨️ Layout"]
+    CFG --> CN["🔔 Notificações"]
+    CFG --> CPREF["⚡ Preferências"]
+    CC --> CC1["Nome / CNPJ / Endereço"]
+    CC1 --> CC2["Contatos / Redes Sociais"]
+    CC2 --> CC3["Logo / Upload"]
+    CC3 --> CC4["Workflow Pagamento"]
+    CC4 --> CC4a{"Qual modelo?"}
+    CC4a --> |Pre-paid| CC5["Paga antes da consulta"]
+    CC4a --> |Post-paid| CC6["Paga ao sair"]
+    CL --> CL1["Selecionar Template"]
+    CL1 --> CL2["Customizar"]
+    CL2 --> CL3["Pré-visualizar"]
+        </div>
+    </div>
+
+    <div class="diagram-card">
+        <h3>2.4 Gestão de Tarefas e Automação</h3>
+        <p class="desc">Tarefas atribuíveis por role com automações pré-configuradas.</p>
+        <div class="mermaid">
+flowchart TD
+    TASK["✅ Tarefas"] --> TL["Lista"]
+    TL --> TC["➕ Criar Tarefa"]
+    TC --> TC1["Título + Descrição"]
+    TC1 --> TC2["Categoria + Prioridade"]
+    TC2 --> TC3["Vincular Paciente"]
+    TC3 --> TC4["Atribuir Responsável"]
+    TC4 --> TC5["Definir Prazo"]
+    TC5 --> TC6["💾 Salvar"]
+    TL --> AUTO["⚡ Automações"]
+    AUTO --> AUTO1["📞 Confirmação D-1"]
+    AUTO --> AUTO2["🧪 Follow-up +15d"]
+    AUTO --> AUTO3["📋 Retorno D-7"]
+    AUTO --> AUTO4["💳 Checkout pós-consulta"]
+        </div>
+    </div>
+
+    <!-- ==================== MÉDICO ==================== -->
+    <div class="section-title">
+        <span class="badge badge-medico">MÉDICO</span>
+        <h2>Médico (Atendimento)</h2>
+    </div>
+
+    <div class="diagram-card">
+        <h3>3.1 Fluxo de Atendimento Completo</h3>
+        <p class="desc">Da seleção do paciente na fila até a finalização da consulta e checkout.</p>
+        <div class="mermaid">
+flowchart TD
+    AG["📅 Agenda"] --> SEL["Selecionar Paciente"]
+    SEL --> INI{"Iniciar Atendimento"}
+    INI --> |Pre-paid| PP{"Pagamento OK?"}
+    PP --> |Sim| CONS["📝 Prontuário"]
+    PP --> |Não| PPAY["💳 Modal Pagamento"]
+    PPAY --> CONS
+    INI --> |Post-paid| CONS
+    CONS --> QP["Queixa Principal"]
+    QP --> HA["História Atual"]
+    HA --> EF["Exame Físico"]
+    EF --> HD["Hipótese Diagnóstica + CID"]
+    HD --> COND["Conduta / Plano"]
+    COND --> SAVE["💾 Salvar"]
+    SAVE --> FIN{"Finalizar"}
+    FIN --> |Post-paid| CHECK["💳 Checkout"]
+    FIN --> |Pre-paid| DONE["✅ Liberado"]
+    CHECK --> DONE
+        </div>
+    </div>
+
+    <div class="diagram-card">
+        <h3>3.2 Scribe — IA de Transcrição Ambiental</h3>
+        <p class="desc">Transcrição em tempo real e estruturação automática da consulta via Gemini.</p>
+        <div class="mermaid">
+flowchart TD
+    SC["🎙️ Ambient Scribe"] --> MIC["Ativar Microfone"]
+    MIC --> REC["🔴 Gravação Real-time"]
+    REC --> STT["Google Cloud Speech-to-Text"]
+    STT --> TXT["Transcrição Bruta"]
+    TXT --> AI["🤖 Gemini 2.0 Flash"]
+    AI --> STRUCT["Consulta Estruturada"]
+    STRUCT --> S1["Queixa Principal"]
+    STRUCT --> S2["História Atual"]
+    STRUCT --> S3["Sinais/Sintomas"]
+    STRUCT --> S4["Hipótese Diagnóstica"]
+    STRUCT --> S5["Conduta"]
+    STRUCT --> S6["Medicamentos"]
+    STRUCT --> S7["Exames"]
+    STRUCT --> REV["👨‍⚕️ Médico Revisa"]
+    REV --> SAVE["💾 Salvar no Prontuário"]
+        </div>
+    </div>
+
+    <div class="diagram-card">
+        <h3>3.3 Case IA — Raciocínio Clínico</h3>
+        <p class="desc">Geração de análise clínica com contexto do paciente, RAG e prompts por especialidade.</p>
+        <div class="mermaid">
+flowchart TD
+    CASE["🤖 Case IA"] --> SELP["Selecionar Paciente"]
+    SELP --> CTX["Construir Contexto"]
+    CTX --> CTX1["Dados Demográficos"]
+    CTX --> CTX2["Histórico Consultas"]
+    CTX --> CTX3["Exames Recentes"]
+    CTX --> CTX4["Diretrizes RAG"]
+    CTX --> PROMPT["Prompt por Especialidade"]
+    PROMPT --> GEN["🤖 Gemini 2.0 Flash"]
+    GEN --> RES["Resposta"]
+    RES --> R1["Análise do Caso"]
+    RES --> R2["Diagnósticos Diferenciais"]
+    RES --> R3["Recomendações"]
+    RES --> R4["Exames Sugeridos"]
+    RES --> ACT{"Ação"}
+    ACT --> |Aceitar| SAVE["💾 Incorporar"]
+    ACT --> |Refinar| GEN
+        </div>
+    </div>
+
+    <div class="diagram-card">
+        <h3>3.4 Gestão de Pacientes</h3>
+        <p class="desc">Cadastro com 78+ campos, ficha completa, exames e timeline longitudinal.</p>
+        <div class="mermaid">
+flowchart TD
+    PAC["👥 Pacientes"] --> LIST["Lista"]
+    LIST --> NEW["➕ Cadastrar"]
+    LIST --> DET["📋 Abrir Ficha"]
+    NEW --> NP1["Dados Pessoais"]
+    NP1 --> NP2["CEP → Endereço Auto"]
+    NP2 --> NP3["Contatos"]
+    NP3 --> NP4["Histórico Médico"]
+    NP4 --> NP5["💾 Salvar"]
+    DET --> DD["Dashboard do Paciente"]
+    DD --> DD1["📊 Resumo Clínico"]
+    DD --> DD2["📅 Timeline"]
+    DD --> DD3["🩺 Consultas"]
+    DD --> DD4["🧪 Exames"]
+    DD --> DD5["💊 Prescrições"]
+    DD --> DD6["📄 Documentos"]
+    DD --> DD7["📈 Biomarcadores"]
+        </div>
+    </div>
+
+    <!-- ==================== SECRETÁRIA ==================== -->
+    <div class="section-title">
+        <span class="badge badge-secretaria">SECRETÁRIA</span>
+        <h2>Secretária</h2>
+    </div>
+
+    <div class="diagram-card">
+        <h3>4.1 Gestão da Agenda</h3>
+        <p class="desc">Criação, edição e exclusão de agendamentos com automação de confirmação.</p>
+        <div class="mermaid">
+flowchart TD
+    AG["📅 Agenda"] --> VIS{"Visualização"}
+    VIS --> VD["Diária"]
+    VIS --> VS["Semanal"]
+    VIS --> VM["Mensal"]
+    AG --> NOVO["➕ Novo Agendamento"]
+    NOVO --> N1["Selecionar Paciente"]
+    N1 --> N1a{"Existe?"}
+    N1a --> |Sim| N2["Data/Hora"]
+    N1a --> |Não| N1b["Cadastro Rápido"]
+    N1b --> N2
+    N2 --> N3["Tipo de Consulta"]
+    N3 --> N4["✅ Confirmar"]
+    N4 --> N5["⚡ Auto: Confirmação D-1"]
+    AG --> EDIT["✏️ Editar"]
+    EDIT --> E1["Reagendar"]
+    EDIT --> E2["Cancelar"]
+        </div>
+    </div>
+
+    <div class="diagram-card">
+        <h3>4.2 Check-in / Check-out (Kanban)</h3>
+        <p class="desc">Gestão da fila de atendimento com status visuais e fluxo de checkout.</p>
+        <div class="mermaid">
+flowchart TD
+    FILA["🏥 Fila Kanban"] --> STATUS
+    STATUS --> W["⏳ Aguardando"]
+    STATUS --> IP["🔵 Em Atendimento"]
+    STATUS --> F["✅ Finalizado"]
+    STATUS --> C["❌ Cancelado"]
+    W --> |Chegou| CHECKIN["Check-in"]
+    CHECKIN --> CONFIRM{"Presença?"}
+    CONFIRM --> |Sim| IP
+    CONFIRM --> |Não| C
+    IP --> |Médico finaliza| FLOW{"Workflow"}
+    FLOW --> |Pre-paid| F
+    FLOW --> |Post-paid| CHECKOUT["💳 Checkout"]
+    CHECKOUT --> PAY{"Pagamento"}
+    PAY --> |Confirmar| F
+    PAY --> |Cortesia| F
+    PAY --> |Pendente| PEND["📋 Reconciliação"]
+        </div>
+    </div>
+
+    <div class="diagram-card">
+        <h3>4.3 Tarefas da Secretária</h3>
+        <p class="desc">Visão filtrada das tarefas atribuídas e automações do dia.</p>
+        <div class="mermaid">
+flowchart TD
+    TSK["✅ Minhas Tarefas"] --> TF{"Status"}
+    TF --> TODO["📋 A Fazer"]
+    TF --> PROG["🔄 Em Progresso"]
+    TF --> DONE["✅ Concluída"]
+    TSK --> TIPOS["Tipos Comuns"]
+    TIPOS --> T1["📞 Confirmação D-1"]
+    TIPOS --> T2["📋 Retorno D-7"]
+    TIPOS --> T3["🧪 Follow-up +15d"]
+    TIPOS --> T4["💳 Checkout"]
+    TIPOS --> T5["📝 Delegada pelo Médico"]
+    T1 --> ACT1["Ligar/WhatsApp"]
+    ACT1 --> ACT2{"Confirmou?"}
+    ACT2 --> |Sim| MARK["✅ Concluir"]
+    ACT2 --> |Não| REAG["🔄 Reagendar"]
+        </div>
+    </div>
+
+    <!-- ==================== FLUXO GLOBAL ==================== -->
+    <div class="section-title">
+        <span class="badge badge-shared">GLOBAL</span>
+        <h2>Ciclo de Vida do Agendamento</h2>
+    </div>
+
+    <div class="diagram-card">
+        <h3>5.1 Estado Completo do Agendamento</h3>
+        <p class="desc">Diagrama de estados mostrando toda a jornada de um agendamento, cruzando os três perfis.</p>
+        <div class="mermaid">
+stateDiagram-v2
+    direction LR
+    [*] --> Agendado: Secretária cria
+    Agendado --> Confirmado: Automação D-1
+    Agendado --> Cancelado: Paciente cancela
+    Confirmado --> Aguardando: Check-in
+    Aguardando --> EmAtendimento: Médico inicia
+    EmAtendimento --> Finalizado: Médico finaliza
+    Finalizado --> CheckoutPendente: Post-paid
+    Finalizado --> Concluido: Pre-paid
+    CheckoutPendente --> Concluido: Pagamento
+    CheckoutPendente --> Cortesia: Cortesia
+    Concluido --> [*]
+    Cortesia --> [*]
+    Cancelado --> [*]
+        </div>
+    </div>
+
+    <!-- ==================== TABELA DE PERMISSÕES ==================== -->
+    <div class="section-title">
+        <span class="badge badge-shared">REFERÊNCIA</span>
+        <h2>Matriz de Permissões por Perfil</h2>
+    </div>
+
+    <div class="diagram-card">
+        <table class="permissions-table">
+            <thead>
+                <tr>
+                    <th>Funcionalidade</th>
+                    <th>Médico/ADM</th>
+                    <th>Médico</th>
+                    <th>Secretária</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>Agenda — Criar/Editar/Excluir</td><td class="yes">✅</td><td class="yes">✅</td><td class="yes">✅</td></tr>
+                <tr><td>Pacientes — Cadastro Completo</td><td class="yes">✅</td><td class="yes">✅</td><td class="partial">⚠️ Parcial</td></tr>
+                <tr><td>Prontuário — Consultar/Editar</td><td class="yes">✅</td><td class="yes">✅</td><td class="no">❌</td></tr>
+                <tr><td>Scribe — Transcrição IA</td><td class="yes">✅</td><td class="yes">✅</td><td class="no">❌</td></tr>
+                <tr><td>Case IA — Raciocínio Clínico</td><td class="yes">✅</td><td class="yes">✅</td><td class="no">❌</td></tr>
+                <tr><td>Financeiro — Dashboard</td><td class="yes">✅</td><td class="no">❌</td><td class="no">❌</td></tr>
+                <tr><td>Financeiro — Reconciliação</td><td class="yes">✅</td><td class="no">❌</td><td class="yes">✅</td></tr>
+                <tr><td>Financeiro — Recibos</td><td class="yes">✅</td><td class="no">❌</td><td class="yes">✅</td></tr>
+                <tr><td>Relatórios — Todos</td><td class="yes">✅</td><td class="partial">⚠️ Parcial</td><td class="no">❌</td></tr>
+                <tr><td>Modelos/Templates</td><td class="yes">✅</td><td class="yes">✅</td><td class="no">❌</td></tr>
+                <tr><td>Configurações — Clínica</td><td class="yes">✅</td><td class="no">❌</td><td class="no">❌</td></tr>
+                <tr><td>Configurações — Pessoal</td><td class="yes">✅</td><td class="yes">✅</td><td class="yes">✅</td></tr>
+                <tr><td>Tarefas — Gestão</td><td class="yes">✅</td><td class="yes">✅</td><td class="partial">⚠️ Próprias</td></tr>
+                <tr><td>Tarefas — Automação</td><td class="yes">✅</td><td class="no">❌</td><td class="no">❌</td></tr>
+                <tr><td>Exames PRO — Gráficos</td><td class="yes">✅</td><td class="yes">✅</td><td class="no">❌</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- LEGEND -->
+    <div class="legend">
+        <div class="legend-item"><div class="legend-dot" style="background:#00d4ff"></div> Navegação & Agenda</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#e6b800"></div> Financeiro</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#2ecc71"></div> Conclusão & Tarefas</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#ff6b6b"></div> IA & Templates</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#7b68ee"></div> Configurações</div>
+    </div>
+
+</div>
+
+<div class="footer">
+    Med.Health — Inteligência Médica para Todas as Especialidades<br>
+    Documento gerado em 19/02/2026
+</div>
+
+<script>
+    mermaid.initialize({
+        startOnLoad: true,
+        theme: 'dark',
+        themeVariables: {
+            primaryColor: '#1a1a3e',
+            primaryTextColor: '#e0e0e0',
+            primaryBorderColor: '#00d4ff',
+            lineColor: '#00d4ff',
+            secondaryColor: '#16213e',
+            tertiaryColor: '#0a3d62',
+            fontFamily: 'Inter, sans-serif',
+            fontSize: '14px',
+            nodeBorder: '#00d4ff',
+            mainBkg: '#1a1a3e',
+            clusterBkg: '#16213e',
+            clusterBorder: '#0f3460',
+            edgeLabelBackground: '#0a0a1a',
+            noteTextColor: '#e0e0e0',
+            noteBkgColor: '#1a1a3e',
+            noteBorderColor: '#00d4ff'
+        },
+        flowchart: {
+            htmlLabels: true,
+            curve: 'basis',
+            padding: 15
+        },
+        stateDiagram: {
+            htmlLabels: true
+        }
+    });
+</script>
+
+</body>
+</html>

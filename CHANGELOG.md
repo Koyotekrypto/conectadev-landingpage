@@ -1,5 +1,19 @@
 # CHANGELOG
 
+## [2026-03-07] - Sprint 7.1: Carrossel de Imagens Cinematográfico
+### Adicionado
+- **Motor de Carrossel no DeviceMockup**: Implementação de transição lateral (lateral slide) com efeito de mola (spring) e auto-play de 1,5s.
+- **Regras de Estabilidade Visual**: Lógica robusta no React para evitar telas pretas, garantindo exibição contínua mesmo em caso de falha de carregamento ou arrays incompletos.
+- **Estrutura de Assets por Projeto**: Criação das pastas `public/assets/projects/` para organização de mídia em sequencia numérica (1.png, 2.png...).
+- **Integração Portfolio x DeviceMockup**: Mapeamento dinâmico de múltiplos assets por projeto no componente de Portfólio.
+
+## [2026-03-07] - Sprint 7: Atmosfera e Brilho de Marca
+### Adicionado
+- **Componente Electric 3D Card**: Evolução premium dos cards de serviço, integrando animações de turbulência via filtros SVG ("Electric Swirl/Hue") com o efeito de inclinação 3D.
+- **Componente Lamp Elite**: Integração de cabeçalho atmosférico com efeito de iluminação dinâmica na seção de Serviços.
+- **Identidade Visual #CEF02E**: Customização total dos componentes `Lamp` e `ElectricCard` para utilizar a cor primária da ConectaDev no brilho e o fundo `Slate 950` (#0e1111).
+- **Animações Fluidas**: Adição de `framer-motion` para transições de entrada suaves e interativas nos títulos de seção.
+
 ## [2026-03-06] - Refinamento Elite & Auditoria Responsiva
 ### Adicionado / Modificado
 - **Restauração de Impacto do Logo**: Retorno às dimensões imponentes (`h-56` no Navbar, `h-96` no Footer) com lógica de escala responsiva progressiva para evitar quebras.
