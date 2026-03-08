@@ -13,7 +13,7 @@
 ## MCP Infrastructure
 - **Stitch MCP**: Remote server proxy for specialized Google-powered tools. Used to generate and assemble the high-end landing page.
 - **Firecrawl MCP**: Local node-based MCP server for high-performance web scraping.
-- **Premium Components**: `ShaderAnimation` (Three.js), `RevealImageList`, `Lamp` Elite, `ElectricCard`, and `DeviceMockup`.
+- **Premium Components**: `ShaderAnimation` (Three.js), `RevealImageList`, `Lamp` Elite, `ElectricCard`, `DeviceMockup`, and `VapourTextEffect` (Canvas-based particles).
 - **Media Engine**: `DeviceMockup` now features a high-performance image carousel with lateral transitions, auto-play (1.5s), and stability rules for continuous asset display.
 - **Asset Structure**: Projects media organized in `public/assets/projects/{project-id}/` with numerical sequence (`1.png`, `2.png`, etc.).
 - Connected via `mcp_config.json` in the `.gemini/antigravity` directory.

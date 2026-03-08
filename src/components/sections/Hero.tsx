@@ -1,3 +1,5 @@
+import VaporizeTextCycle, { Tag } from "@/components/ui/vapour-text-effect";
+
 export function Hero() {
     return (
         <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden bg-background-dark text-white grid-pattern">
@@ -6,6 +8,26 @@ export function Hero() {
             </div>
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 <div className="text-center max-w-4xl mx-auto mb-16">
+                    <div className="h-24 md:h-32 mb-4 w-full max-w-md mx-auto relative group">
+                        <VaporizeTextCycle
+                            texts={["Conecta DEV"]}
+                            font={{
+                                fontFamily: "Inter, sans-serif",
+                                fontSize: "64px",
+                                fontWeight: 800
+                            }}
+                            color="rgb(206, 240, 46)"
+                            spread={5}
+                            density={5}
+                            animation={{
+                                vaporizeDuration: 2.5,
+                                fadeInDuration: 1.5,
+                                waitDuration: 0
+                            }}
+                            alignment="center"
+                            tag={Tag.H2}
+                        />
+                    </div>
                     <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/10 bg-white/5 backdrop-blur-sm mb-6 uppercase tracking-widest text-xs font-semibold text-gray-300">
                         <span className="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
                         Agência Digital de Alto Nível

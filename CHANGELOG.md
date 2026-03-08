@@ -3,6 +3,7 @@
 ## [2026-03-07] - Sprint 7.1: Carrossel de Imagens Cinematográfico
 ### Adicionado
 - **Motor de Carrossel no DeviceMockup**: Implementação de transição lateral (lateral slide) com efeito de mola (spring) e auto-play de 1,5s.
+- **Efeito Vapour Text ("Conecta DEV")**: Integração de animação cinematográfica de vaporização de texto no Hero, reforçando a identidade visual de ponta.
 - **Regras de Estabilidade Visual**: Lógica robusta no React para evitar telas pretas, garantindo exibição contínua mesmo em caso de falha de carregamento ou arrays incompletos.
 - **Estrutura de Assets por Projeto**: Criação das pastas `public/assets/projects/` para organização de mídia em sequencia numérica (1.png, 2.png...).
 - **Integração Portfolio x DeviceMockup**: Mapeamento dinâmico de múltiplos assets por projeto no componente de Portfólio.
