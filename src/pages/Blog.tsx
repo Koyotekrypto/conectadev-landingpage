@@ -156,6 +156,8 @@ export const Blog = () => {
                                                 src={post.image}
                                                 alt=""
                                                 className="w-full h-full object-cover"
+                                                loading="lazy"
+                                                decoding="async"
                                                 onError={(e) => {
                                                     (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1633356122544-f134324a6cee?q=80&w=2070&auto=format&fit=crop';
                                                 }}

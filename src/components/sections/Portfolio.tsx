@@ -57,7 +57,7 @@ const ModalImageCarousel = ({ images, title }: { images: string[]; title: string
     };
 
     return (
-        <div className="flex-1 h-[50vh] lg:h-full bg-black overflow-hidden lg:border-r border-white/5 relative flex items-center justify-center min-h-0">
+        <div className="flex-1 h-full min-h-[200px] bg-black overflow-hidden lg:border-r border-white/5 relative flex items-center justify-center">
             <AnimatePresence mode="popLayout" initial={false} custom={direction}>
                 <motion.div
                     key={currentIndex}
@@ -73,6 +73,8 @@ const ModalImageCarousel = ({ images, title }: { images: string[]; title: string
                         src={images[currentIndex]}
                         alt={`${title} - tela ${currentIndex + 1}`}
                         className="max-w-full max-h-full w-auto h-auto object-contain"
+                        loading="lazy"
+                        decoding="async"
                     />
                 </motion.div>
             </AnimatePresence>
@@ -115,7 +117,7 @@ const ShowroomIframe = ({ url, title }: { url: string, title: string }) => {
 
     return (
         <div
-            className="flex-1 h-[50vh] lg:h-full bg-black overflow-hidden lg:border-r border-white/5 relative group"
+            className="flex-1 h-full min-h-[200px] bg-black overflow-hidden lg:border-r border-white/5 relative group"
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
             style={{
@@ -161,7 +163,7 @@ const ProjectInfoPanel = ({ project, onScheduleClick }: { project: Project; onSc
     const [activeTab, setActiveTab] = useState<'overview' | 'impact'>('overview');
 
     return (
-        <div className="w-full lg:w-[450px] min-h-[40vh] bg-black/40 backdrop-blur-xl p-6 lg:p-8 flex flex-col justify-between overflow-y-auto border-l border-white/5 z-10 relative">
+        <div className="w-full lg:w-[450px] min-h-0 lg:min-h-[40vh] bg-black/40 backdrop-blur-xl p-6 lg:p-8 flex flex-col justify-between overflow-y-auto border-l border-white/5 z-10 relative">
             <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-primary/30 to-transparent lg:hidden" />
 
             <div>
@@ -276,7 +278,7 @@ const ProjectInfoPanel = ({ project, onScheduleClick }: { project: Project; onSc
                 {onScheduleClick && (
                     <button
                         onClick={onScheduleClick}
-                        className="w-full flex items-center justify-center gap-2 px-6 py-3 border-2 border-primary text-primary rounded-xl hover:bg-primary/10 transition-all font-bold tracking-wide"
+                        className="w-full min-h-[44px] flex items-center justify-center gap-2 px-6 py-3 border-2 border-primary text-primary rounded-xl hover:bg-primary/10 transition-all font-bold tracking-wide touch-manipulation"
                     >
                         Agendar Sessão
                     </button>
@@ -503,13 +505,13 @@ export function Portfolio() {
                             transition={{ type: "spring", damping: 30, stiffness: 200, mass: 0.8 }}
                             className="relative w-full max-w-6xl h-[85vh] max-h-[900px] bg-surface-dark border border-white/10 rounded-2xl flex flex-col overflow-hidden shadow-[0_0_50px_rgba(206,240,46,0.05)] ring-1 ring-white/10"
                         >
-                            {/* Modal Header */}
-                            <div className="w-full flex items-center justify-between p-4 px-6 border-b border-white/5 bg-black/50 backdrop-blur-md z-10">
-                                <div>
+                            {/* Modal Header - sempre visível */}
+                            <div className="w-full flex-shrink-0 flex items-center justify-between p-4 px-6 border-b border-white/5 bg-black/50 backdrop-blur-md z-10">
+                                <div className="min-w-0">
                                     <span className="text-primary text-xs tracking-widest uppercase font-bold">{selectedProject.category}</span>
-                                    <h3 className="text-xl font-bold text-white">{selectedProject.title}</h3>
+                                    <h3 className="text-xl font-bold text-white truncate">{selectedProject.title}</h3>
                                 </div>
-                                <div className="flex gap-4 items-center">
+                                <div className="flex gap-2 sm:gap-4 items-center flex-shrink-0">
                                     <a
                                         href={selectedProject.link}
                                         target="_blank"
@@ -521,27 +523,30 @@ export function Portfolio() {
                                     </a>
                                     <button
                                         onClick={() => setSelectedProject(null)}
-                                        className="p-2 rounded-full hover:bg-white/10 text-gray-400 hover:text-white transition-colors"
+                                        className="min-w-[44px] min-h-[44px] flex items-center justify-center rounded-full hover:bg-white/10 text-gray-400 hover:text-white transition-colors touch-manipulation"
+                                        aria-label="Fechar"
                                     >
                                         <X className="w-6 h-6" />
                                     </button>
                                 </div>
                             </div>
 
-                            {/* Modal Body Container */}
-                            <div className="flex flex-col lg:flex-row flex-1 overflow-hidden relative min-h-0">
-                                {/* SOAPIA e VIBEFOOD: landing page no iframe com rolagem automática; demais: carrossel de imagens ou iframe */}
-                                {(() => {
-                                    const t = selectedProject.title.toLowerCase();
-                                    const useLandingIframe = t.includes('soapia') || t.includes('vibefood') || t.includes('vibe food');
-                                    if (useLandingIframe) {
+                            {/* Modal Body - rolável no mobile para alcançar Agendar Sessão */}
+                            <div className="flex flex-col lg:flex-row flex-1 min-h-0 overflow-y-auto lg:overflow-hidden relative">
+                                {/* Wrapper do preview: altura limitada no mobile para o painel ficar acessível */}
+                                <div className="flex-shrink-0 h-[45vh] min-h-[200px] lg:h-full lg:min-h-0 lg:flex-1">
+                                    {(() => {
+                                        const t = selectedProject.title.toLowerCase();
+                                        const useLandingIframe = t.includes('soapia') || t.includes('vibefood') || t.includes('vibe food');
+                                        if (useLandingIframe) {
+                                            return <ShowroomIframe url={selectedProject.link} title={selectedProject.title} />;
+                                        }
+                                        if (selectedProject.images && selectedProject.images.length > 0) {
+                                            return <ModalImageCarousel images={selectedProject.images} title={selectedProject.title} />;
+                                        }
                                         return <ShowroomIframe url={selectedProject.link} title={selectedProject.title} />;
-                                    }
-                                    if (selectedProject.images && selectedProject.images.length > 0) {
-                                        return <ModalImageCarousel images={selectedProject.images} title={selectedProject.title} />;
-                                    }
-                                    return <ShowroomIframe url={selectedProject.link} title={selectedProject.title} />;
-                                })()}
+                                    })()}
+                                </div>
 
                                 {/* Project Information Panel with Tabs */}
                                 <ProjectInfoPanel

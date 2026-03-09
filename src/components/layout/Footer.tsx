@@ -12,6 +12,8 @@ export function Footer() {
                                 alt="Logo ConectaDev"
                                 className="h-40 md:h-64 lg:h-96 w-auto object-contain"
                                 src="/assets/logo.png?v=v9.0"
+                                loading="lazy"
+                                decoding="async"
                             />
                             <span className="font-bold text-2xl tracking-tight">Conecta<span className="text-primary">Dev</span></span>
                         </div>

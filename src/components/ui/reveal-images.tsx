@@ -73,6 +73,8 @@ function RevealImageListItem({ text, description, slug, images, onClick }: ShowI
                         alt={images[1].alt}
                         src={images[1].src}
                         className="h-full w-full object-cover grayscale opacity-70 group-hover/item:grayscale-0 group-hover/item:opacity-100 transition-all duration-700 ease-out"
+                        loading="lazy"
+                        decoding="async"
                     />
                 </div>
             </div>
@@ -90,6 +92,8 @@ function RevealImageListItem({ text, description, slug, images, onClick }: ShowI
                         alt={images[0].alt}
                         src={images[0].src}
                         className="h-full w-full object-cover grayscale opacity-70 group-hover/item:grayscale-0 group-hover/item:opacity-100 transition-all duration-700 ease-out"
+                        loading="lazy"
+                        decoding="async"
                     />
                 </div>
             </div>

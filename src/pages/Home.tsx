@@ -1,3 +1,5 @@
+import { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import { NewHero } from '../components/sections/NewHero';
 import { Hero } from '../components/sections/Hero';
 import { HeroPreview } from '../components/sections/HeroPreview';
@@ -13,6 +15,15 @@ import { Testimonials } from '../components/sections/Testimonials';
 import { Contact } from '../components/sections/Contact';
 
 export const Home = () => {
+    const { hash } = useLocation();
+
+    useEffect(() => {
+        if (!hash) return;
+        const id = hash.replace('#', '');
+        const el = document.getElementById(id);
+        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, [hash]);
+
     return (
         <main>
             <NewHero />

@@ -45,16 +45,22 @@ export function Hero() {
                                     alt="Marca parceira"
                                     className="w-10 h-10 rounded-full border-2 border-[#0e1111] bg-white/10 object-contain p-1.5"
                                     src="https://cdn.simpleicons.org/notion/FFFFFF"
+                                    loading="lazy"
+                                    decoding="async"
                                 />
                                 <img
                                     alt="Marca parceira"
                                     className="w-10 h-10 rounded-full border-2 border-[#0e1111] bg-white/10 object-contain p-1.5"
                                     src="https://cdn.simpleicons.org/stripe/FFFFFF"
+                                    loading="lazy"
+                                    decoding="async"
                                 />
                                 <img
                                     alt="Marca parceira"
                                     className="w-10 h-10 rounded-full border-2 border-[#0e1111] bg-white/10 object-contain p-1.5"
                                     src="https://cdn.simpleicons.org/vercel/FFFFFF"
+                                    loading="lazy"
+                                    decoding="async"
                                 />
                                 <div className="w-10 h-10 rounded-full border-2 border-[#0e1111] bg-primary flex items-center justify-center text-black font-bold text-xs">
                                     +

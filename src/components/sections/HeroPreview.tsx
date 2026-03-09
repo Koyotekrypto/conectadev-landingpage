@@ -1,4 +1,6 @@
-import { Compare } from "@/components/ui/compare";
+import { Suspense, lazy } from "react";
+
+const CompareLazy = lazy(() => import("@/components/ui/compare").then((m) => ({ default: m.Compare })));
 
 /** Imagens do efeito antes/depois: coloque `antes` e `depois` (com esta extensão) em public/assets/compare/ */
 const COMPARE_IMAGE_EXT = ".png";
@@ -56,15 +58,23 @@ export function HeroPreview() {
             }}
           >
             <div className="relative min-h-[320px] md:min-h-[420px] flex items-center justify-center p-2 md:p-4">
-              <Compare
-                firstImage={COMPARE_IMAGES.antes}
-                secondImage={COMPARE_IMAGES.depois}
-                firstImageClassName="object-cover object-left-top"
-                secondImageClassname="object-cover object-left-top"
-                className="h-[300px] w-full max-w-4xl md:h-[380px] rounded-xl"
-                slideMode="hover"
-                showHandlebar={true}
-              />
+              <Suspense
+                fallback={
+                  <div className="h-[300px] w-full max-w-4xl md:h-[380px] rounded-xl bg-white/5 flex items-center justify-center">
+                    <div className="w-8 h-8 rounded-full border-2 border-primary border-t-transparent animate-spin" />
+                  </div>
+                }
+              >
+                <CompareLazy
+                  firstImage={COMPARE_IMAGES.antes}
+                  secondImage={COMPARE_IMAGES.depois}
+                  firstImageClassName="object-cover object-left-top"
+                  secondImageClassname="object-cover object-left-top"
+                  className="h-[300px] w-full max-w-4xl md:h-[380px] rounded-xl"
+                  slideMode="hover"
+                  showHandlebar={true}
+                />
+              </Suspense>
             </div>
             {/* Rodapé da imagem – texto abaixo do bloco antes/depois */}
             <footer

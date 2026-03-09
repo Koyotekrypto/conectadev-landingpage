@@ -37,11 +37,15 @@ export function Manifesto() {
                                     alt="Anderson Cardoso - Founder"
                                     className="w-12 h-12 rounded-full border-2 border-background-dark object-cover mix-blend-luminosity group-hover:mix-blend-normal transition-all duration-500 relative z-20"
                                     src="/assets/Anderson Cardoso.png"
+                                    loading="lazy"
+                                    decoding="async"
                                 />
                                 <img
                                     alt="Breno Moreira - Co-Founder"
                                     className="w-12 h-12 rounded-full border-2 border-background-dark object-cover mix-blend-luminosity group-hover:mix-blend-normal transition-all duration-500 relative z-10"
                                     src="/assets/Breno Moreira.jpg"
+                                    loading="lazy"
+                                    decoding="async"
                                 />
                             </div>
                             <span className="text-primary text-xs font-bold uppercase tracking-widest flex items-center gap-2 group-hover:text-white transition-colors duration-300">

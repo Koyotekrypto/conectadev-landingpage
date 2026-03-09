@@ -95,11 +95,12 @@ export function Navbar() {
                         </a>
                     </div>
 
-                    {/* Mobile Menu Button */}
+                    {/* Mobile Menu Button - área de toque mínima para acessibilidade */}
                     <div className="md:hidden flex items-center z-50">
                         <button
                             onClick={() => setIsOpen(!isOpen)}
-                            className="p-2 text-text-light dark:text-text-dark hover:text-primary transition-colors"
+                            className="min-w-[44px] min-h-[44px] flex items-center justify-center text-text-light dark:text-text-dark hover:text-primary transition-colors touch-manipulation"
+                            aria-label={isOpen ? 'Fechar menu' : 'Abrir menu'}
                         >
                             {isOpen ? <X className="w-8 h-8" /> : <Menu className="w-8 h-8" />}
                         </button>
@@ -115,7 +116,7 @@ export function Navbar() {
                         animate={{ opacity: 1, x: 0 }}
                         exit={{ opacity: 0, x: '100%' }}
                         transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-                        className="fixed inset-0 bg-background-light dark:bg-background-dark z-40 md:hidden flex flex-col items-center justify-center space-y-8"
+                        className="fixed inset-0 bg-background-light dark:bg-background-dark z-40 md:hidden flex flex-col items-center justify-center space-y-8 pt-20 overflow-y-auto"
                     >
                         {navLinks.map((link) => (
                             link.type === 'hash' ? (

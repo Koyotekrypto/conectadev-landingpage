@@ -37,6 +37,8 @@ export function Partners() {
                                     className="w-9 h-9 md:w-10 md:h-10 opacity-70 group-hover:opacity-100 transition-opacity duration-300"
                                     width={40}
                                     height={40}
+                                    loading="lazy"
+                                    decoding="async"
                                 />
                             </span>
                             <span className="text-sm font-semibold text-text-muted-light dark:text-text-muted-dark group-hover:text-foreground transition-colors">

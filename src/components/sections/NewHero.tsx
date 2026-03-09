@@ -1,12 +1,35 @@
-import { ShaderAnimation } from "@/components/ui/shader-animation";
+import { Suspense, lazy } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 
+const ShaderAnimation = lazy(() => import("@/components/ui/shader-animation").then((m) => ({ default: m.ShaderAnimation })));
+
+function scrollToSection(id: string) {
+    const el = document.getElementById(id);
+    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
 export function NewHero() {
+    const navigate = useNavigate();
+    const location = useLocation();
+    const isHome = location.pathname === "/";
+
+    const handleIniciarProjeto = () => {
+        if (isHome) scrollToSection("contact");
+        else navigate("/#contact");
+    };
+
+    const handleNossoPortfolio = () => {
+        if (isHome) scrollToSection("portfolio");
+        else navigate("/#portfolio");
+    };
     return (
         <section className="relative flex min-h-screen w-full flex-col items-center justify-center overflow-hidden bg-background-dark">
             <div className="absolute inset-0 z-0">
-                <ShaderAnimation />
+                <Suspense fallback={<div className="absolute inset-0 bg-background-dark" />}>
+                    <ShaderAnimation />
+                </Suspense>
             </div>
 
             {/* Subtle overlay to enhance text readability while showcasing the shader */}
@@ -50,13 +73,21 @@ export function NewHero() {
                     transition={{ duration: 0.8, delay: 0.6 }}
                     className="flex flex-col sm:flex-row gap-4 justify-center items-center w-full"
                 >
-                    <button className="group relative inline-flex items-center justify-center gap-2 px-8 py-4 bg-primary text-black font-bold uppercase tracking-wider text-sm rounded-full overflow-hidden transition-transform hover:scale-105 w-full sm:w-auto">
+                    <button
+                        type="button"
+                        onClick={handleIniciarProjeto}
+                        className="group relative inline-flex items-center justify-center gap-2 px-8 py-4 bg-primary text-black font-bold uppercase tracking-wider text-sm rounded-full overflow-hidden transition-transform hover:scale-105 w-full sm:w-auto focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background-dark"
+                    >
                         <span className="relative z-10">Iniciar Projeto</span>
                         <ArrowRight className="relative z-10 w-4 h-4 transition-transform group-hover:translate-x-1" />
-                        <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-in-out"></div>
+                        <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-in-out" aria-hidden />
                     </button>
 
-                    <button className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white/5 border border-white/10 text-white font-bold uppercase tracking-wider text-sm rounded-full transition-colors hover:bg-white/10 backdrop-blur-md w-full sm:w-auto">
+                    <button
+                        type="button"
+                        onClick={handleNossoPortfolio}
+                        className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white/5 border border-white/10 text-white font-bold uppercase tracking-wider text-sm rounded-full transition-colors hover:bg-white/10 backdrop-blur-md w-full sm:w-auto focus:outline-none focus-visible:ring-2 focus-visible:ring-white/30 focus-visible:ring-offset-2 focus-visible:ring-offset-background-dark"
+                    >
                         Nosso Portfólio
                     </button>
                 </motion.div>

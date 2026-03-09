@@ -47,7 +47,7 @@ export const Authority: React.FC = () => {
                                     {[...Array(3)].map((_, i) => (
                                         <div key={i} className="w-12 h-12 rounded-full border-[3px] border-background bg-slate-800 overflow-hidden shadow-2xl relative transition-transform duration-300 group-hover:scale-105" style={{ zIndex: 3 - i }}>
                                             <div className="absolute inset-0 bg-gradient-to-br from-primary/30 to-background/50mix-blend-overlay"></div>
-                                            <img src={`https://i.pravatar.cc/150?img=${i + 10}`} alt="Team member" className="w-full h-full object-cover mix-blend-luminosity opacity-80 group-hover:opacity-100 group-hover:mix-blend-normal transition-all duration-500" />
+                                            <img src={`https://i.pravatar.cc/150?img=${i + 10}`} alt="Team member" className="w-full h-full object-cover mix-blend-luminosity opacity-80 group-hover:opacity-100 group-hover:mix-blend-normal transition-all duration-500" loading="lazy" decoding="async" />
                                         </div>
                                     ))}
                                 </div>

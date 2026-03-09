@@ -91,28 +91,30 @@ export function FounderModal({ isOpen, onClose }: FounderModalProps) {
                         onClick={onClose}
                     />
 
-                    {/* Modal Container */}
-                    <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4 sm:p-6 lg:p-8 pointer-events-none">
+                    {/* Modal Container - max height com dvh para mobile (barra de endereço) */}
+                    <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4 sm:p-6 lg:p-8 pointer-events-none max-h-[100dvh]">
                         <motion.div
                             initial={{ opacity: 0, y: 40, scale: 0.95 }}
                             animate={{ opacity: 1, y: 0, scale: 1 }}
                             exit={{ opacity: 0, y: 20, scale: 0.95 }}
                             transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-                            className="w-full max-w-5xl bg-[#0a0a0a] border border-white/10 rounded-3xl overflow-hidden shadow-[0_0_100px_rgba(0,0,0,0.8)] relative pointer-events-auto"
+                            className="w-full max-w-5xl max-h-[calc(100dvh-2rem)] flex flex-col bg-[#0a0a0a] border border-white/10 rounded-3xl overflow-hidden shadow-[0_0_100px_rgba(0,0,0,0.8)] relative pointer-events-auto"
                             onClick={(e) => e.stopPropagation()}
                         >
                             {/* Decorative Subtle Glow */}
                             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[80%] h-32 bg-primary/10 blur-[100px] pointer-events-none rounded-full" />
 
-                            {/* Close Button */}
+                            {/* Close Button - sempre visível, área de toque adequada */}
                             <button
                                 onClick={onClose}
-                                className="absolute top-6 right-6 z-10 p-2 rounded-full bg-white/5 hover:bg-white/10 text-white/50 hover:text-white transition-colors group"
+                                className="absolute top-4 right-4 sm:top-6 sm:right-6 z-20 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-full bg-black/60 hover:bg-white/10 text-white/50 hover:text-white transition-colors group touch-manipulation"
+                                aria-label="Fechar"
                             >
                                 <X className="w-6 h-6 group-hover:rotate-90 transition-transform duration-300" />
                             </button>
 
-                            <div className="p-8 md:p-12">
+                            {/* Conteúdo rolável para viewports curtas */}
+                            <div className="flex-1 min-h-0 overflow-y-auto p-8 md:p-12 pb-[max(2rem,env(safe-area-inset-bottom))]">
                                 <div className="text-center mb-12">
                                     <h3 className="text-3xl md:text-4xl font-black text-white tracking-tight uppercase mb-2">
                                         Nossos Fundadores
@@ -142,6 +144,8 @@ export function FounderModal({ isOpen, onClose }: FounderModalProps) {
                                                         src={founder.image}
                                                         alt={founder.name}
                                                         className="w-24 h-24 rounded-full object-cover border-2 border-white/10 group-hover:border-primary/50 transition-colors duration-500 relative z-10 mix-blend-luminosity group-hover:mix-blend-normal"
+                                                        loading="lazy"
+                                                        decoding="async"
                                                     />
                                                 </div>
                                                 <div>

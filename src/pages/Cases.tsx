@@ -49,6 +49,8 @@ export const Cases = () => {
                                             src={study.image}
                                             alt={`Preview: ${study.title}`}
                                             className="absolute inset-0 w-full h-full object-cover object-top"
+                                            loading="lazy"
+                                            decoding="async"
                                         />
                                         <div className="absolute inset-0 bg-primary/20 mix-blend-overlay group-hover:opacity-0 transition-opacity duration-500" aria-hidden />
                                     </div>

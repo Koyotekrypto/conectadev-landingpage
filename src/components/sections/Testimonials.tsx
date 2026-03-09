@@ -15,16 +15,22 @@ export function Testimonials() {
                                     alt="Client 1"
                                     className="w-12 h-12 rounded-full border-2 border-background-light dark:border-background-dark"
                                     src="https://lh3.googleusercontent.com/aida-public/AB6AXuDGyJTDRB2PU71H-KFgAfuWRT8A1C5qaPfWKjUnaeUPlio_YRehz5uOChULeQBvMS6mgu5CreGQgBGVYqiFmF21iDLtJ9zbfMDzB2_xY1lN6NBsEyc0DTiT6SuwTv2J4cmTm92dj_moEs9coDof9i6nY-2iaUmQtFwXbQKNIpfEYLqzNLnsn_-sqZJpVG3kPzWtfqUO92W83MAekxGSjYSjR6Sb57oMMQ0ik8S0fqSL5BdYFZTKOdO7pJemjgChc08jl_lBCyyNH0du"
+                                    loading="lazy"
+                                    decoding="async"
                                 />
                                 <img
                                     alt="Client 2"
                                     className="w-12 h-12 rounded-full border-2 border-background-light dark:border-background-dark"
                                     src="https://lh3.googleusercontent.com/aida-public/AB6AXuAGXX0WbwVXnJrm5slKGonk9BL_0H4kzua5YO7siNOTCObrY9wX1EVoH-XEQL_eip0IrK9cSqSDgZEjZtudY2z9v0ZoYaeT28EodLkTRIJ6ONuuYNUqrrVrUaMXvF5NMP554mf0f1QkiF7zSRHmPisXrn4aunxRb83K-macNkubYQP3hfdMs9EOZopMygp7PxurUyrDfAeDQYNYYSYHpU_xyX3hhNV7yzt6Jfd2O1F1pwhhjMdLu46ng-mUdbDy7XxMyPY1-WbQF7T1"
+                                    loading="lazy"
+                                    decoding="async"
                                 />
                                 <img
                                     alt="Client 3"
                                     className="w-12 h-12 rounded-full border-2 border-background-light dark:border-background-dark"
                                     src="https://lh3.googleusercontent.com/aida-public/AB6AXuBlPU34eq4JmSoWjRzxYid0l9cmg5ebRgYM0WsVGDfK_1UpcdmCZlESh9h3F7y8douc8LTFDkOKxX0BpcAnZWrzhSRmt0VuSErFM58UGVnV90hy_CIIzvDN2JSe6w7GYjE9w5xz6ORPZl1JhETtKtdj4AaZgJtoUj7aHhyhNmy6_2DB1wjh4q539tFFkqsRM4Cdwemj_LnlSPG3-rDredgL9TzIJ71_Y2zhwWyDZaU0H2_O0qdt1kVhg-rayk4U_WfA_qAWibIFNfhG"
+                                    loading="lazy"
+                                    decoding="async"
                                 />
                             </div>
                             <div>
@@ -57,6 +63,8 @@ export function Testimonials() {
                                     alt="Devon Lane"
                                     className="w-14 h-14 rounded-full object-cover"
                                     src="https://lh3.googleusercontent.com/aida-public/AB6AXuBDmvhH9GO6GaSJ-Zl4Kek2nh2jjEFO1qwcYTcKRpRqnaWTD5iVH2LgeQO3A54d7b0e55efPZ8cZ-BT7iGwEXG0eUGGMRpLxKb0pKA0Lkbr1WHruVKU9__yIYOY0Uo-2IuE8WbyCXPB1r_UJZLpseUzqThZlYLacK33hceBj4LjqX_gWhLlYY8Mi51zacOlaOm4tNCfqRx340nYOUoWJjCACvOvQ9_Q-PbYx9ObG9hq62ib6zDGsnJt9eaJcVvjRm3_TweknYEHqw0m"
+                                    loading="lazy"
+                                    decoding="async"
                                 />
                                 <div>
                                     <h4 className="font-bold text-lg">Devon Lane</h4>

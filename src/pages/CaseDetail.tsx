@@ -44,6 +44,8 @@ function CasePreviewCarousel({ study }: { study: CaseStudy }) {
                         src={images[currentIndex]}
                         alt={`${study.title} - tela ${currentIndex + 1}`}
                         className="max-w-full max-h-full w-auto h-auto object-contain"
+                        loading="lazy"
+                        decoding="async"
                         onError={(e) => {
                             (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2426&auto=format&fit=crop';
                         }}
