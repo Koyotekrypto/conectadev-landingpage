@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation, Navigate } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 import { Navbar } from './components/layout/Navbar';
 import { Footer } from './components/layout/Footer';
@@ -6,8 +6,6 @@ import { CustomCursor } from './components/ui/CustomCursor';
 import { Home } from './pages/Home';
 import { Blog } from './pages/Blog';
 import { Cases } from './pages/Cases';
-import { Clinicas } from './pages/Clinicas';
-import { Restaurantes } from './pages/Restaurantes';
 import FAQPage from './pages/FAQ';
 import BlogPost from './pages/BlogPost';
 import CaseDetail from './pages/CaseDetail';
@@ -24,8 +22,8 @@ function AnimatedRoutes() {
                 <Route path="/blog/:slug" element={<BlogPost />} />
                 <Route path="/cases" element={<Cases />} />
                 <Route path="/cases/:slug" element={<CaseDetail />} />
-                <Route path="/clinicas" element={<Clinicas />} />
-                <Route path="/restaurantes" element={<Restaurantes />} />
+                <Route path="/clinicas" element={<Navigate to="/cases/soapia-ai" replace />} />
+                <Route path="/restaurantes" element={<Navigate to="/cases/vibefood" replace />} />
                 <Route path="/faq" element={<FAQPage />} />
             </Routes>
         </AnimatePresence>

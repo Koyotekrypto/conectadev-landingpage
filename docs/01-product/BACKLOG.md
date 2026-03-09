@@ -19,7 +19,7 @@ Detalhes e prioridade dos itens pendentes: **[PLANO_DE_EVOLUCAO.md](../PLANO_DE_
    - [x] Pipeline e schema Sanity para blog; frontend consumindo Sanity + fallback; curadoria documentada.
    - [ ] Agendar job diário (cron/serverless) no ambiente de deploy.
 3. **Expansão de Conteúdo**
-   - [x] Sub-páginas Clínicas e Restaurantes (`/clinicas`, `/restaurantes`).
+   - [x] Nichos Clínicas e Restaurantes como cases em `/cases` (SOAPIA, VIBEFOOD); rotas `/clinicas` e `/restaurantes` redirecionam para os detalhes dos cases.
    - [x] Página FAQ (`/faq`) com perguntas melhoradas e seção Process.
 4. **Micro-Interações e Conteúdo**
    - [x] Cursor customizado magnético; transições de página (Framer Motion + AnimatePresence).

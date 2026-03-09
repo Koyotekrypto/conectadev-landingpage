@@ -9,6 +9,7 @@ export interface BlogPostFromSanity {
     description: string;
     content: string;
     date: string;
+    dateISO?: string;
     category: string;
     image: string;
     author: string;
@@ -16,7 +17,7 @@ export interface BlogPostFromSanity {
     sourceName?: string;
 }
 
-const GROQ_BLOG = `*[_type == "blogPost"] | order(date desc) { _id, title, "slug": slug.current, description, content, date, category, image, author, sourceUrl, sourceName }`;
+const GROQ_BLOG = `*[_type == "blogPost"] | order(date desc) { _id, title, "slug": slug.current, description, content, date, category, image, imageUrl, author, sourceUrl, sourceName }`;
 
 function mapSanityBlogToPost(doc: any): BlogPostFromSanity {
     return {
@@ -26,8 +27,9 @@ function mapSanityBlogToPost(doc: any): BlogPostFromSanity {
         description: doc.description || doc.title || '',
         content: doc.content || '',
         date: doc.date ? new Date(doc.date).toLocaleDateString('pt-BR', { day: '2-digit', month: 'short', year: 'numeric' }) : '',
+        dateISO: doc.date || '',
         category: doc.category || 'Tendências',
-        image: doc.image ? urlFor(doc.image).width(800).url() : '',
+        image: doc.image ? urlFor(doc.image).width(800).url() : (doc.imageUrl || ''),
         author: doc.author || doc.sourceName || 'ConectaDev',
         sourceUrl: doc.sourceUrl,
         sourceName: doc.sourceName,
@@ -45,7 +47,13 @@ export function useBlogPosts() {
                 setLoading(true);
                 const data = await client.fetch(GROQ_BLOG);
                 if (!cancelled && Array.isArray(data) && data.length > 0) {
-                    setPosts(data.map(mapSanityBlogToPost));
+                    const mapped = data.map(mapSanityBlogToPost);
+                    const byUrl = new Map<string, BlogPostFromSanity>();
+                    mapped.forEach((p) => {
+                        const key = p.sourceUrl || p.id;
+                        if (!byUrl.has(key)) byUrl.set(key, p);
+                    });
+                    setPosts(Array.from(byUrl.values()));
                 } else if (!cancelled) {
                     setPosts(BLOG_POSTS as BlogPostFromSanity[]);
                 }

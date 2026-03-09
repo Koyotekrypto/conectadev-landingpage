@@ -37,8 +37,6 @@ export function Navbar() {
         { name: 'Serviços', href: '#services', type: 'hash' },
         { name: 'Blog', href: '/blog', type: 'link' },
         { name: 'Cases', href: '/cases', type: 'link' },
-        { name: 'Clínicas', href: '/clinicas', type: 'link' },
-        { name: 'Restaurantes', href: '/restaurantes', type: 'link' },
         { name: 'FAQ', href: '/faq', type: 'link' },
     ];
 

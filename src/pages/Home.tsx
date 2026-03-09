@@ -1,5 +1,6 @@
 import { NewHero } from '../components/sections/NewHero';
 import { Hero } from '../components/sections/Hero';
+import { HeroPreview } from '../components/sections/HeroPreview';
 import { Manifesto } from '../components/sections/Manifesto';
 import { Services } from '../components/sections/Services';
 import { Portfolio } from '../components/sections/Portfolio';
@@ -16,6 +17,7 @@ export const Home = () => {
         <main>
             <NewHero />
             <Hero />
+            <HeroPreview />
             <Manifesto />
             <Services />
             <Portfolio />

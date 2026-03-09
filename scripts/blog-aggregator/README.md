@@ -1,6 +1,8 @@
 # Pipeline: Blog automático (RSS → Sanity)
 
-Job que busca notícias em feeds RSS, filtra por relevância (software, tecnologia) e publica no Sanity como `blogPost`.
+Job que busca notícias em **feeds em português** (fontes de confiança), filtra por **últimos 7 dias** e relevância (software, tecnologia), opcionalmente traduz para PT via **LibreTranslate** (API gratuita) e publica no Sanity como `blogPost` (até 45 por execução) com imagem quando disponível no feed. Na página do blog, o usuário pode filtrar por período (7 dias, 30 dias, todas), fonte, categoria e busca.
+
+**Fontes atuais:** Tecnoblog, Canaltech, Inovação Tecnológica, Oficina da Net, Tudo Celular, Buteco Tecnológico.
 
 ## Pré-requisitos
 
@@ -15,6 +17,9 @@ Crie um `.env` na raiz do projeto (ou defina no ambiente onde o cron rodar) com:
 SANITY_PROJECT_ID=s2g38qvd
 SANITY_DATASET=production
 SANITY_API_TOKEN=seu_token_com_write
+
+# Opcional: tradução para PT (API gratuita LibreTranslate)
+# LIBRE_TRANSLATE_URL=https://libretranslate.com/translate
 ```
 
 Não commite o token. Use variáveis de ambiente no servidor/cron.

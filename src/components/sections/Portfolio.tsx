@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence, useAnimation } from 'framer-motion';
-import { X, ExternalLink, ArrowRight, TrendingUp, Users, Clock, Quote } from 'lucide-react';
+import { X, ExternalLink, ArrowRight, TrendingUp, Users, Clock, Quote, Check } from 'lucide-react';
 import { useSanityQueries } from '../../hooks/useSanityQueries';
 import { urlFor } from '../../sanity/client';
 import { DeviceMockup } from '../ui/DeviceMockup';
+import { PROJECT_FEATURES } from '../../data/contentData';
 
 interface ProjectMetric {
     label: string;
@@ -23,6 +24,7 @@ interface Project {
     videoUrl?: string;
     link: string;
     metrics: ProjectMetric[];
+    features?: string[];
     testimonial?: {
         quote: string;
         author: string;
@@ -31,7 +33,65 @@ interface Project {
 }
 
 // ----------------------------------------------------------------------
-// COMPONENTE DE SHOWROOM COM AUTO-SCROLL CINEMÁTICO E MÁSCARA
+// CARROSSEL DE IMAGENS NO MODAL (MESMO COMPORTAMENTO DAS TELAS DOS COMPUTADORES)
+// ----------------------------------------------------------------------
+const MODAL_CAROUSEL_INTERVAL_MS = 1500;
+
+const ModalImageCarousel = ({ images, title }: { images: string[]; title: string }) => {
+    const [currentIndex, setCurrentIndex] = useState(0);
+    const [direction, setDirection] = useState(1);
+
+    useEffect(() => {
+        if (images.length <= 1) return;
+        const timer = setInterval(() => {
+            setDirection(1);
+            setCurrentIndex((prev) => (prev + 1) % images.length);
+        }, MODAL_CAROUSEL_INTERVAL_MS);
+        return () => clearInterval(timer);
+    }, [images.length]);
+
+    const slideVariants = {
+        enter: (d: number) => ({ x: d > 0 ? '100%' : '-100%', opacity: 0 }),
+        center: { x: 0, opacity: 1 },
+        exit: (d: number) => ({ x: d < 0 ? '100%' : '-100%', opacity: 0 })
+    };
+
+    return (
+        <div className="flex-1 h-[50vh] lg:h-full bg-black overflow-hidden lg:border-r border-white/5 relative flex items-center justify-center min-h-0">
+            <AnimatePresence mode="popLayout" initial={false} custom={direction}>
+                <motion.div
+                    key={currentIndex}
+                    custom={direction}
+                    variants={slideVariants}
+                    initial="enter"
+                    animate="center"
+                    exit="exit"
+                    transition={{ x: { type: 'spring', stiffness: 300, damping: 30 }, opacity: { duration: 0.25 } }}
+                    className="absolute inset-0 flex items-center justify-center p-4"
+                >
+                    <img
+                        src={images[currentIndex]}
+                        alt={`${title} - tela ${currentIndex + 1}`}
+                        className="max-w-full max-h-full w-auto h-auto object-contain"
+                    />
+                </motion.div>
+            </AnimatePresence>
+            {images.length > 1 && (
+                <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
+                    {images.map((_, i) => (
+                        <span
+                            key={i}
+                            className={`w-2 h-2 rounded-full transition-colors ${i === currentIndex ? 'bg-primary' : 'bg-white/40'}`}
+                        />
+                    ))}
+                </div>
+            )}
+        </div>
+    );
+};
+
+// ----------------------------------------------------------------------
+// COMPONENTE DE SHOWROOM COM AUTO-SCROLL CINEMÁTICO E MÁSCARA (fallback sem imagens)
 // ----------------------------------------------------------------------
 const ShowroomIframe = ({ url, title }: { url: string, title: string }) => {
     const controls = useAnimation();
@@ -97,7 +157,7 @@ const ShowroomIframe = ({ url, title }: { url: string, title: string }) => {
 // ----------------------------------------------------------------------
 // PROJECT INFO PANEL COM ABAS E KPIs PROOF OF VALUE
 // ----------------------------------------------------------------------
-const ProjectInfoPanel = ({ project }: { project: Project }) => {
+const ProjectInfoPanel = ({ project, onScheduleClick }: { project: Project; onScheduleClick?: () => void }) => {
     const [activeTab, setActiveTab] = useState<'overview' | 'impact'>('overview');
 
     return (
@@ -142,6 +202,33 @@ const ProjectInfoPanel = ({ project }: { project: Project }) => {
                                 {project.fullDescription}
                             </p>
 
+                            {project.features && project.features.length > 0 && (
+                                <div className="mt-8">
+                                    <h5 className="text-lg font-bold text-white mb-3 flex items-center gap-2">
+                                        <span className="w-1 h-5 bg-primary rounded-full" />
+                                        Funcionalidades do sistema
+                                    </h5>
+                                    <div className="max-h-[280px] overflow-y-auto pr-2 space-y-2 custom-scrollbar rounded-xl border border-white/10 bg-white/5 p-4">
+                                        <div className="grid grid-cols-1 gap-2">
+                                            {project.features.map((feature, i) => (
+                                                <motion.div
+                                                    key={i}
+                                                    initial={{ opacity: 0, x: -6 }}
+                                                    animate={{ opacity: 1, x: 0 }}
+                                                    transition={{ delay: i * 0.02 }}
+                                                    className="flex items-start gap-3 text-gray-300 text-sm"
+                                                >
+                                                    <span className="shrink-0 w-5 h-5 rounded-full bg-primary/20 flex items-center justify-center mt-0.5">
+                                                        <Check className="w-3 h-3 text-primary" strokeWidth={2.5} />
+                                                    </span>
+                                                    <span className="font-medium text-white/90">{feature}</span>
+                                                </motion.div>
+                                            ))}
+                                        </div>
+                                    </div>
+                                </div>
+                            )}
+
                             {project.testimonial && (
                                 <div className="mt-8 p-5 rounded-xl bg-white/5 border border-white/10 relative">
                                     <Quote className="absolute top-4 right-4 text-white/10 w-8 h-8" />
@@ -185,7 +272,15 @@ const ProjectInfoPanel = ({ project }: { project: Project }) => {
                 </AnimatePresence>
             </div>
 
-            <div className="mt-8 pt-6 border-t border-white/10">
+            <div className="mt-8 pt-6 border-t border-white/10 space-y-3">
+                {onScheduleClick && (
+                    <button
+                        onClick={onScheduleClick}
+                        className="w-full flex items-center justify-center gap-2 px-6 py-3 border-2 border-primary text-primary rounded-xl hover:bg-primary/10 transition-all font-bold tracking-wide"
+                    >
+                        Agendar Sessão
+                    </button>
+                )}
                 <a
                     href={project.link}
                     target="_blank"
@@ -203,6 +298,7 @@ const ProjectInfoPanel = ({ project }: { project: Project }) => {
 
 export function Portfolio() {
     const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+    const navigate = useNavigate();
     const { projects: sanityProjects, loading } = useSanityQueries();
 
     // MOCK FALLBACK (Serão usados se o Sanity ainda estiver vazio)
@@ -213,7 +309,7 @@ export function Portfolio() {
             category: "Gestão HealthTech",
             shortDescription: "Ecossistema completo de gestão clínica inteligente com IA adaptativa.",
             fullDescription: "O ecossistema definitivo de gestão clínica inteligente. Uma plataforma end-to-end — do prontuário eletrônico ao controle financeiro avançado —, potencializada por Inteligência Artificial adaptativa para mais de 30 especialidades médicas. Transforme a rotina da sua clínica com automação e dados precisos.",
-            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuAMyQWLFWjTbo7HieEPfTw9whnkljbLHfWC5Qh2txw9Wmfq6D_ghk3xePhzEwzn3egff33bmTpsuKnVcQvtRtQeZuSpQXouBFC_QjEMNx_m16V21Y3IMYes8WZ8XZ-3jI7vFhP65MmCgfM1HhRK14IfMSSekgjIGk_dP9qT41NPlV1oamp2s2CKCYfJu2XpENGB-Jgfb1GpSFWC9DfGvK69_t2OXeLybnCys682esss2DG9HZmfAAWCpedsjBJAh1jFoYUgcuyrU4Wk",
+            image: "/assets/projects/soapia/1.png",
             images: [
                 "/assets/projects/soapia/1.png",
                 "/assets/projects/soapia/2.png",
@@ -241,7 +337,7 @@ export function Portfolio() {
             category: "Gestão Gastronômica High-Performance",
             shortDescription: "Ecossistema SaaS focado em mobilidade, segurança e UX acelerada.",
             fullDescription: "Plataforma SaaS de Gestão Gastronômica High-Performance. O VibeFood é um ecossistema projetado para restaurantes que buscam dominar sua operação. Focado em extrema mobilidade, segurança de dados e uma experiência do usuário acelerada para maximizar as conversões e o fluxo de pedidos.",
-            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDQUQukTXfdp-hRffDuefPKTqdy0bOoVFEAh-61cacvzvBlVH4UYfhFMDrr4tW6w16KFz8asYdpk3D6a8T9QGKF_uD2HJ4pihBRxTeH0VpFStHwPakvm8PV11dS9P2v9DNO87il9dhVC7HuEDSrPISTTXGB5cEw2c5fovPYulbj24xzQgOpG91-J6zXH3QeyT06t93LG_gejn3dqBT_vkA-M8Q-hRM6-16nR4l0Wv9aPfdTWOJLtMyxztzzAp7TXLwHQrlGmnDy3QPu",
+            image: "/assets/projects/vibefood/1.png",
             images: [
                 "/assets/projects/vibefood/1.png",
                 "/assets/projects/vibefood/2.png",
@@ -261,11 +357,27 @@ export function Portfolio() {
                 author: "Marcos Almeida",
                 role: "Diretor de Operações"
             }
+        },
+        {
+            id: 3,
+            title: "Luane Nascimento | Advocacia",
+            category: "Site Institucional · Direito Empresarial",
+            shortDescription: "Site institucional de alto impacto para escritório de advocacia, com foco em conversão e captura de leads.",
+            fullDescription: "Site institucional para o escritório Luane Nascimento Advocacia, especializado em Direito Empresarial. Design elegante com paleta institucional, múltiplos CTAs (Fale Conosco), formulário de contato, seções Quem Somos, Áreas de atuação, Depoimentos, Notícias e FAQ. Foco em credibilidade e conversão.",
+            image: "/assets/projects/luane/1.png",
+            images: ["/assets/projects/luane/1.png"],
+            link: "https://www.luanenascimentoadvogados.com/",
+            metrics: [
+                { label: "Conversão", value: "CTAs em destaque", icon: TrendingUp },
+                { label: "Credibilidade", value: "Equipe + OAB", icon: Users },
+                { label: "Performance", value: "Otimizada", icon: Clock }
+            ],
+            features: PROJECT_FEATURES['luane-nascimento-advogados']
         }
     ];
 
     // Se o Sanity retornar dados (mais que 0), mapeia eles. Senão, usa os mocks pre-definidos para não quebrar o visual da tela.
-    const projects = sanityProjects && sanityProjects.length > 0 ? sanityProjects.map((sp: any) => ({
+    const rawProjects = sanityProjects && sanityProjects.length > 0 ? sanityProjects.map((sp: any) => ({
         id: sp._id,
         title: sp.title,
         category: sp.category,
@@ -281,6 +393,18 @@ export function Portfolio() {
             icon: m.icon === 'Clock' ? Clock : m.icon === 'TrendingUp' ? TrendingUp : Users
         })) || [],
     })) : mockProjects;
+
+    // Sempre usar imagens locais e funcionalidades para SOAPIA e VIBEFOOD (telas dos computadores + modal)
+    const ASSETS_SOAPIA = ["/assets/projects/soapia/1.png", "/assets/projects/soapia/2.png", "/assets/projects/soapia/3.png", "/assets/projects/soapia/4.png", "/assets/projects/soapia/5.png", "/assets/projects/soapia/6.png"];
+    const ASSETS_VIBEFOOD = ["/assets/projects/vibefood/1.png", "/assets/projects/vibefood/2.png", "/assets/projects/vibefood/3.png", "/assets/projects/vibefood/4.png", "/assets/projects/vibefood/5.png"];
+    const ASSETS_LUANE = ["/assets/projects/luane/1.png"];
+    const projects = rawProjects.map((p: Project) => {
+        const t = p.title.toLowerCase();
+        if (t.includes("soapia")) return { ...p, image: ASSETS_SOAPIA[0], images: ASSETS_SOAPIA, features: p.features ?? PROJECT_FEATURES['soapia-ai'] };
+        if (t.includes("vibe food") || t.includes("vibefood")) return { ...p, image: ASSETS_VIBEFOOD[0], images: ASSETS_VIBEFOOD, features: p.features ?? PROJECT_FEATURES['vibefood'] };
+        if (t.includes("luane")) return { ...p, image: ASSETS_LUANE[0], images: ASSETS_LUANE, features: p.features ?? PROJECT_FEATURES['luane-nascimento-advogados'] };
+        return p;
+    });
 
     // Oculta scrollbar global quando o modal estiver aberto
     if (typeof document !== "undefined") {
@@ -371,7 +495,7 @@ export function Portfolio() {
                             animate={{ scale: 1, rotateX: 0, y: 0, opacity: 1 }}
                             exit={{ scale: 0.9, rotateX: -10, y: 40, opacity: 0 }}
                             transition={{ type: "spring", damping: 30, stiffness: 200, mass: 0.8 }}
-                            className="relative w-full max-w-7xl h-[90vh] bg-surface-dark border border-white/10 rounded-2xl flex flex-col overflow-hidden shadow-[0_0_50px_rgba(206,240,46,0.05)] ring-1 ring-white/10"
+                            className="relative w-full max-w-6xl h-[85vh] max-h-[900px] bg-surface-dark border border-white/10 rounded-2xl flex flex-col overflow-hidden shadow-[0_0_50px_rgba(206,240,46,0.05)] ring-1 ring-white/10"
                         >
                             {/* Modal Header */}
                             <div className="w-full flex items-center justify-between p-4 px-6 border-b border-white/5 bg-black/50 backdrop-blur-md z-10">
@@ -399,14 +523,28 @@ export function Portfolio() {
                             </div>
 
                             {/* Modal Body Container */}
-                            <div className="flex flex-col lg:flex-row flex-1 overflow-hidden relative">
-
-                                {/* Iframe App Window com Auto-Scroll */}
-                                <ShowroomIframe url={selectedProject.link} title={selectedProject.title} />
+                            <div className="flex flex-col lg:flex-row flex-1 overflow-hidden relative min-h-0">
+                                {/* SOAPIA e VIBEFOOD: landing page no iframe com rolagem automática; demais: carrossel de imagens ou iframe */}
+                                {(() => {
+                                    const t = selectedProject.title.toLowerCase();
+                                    const useLandingIframe = t.includes('soapia') || t.includes('vibefood') || t.includes('vibe food');
+                                    if (useLandingIframe) {
+                                        return <ShowroomIframe url={selectedProject.link} title={selectedProject.title} />;
+                                    }
+                                    if (selectedProject.images && selectedProject.images.length > 0) {
+                                        return <ModalImageCarousel images={selectedProject.images} title={selectedProject.title} />;
+                                    }
+                                    return <ShowroomIframe url={selectedProject.link} title={selectedProject.title} />;
+                                })()}
 
                                 {/* Project Information Panel with Tabs */}
-                                <ProjectInfoPanel project={selectedProject} />
-
+                                <ProjectInfoPanel
+                                    project={selectedProject}
+                                    onScheduleClick={() => {
+                                        setSelectedProject(null);
+                                        navigate('/#contact');
+                                    }}
+                                />
                             </div>
                         </motion.div>
                     </motion.div>

@@ -52,9 +52,9 @@ Este requisito afeta diretamente a **Fase 4 (Dados e conteúdo)** e deve ser con
 
 ---
 
-## Fase 5 – Melhorias opcionais (concluída – apenas adições)
+## Fase 5 – Melhorias opcionais (concluída – revisão de abas)
 
-- **Sub-páginas Clínicas e Restaurantes:** Criadas [Clinicas](src/pages/Clinicas.tsx) e [Restaurantes](src/pages/Restaurantes.tsx) com conteúdo de valor por nicho e CTA para contato; rotas `/clinicas` e `/restaurantes` no [App](src/App.tsx); links adicionados na [Navbar](src/components/layout/Navbar.tsx) e no [Footer](src/components/layout/Footer.tsx). Nenhuma cor alterada nem conteúdo removido.
+- **Sub-páginas Clínicas e Restaurantes (revertido):** Clínicas e Restaurantes foram removidos como abas independentes do menu; são cases (SOAPIA AI e VIBE FOOD™) exibidos em `/cases`. Rotas `/clinicas` e `/restaurantes` no [App](src/App.tsx) foram substituídas por redirects para `/cases/soapia-ai` e `/cases/vibefood`. [Navbar](src/components/layout/Navbar.tsx) e [Footer](src/components/layout/Footer.tsx) exibem apenas Serviços, Blog, Cases, FAQ (e no footer: Início, Serviços, Cases, Blog, FAQ, Como funciona, Contato). Páginas Clinicas.tsx e Restaurantes.tsx foram removidas.
 - **theme-color:** Adicionado `<meta name="theme-color" content="#0e1111" />` no [index.html](index.html) para barra de status/UI do browser em mobile.
 - **Pendente para depois:** Medir Core Web Vitals (LCP, FID, CLS) e ajustar performance; revisar CTAs por página (foco em uma conversão principal por rota).
 

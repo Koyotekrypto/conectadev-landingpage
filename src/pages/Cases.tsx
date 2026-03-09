@@ -45,10 +45,12 @@ export const Cases = () => {
                                     } as React.CSSProperties}
                                 >
                                     <div className="md:w-1/2 aspect-video rounded-[2rem] bg-gray-950 border border-white/5 overflow-hidden relative">
-                                        <div className="absolute inset-0 bg-primary/20 mix-blend-overlay group-hover:opacity-0 transition-opacity duration-500"></div>
-                                        <div className="flex items-center justify-center h-full text-white/20 italic">
-                                            [Visual do Projeto: {study.title}]
-                                        </div>
+                                        <img
+                                            src={study.image}
+                                            alt={`Preview: ${study.title}`}
+                                            className="absolute inset-0 w-full h-full object-cover object-top"
+                                        />
+                                        <div className="absolute inset-0 bg-primary/20 mix-blend-overlay group-hover:opacity-0 transition-opacity duration-500" aria-hidden />
                                     </div>
 
                                     <CardHeader className="md:w-1/2 justify-center">

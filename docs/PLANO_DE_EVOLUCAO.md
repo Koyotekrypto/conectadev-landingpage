@@ -38,7 +38,7 @@ Este documento consolida **o que ainda falta executar** a partir dos planos em a
 ### Baixa prioridade
 
 7. **Revisar CTAs por página**  
-   Garantir foco em uma conversão principal por rota (Home, Blog, Cases, FAQ, Clínicas, Restaurantes).
+   Garantir foco em uma conversão principal por rota (Home, Blog, Cases, FAQ).
 
 ### Backlog futuro
 

@@ -1,11 +1,11 @@
 # ARCHITECTURE OVERVIEW
 
 ## System Components
-- **Frontend**: React + Vite + `react-router-dom`. Architecture evolved from a single-page landing page to a multi-page ecosystem (`/`, `/blog`, `/cases`, `/clinicas`, `/restaurantes`, `/faq`).
+- **Frontend**: React + Vite + `react-router-dom`. Architecture evolved from a single-page landing page to a multi-page ecosystem (`/`, `/blog`, `/cases`, `/faq`). Routes `/clinicas` and `/restaurantes` redirect to case detail pages (`/cases/soapia-ai`, `/cases/vibefood`).
 - **Structure**: Modular components in `src/components/` (sections and UI) and page-level components in `src/pages/`.
 - **Data Layer (decisão Fase 4):**
   - **Blog:** Sanity CMS (`blogPost`) + pipeline automático diário (RSS/APIs → filtro → Sanity). O frontend consome do Sanity com fallback para `contentData.ts` quando não houver posts no CMS.
-  - **Cases:** Mantidos em `src/data/contentData.ts` (conteúdo editorial manual). Cases de sucesso principais: SOAPIA e VIBEFOOD. Opcional migrar para Sanity no futuro.
+  - **Cases:** Mantidos em `src/data/contentData.ts` (conteúdo editorial manual). Cases: SOAPIA, VIBEFOOD e Luane Nascimento (site institucional). `PROJECT_FEATURES` centralizado por slug; `CaseStudy` com `link?`, `images?`, `features?`. Opcional migrar para Sanity no futuro.
   - **Portfolio:** Sanity (`project`) via `useSanityQueries`.
 - **Styling**: Tailwind CSS with custom variables and a "Total Obsidian Elite" theme.
 
@@ -17,8 +17,8 @@
 - **Stitch MCP**: Remote server proxy for specialized Google-powered tools. Used to generate and assemble the high-end landing page.
 - **Firecrawl MCP**: Local node-based MCP server for high-performance web scraping.
 - **Premium Components**: `ShaderAnimation` (Three.js), `RevealImageList`, `Lamp` Elite, `ElectricCard`, `DeviceMockup`, and `VapourTextEffect` (Canvas-based particles).
-- **Media Engine**: `DeviceMockup` now features a high-performance image carousel with lateral transitions, auto-play (1.5s), and stability rules for continuous asset display.
-- **Asset Structure**: Projects media organized in `public/assets/projects/{project-id}/` with numerical sequence (`1.png`, `2.png`, etc.).
+- **Media Engine**: `DeviceMockup` with image carousel (lateral transitions, auto-play 1.5s). Portfolio modal: iframe com rolagem automática para SOAPIA/VIBEFOOD (landing ao vivo); carrossel de imagens para demais projetos (ex.: Luane). Compare (antes/depois) em HeroPreview.
+- **Asset Structure**: Projects media in `public/assets/projects/{project-id}/` (soapia, vibefood, luane); compare images in `public/assets/compare/`.
 - Connected via `mcp_config.json` in the `.gemini/antigravity` directory.
 
 ## Lead context (sessionStorage)

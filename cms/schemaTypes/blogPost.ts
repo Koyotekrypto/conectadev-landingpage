@@ -59,6 +59,12 @@ export const blogPostType = defineType({
             options: { hotspot: true },
         }),
         defineField({
+            name: 'imageUrl',
+            title: 'URL da imagem (posts agregados)',
+            type: 'url',
+            description: 'Para posts do RSS: URL da imagem da notícia.',
+        }),
+        defineField({
             name: 'author',
             title: 'Autor (ou fonte)',
             type: 'string',

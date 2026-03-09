@@ -67,13 +67,13 @@ export function Footer() {
                     <div>
                         <h4 className="font-bold text-lg mb-6">Links Rápidos</h4>
                         <ul className="space-y-4 text-text-muted-light dark:text-text-muted-dark">
-                            <li><a className="hover:text-primary transition-colors" href="#">Início</a></li>
-                            <li><a className="hover:text-primary transition-colors" href="#services">Serviços</a></li>
-                            <li><a className="hover:text-primary transition-colors" href="#portfolio">Portfólio</a></li>
-                            <li><Link className="hover:text-primary transition-colors" to="/clinicas">Clínicas</Link></li>
-                            <li><Link className="hover:text-primary transition-colors" to="/restaurantes">Restaurantes</Link></li>
-                            <li><a className="hover:text-primary transition-colors" href="#process">Como funciona</a></li>
-                            <li><a className="hover:text-primary transition-colors" href="#contact">Contato</a></li>
+                            <li><Link className="hover:text-primary transition-colors" to="/">Início</Link></li>
+                            <li><a className="hover:text-primary transition-colors" href="/#services">Serviços</a></li>
+                            <li><Link className="hover:text-primary transition-colors" to="/cases">Cases</Link></li>
+                            <li><Link className="hover:text-primary transition-colors" to="/blog">Blog</Link></li>
+                            <li><Link className="hover:text-primary transition-colors" to="/faq">FAQ</Link></li>
+                            <li><a className="hover:text-primary transition-colors" href="/#process">Como funciona</a></li>
+                            <li><a className="hover:text-primary transition-colors" href="/#contact">Contato</a></li>
                         </ul>
                     </div>
                     <div>
