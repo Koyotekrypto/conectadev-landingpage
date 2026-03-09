@@ -36,7 +36,7 @@ export function Hero() {
                         Sistema que performa. <span className="text-primary relative inline-block">Dados seguros. Tech de ponta.<svg className="absolute w-full h-2 md:h-3 -bottom-1 left-0 text-primary opacity-50" preserveAspectRatio="none" viewBox="0 0 100 10"><path d="M0,5 Q50,10 100,5" fill="none" stroke="currentColor" strokeWidth="2"></path></svg></span>
                     </h1>
                     <p className="text-base md:text-xl text-gray-400 mb-10 max-w-2xl mx-auto font-light leading-relaxed">
-                        Deixamos a planilha no passado. React, Vite, Tailwind e Shadcn UI.
+                        Pare de usar sistemas ultrapassados que parecem uma planilha! Utilize as melhores tecnologias e a inteligência da IA para te ajudar no dia a dia.
                     </p>
                     <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
                         <div className="flex items-center gap-4 bg-white/5 border border-white/10 rounded-full pl-2 pr-6 py-2 backdrop-blur-sm">
@@ -70,6 +70,21 @@ export function Hero() {
                                 <div className="text-white font-bold text-sm">Clientes satisfeitos</div>
                                 <div className="text-gray-400 text-xs">que confiam no nosso trabalho</div>
                             </div>
+                        </div>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-10">
+                        <div className="rounded-xl border border-white/10 bg-white/5 p-6 text-left">
+                            <h3 className="font-bold text-white mb-2 text-lg">Sistema ultrapassado</h3>
+                            <p className="text-gray-400 text-sm leading-relaxed">
+                                Planilhas, processos manuais e ferramentas antigas que atrasam sua operação e não escalam.
+                            </p>
+                        </div>
+                        <div className="rounded-xl border border-white/10 bg-white/5 p-6 text-left">
+                            <h3 className="font-bold text-primary mb-2 text-lg">Sistema inteligente</h3>
+                            <p className="text-gray-400 text-sm leading-relaxed">
+                                Tecnologias modernas, IA e automação que otimizam processos, reduzem erros e escalam com seu negócio.
+                            </p>
                         </div>
                     </div>
                 </div>
