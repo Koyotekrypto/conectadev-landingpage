@@ -397,7 +397,13 @@ export function Portfolio() {
     // Sempre usar imagens locais e funcionalidades para SOAPIA e VIBEFOOD (telas dos computadores + modal)
     const ASSETS_SOAPIA = ["/assets/projects/soapia/1.png", "/assets/projects/soapia/2.png", "/assets/projects/soapia/3.png", "/assets/projects/soapia/4.png", "/assets/projects/soapia/5.png", "/assets/projects/soapia/6.png"];
     const ASSETS_VIBEFOOD = ["/assets/projects/vibefood/1.png", "/assets/projects/vibefood/2.png", "/assets/projects/vibefood/3.png", "/assets/projects/vibefood/4.png", "/assets/projects/vibefood/5.png"];
-    const ASSETS_LUANE = ["/assets/projects/luane/1.png"];
+    const ASSETS_LUANE = [
+        "/assets/projects/luane/1.png",
+        "/assets/projects/luane/2.png",
+        "/assets/projects/luane/3.png",
+        "/assets/projects/luane/4.png",
+        "/assets/projects/luane/5.png"
+    ];
     const projects = rawProjects.map((p: Project) => {
         const t = p.title.toLowerCase();
         if (t.includes("soapia")) return { ...p, image: ASSETS_SOAPIA[0], images: ASSETS_SOAPIA, features: p.features ?? PROJECT_FEATURES['soapia-ai'] };

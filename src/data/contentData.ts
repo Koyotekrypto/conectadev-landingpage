@@ -228,7 +228,13 @@ Design com paleta institucional (verde-azulado e amarelo-esverdeado em destaque)
             'Seções de equipe, serviços, depoimentos e notícias'
         ],
         image: '/assets/projects/luane/1.png',
-        images: ['/assets/projects/luane/1.png'],
+        images: [
+            '/assets/projects/luane/1.png',
+            '/assets/projects/luane/2.png',
+            '/assets/projects/luane/3.png',
+            '/assets/projects/luane/4.png',
+            '/assets/projects/luane/5.png'
+        ],
         link: 'https://www.luanenascimentoadvogados.com/',
         features: PROJECT_FEATURES['luane-nascimento-advogados']
     }
