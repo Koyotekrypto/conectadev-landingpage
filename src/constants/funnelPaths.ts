@@ -1,4 +1,13 @@
-import { FunnelOption, FunnelStepDefinition } from './funnelPaths';
+/** Opção de perfil ou de passo do funil (id, label, icon emoji ou Material icon name) */
+export type FunnelOption = { id: string; label: string; icon: string };
+
+/** Passo dinâmico do funil com título, subtítulo e opções */
+export type FunnelStepDefinition = {
+    id: string;
+    title: string;
+    subtitle: string;
+    options: FunnelOption[];
+};
 
 export type FunnelData = {
     profile: string;
@@ -225,6 +234,39 @@ export const funnelPathsMap: Record<string, FunnelStepDefinition[]> = {
                 { id: 'early', label: 'Early Stage / Ideação', icon: 'lightbulb' },
                 { id: 'growth', label: 'Growth / Scale-up', icon: 'trending_up' },
                 { id: 'enterprise', label: 'Enterprise / Consolidada', icon: 'corporate_fare' },
+            ]
+        }
+    ],
+    'ecommerce': [
+        {
+            id: 'subniche',
+            title: 'Qual o modelo do seu e-commerce?',
+            subtitle: 'Varejo digital com tecnologia de ponta.',
+            options: [
+                { id: 'marketplace', label: 'Marketplace / Multi-loja', icon: 'store' },
+                { id: 'loja_propria', label: 'Loja Própria / D2C', icon: 'shopping_bag' },
+                { id: 'varejo_fisico', label: 'Varejo Físico + Online', icon: 'storefront' },
+                { id: 'dropshipping', label: 'Dropshipping / Revenda', icon: 'local_shipping' },
+            ]
+        },
+        {
+            id: 'pain',
+            title: 'Maior desafio nas vendas online?',
+            subtitle: 'Foco em conversão e operação.',
+            options: [
+                { id: 'trafico', label: 'Tráfego e Aquisição', icon: 'trending_up' },
+                { id: 'conversao', label: 'Conversão e Checkout', icon: 'shopping_cart' },
+                { id: 'logistica', label: 'Logística e Pós-venda', icon: 'inventory' },
+            ]
+        },
+        {
+            id: 'maturity',
+            title: 'Volume de pedidos mensal?',
+            subtitle: 'Para dimensionar a plataforma.',
+            options: [
+                { id: 'iniciante', label: 'Iniciando / Baixo volume', icon: 'rocket_launch' },
+                { id: 'medio', label: 'Crescimento (dezenas/dia)', icon: 'trending_up' },
+                { id: 'alto', label: 'Alta demanda / Escala', icon: 'bar_chart' },
             ]
         }
     ],

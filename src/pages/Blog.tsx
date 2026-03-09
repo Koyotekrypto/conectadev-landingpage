@@ -1,10 +1,12 @@
 import { motion } from 'framer-motion';
-import { BLOG_POSTS } from '../data/contentData';
+import { useBlogPosts } from '../hooks/useSanityQueries';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Link } from 'react-router-dom';
 
 export const Blog = () => {
+    const { posts, loading } = useBlogPosts();
+
     return (
         <main className="pt-32 pb-24 px-6 min-h-screen">
             <div className="max-w-7xl mx-auto">
@@ -21,8 +23,13 @@ export const Blog = () => {
                     </p>
                 </motion.div>
 
+                {loading ? (
+                    <div className="flex justify-center py-20">
+                        <div className="w-10 h-10 border-2 border-primary border-t-transparent rounded-full animate-spin" />
+                    </div>
+                ) : (
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    {BLOG_POSTS.map((post, index) => (
+                    {posts.map((post, index) => (
                         <motion.div
                             key={post.id}
                             initial={{ opacity: 0, y: 30 }}
@@ -72,6 +79,7 @@ export const Blog = () => {
                         </motion.div>
                     ))}
                 </div>
+                )}
             </div>
         </main>
     );

@@ -5,17 +5,17 @@
 Aesthetic is best described as "Obsidian Elite" - deeply technical, exclusive, and highly engineered. The mood is reminiscent of a high-end command center or a futuristic operating system. The generous use of deep space backgrounds anchors the design, creating a stark, high-contrast environment where neon typography and glowing modules become focal points. It screams "cinematic authority."
 
 ## 2. Color Palette & Roles
-* **Deep Space Obsidian (#020617):** The primary background color. Extremely dark, anchoring the layout and allowing neon accents to pop.
-* **Neon Cyan (#00B4D8):** Primary action color. Used for crucial CTA buttons, glowing active states, and technical typography highlights to signify energy and interactive states.
+* **Deep Space Obsidian (#020617 / #0e1111):** The primary background color (`background-dark`). Extremely dark, anchoring the layout and allowing accents to pop.
+* **Primary (implementado):** `#CEF02E` (Lima) em `tailwind.config.js` — CTAs, destaques, glow. (Doc original referia Neon Cyan #00B4D8; a implementação atual usa Lima para maior contraste.)
 * **Deep Ocean Blue (#0096C7 / #03045E):** Secondary support colors. Used for gradients in text, borders, and subtle glowing background blobs that provide depth without overwhelming the foreground content.
 * **Starlight White (#FFFFFF):** High-contrast primary text color used for headlines and critical readability.
 * **Muted Slate (#94A3B8 / #64748B):** Secondary text. Used for descriptions and supporting copy to maintain hierarchy without straining the eye against the dark background.
 * **Destructive Crimson (#EF4444):** Reserved strictly for critical warnings or error validations (e.g., inside form validations).
 
-## 3. Typography Rules
-* **Headings (Display):** `Montserrat` (sans-serif), typically Black (900) or Bold (700) weights. Heavy, geometric, and authoritative. Often uppercase and tightly tracked to resemble engineering blueprints.
-* **Body/UI Elements (Body):** `Inter` (sans-serif), Regular (400) or Medium (500). Highly legible at small sizes, optimal for dense technical information and UI controls.
-* **Accents (Drama):** `Instrument Serif` (serif), Italic. Used sparingly alongside the heavy Montserrat to create sophisticated, high-end tension (e.g., "Engenharia *Elite*").
+## 3. Typography Rules (e implementação)
+* **Headings (Display):** `Inter` (sans-serif) — classe `font-display` no Tailwind. Black (900) ou Bold (700), uppercase e tracking apertado.
+* **Body/UI Elements:** `Inter` (sans-serif). Legível em tamanhos pequenos.
+* **Accents (Drama):** `Playfair Display` (serif) — classe `font-drama` no Tailwind; use com `italic` para destaques (ex.: "Engenharia *Elite*").
 
 ## 4. Component Stylings
 * **Buttons:**

@@ -3,14 +3,14 @@
 A estética da ConectaDev é definida pelo equilíbrio entre a escuridão profunda (Dark mode) e o brilho tecnológico (Neon Glow).
 
 ## 🌑 Paleta de Cores (Tokens)
-- **Background**: `bg-slate-950` (O preto absoluto do Obsidian).
-- **Primary**: `text-cyan-400` / `#22d3ee` (A energia do sistema).
-- **Secondary**: `text-purple-400` (Elegância e autoridade).
-- **Surface**: `glass-panel` (Bordas de 1px com 10% de opacidade e blur).
+- **Background**: `bg-background-dark` / `#0e1111` (Slate 950). Obsidian.
+- **Primary**: `#CEF02E` (Lima) — definido em `tailwind.config.js`. CTAs, destaques, glow.
+- **Secondary**: variáveis HSL do tema (cards, bordas).
+- **Surface**: `glass-panel` (bordas 1px, opacidade, blur).
 
 ## ✒️ Tipografia
-- **Display**: `Inter / Sans-serif` (Bold/Black) - Para clareza e força técnica.
-- **Drama**: `Instrument Serif (Italic)` - Para toques autorais e elegância editorial. Use apenas para palavras-chave de impacto.
+- **Display**: `font-display` → Inter (Bold/Black). Clareza e força técnica.
+- **Drama**: `font-drama` → Playfair Display (serif). Use com `italic` para palavras-chave de impacto.
 
 ## ✨ Efeitos Especiais
 - **Noise Overlay**: Aplicado via SVG em `absoulte inset-0`. Cria profundidade orgânica.

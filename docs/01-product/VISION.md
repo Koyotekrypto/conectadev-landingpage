@@ -1,14 +1,17 @@
 # 🌟 Visão do Produto: Conectar para Escalar
 
-A **ConectaDev** não é apenas uma agência de desenvolvimento; somos um ecossistema de elite que une o impacto imersivo do Design Cinematográfico à robustez da Engenharia de Software.
+A **ConectaDev** é uma agência de desenvolvimento de software que atua como ecossistema de elite: unimos o impacto do design cinematográfico à robustez da engenharia de software nos produtos que construímos. Nosso objetivo é entregar o melhor produto possível — o mais bonito, desejável e alinhado às necessidades dos nossos clientes.
 
 ## 🎯 Nosso Propósito
 Transformar gargalos operacionais em lucro real através de ativos digitais de alta performance.
 
-## 🏢 Posicionamento de Nicho
-Focamos em mercados que exigem alta confiança e fluxos de trabalho complexos:
-- **Clínicas Médicas**: Transformando a jornada do paciente e a gestão clínica em experiências fluidas.
-- **Restaurantes**: Otimizando o fluxo operacional e a fidelização através de tecnologia proprietária.
+## 🏢 O que fazemos
+Atuamos em múltiplos nichos (conforme o funil de qualificação), com foco hoje em:
+- **SaaS próprios validados:** SOAPIA (gestão clínica inteligente com IA) e VIBEFOOD (gestão gastronômica de alta performance), que são nossos principais cases de sucesso.
+- **Desenvolvimento sob demanda:** aplicativos web, sites e landing pages para clientes que buscam o mesmo nível de qualidade e impacto visual.
+
+## 🏥 Especialização comprovada
+Clínicas e restaurantes são nossa área de atuação e especialização já comprovada em produto: **SOAPIA** atende o universo healthtech/clínico, e **VIBEFOOD**, o gastronômico. Esses dois cases representam nossa capacidade de unir design imersivo, engenharia de software e foco no resultado do cliente.
 
 ## ✨ A Alma "ConectaDev"
 Nossa cultura é baseada em três pilares:

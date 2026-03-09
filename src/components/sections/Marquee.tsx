@@ -1,10 +1,13 @@
 export function Marquee() {
     const items = [
         "✧ Design UI/UX",
-        "✧ Serviços em Nuvem",
-        "✧ Otimização de SEO",
-        "✧ Desenvolvimento de Apps",
-        "✧ Criação de Sites"
+        "✧ Arquitetura Cloud",
+        "✧ I.A. e Dados",
+        "✧ SaaS Premium",
+        "✧ Automações",
+        "✧ Sites e Landing Pages",
+        "✧ SEO e Performance",
+        "✧ DevOps e Infraestrutura"
     ];
 
     return (

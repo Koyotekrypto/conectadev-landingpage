@@ -1,5 +1,18 @@
 # CHANGELOG
 
+## [2026-03-08] - Evoluções pós-Fase 5: FAQ, Process, Stats, Partners e documentação
+### Adicionado
+- **Página FAQ (`/faq`)**: Rota dedicada com accordion de 6 perguntas (conteúdo alinhado à VISION), seção Process e Contact. Link "FAQ" na Navbar aponta para `/faq`. Home deixou de exibir a seção FAQ.
+- **Process (Nosso Processo de Trabalho)**: Cards clicáveis com efeito 3D no hover (inclinação seguindo o mouse). Clique grava passo em `sessionStorage` (conectadev_interest) e faz scroll/navega para `#contact`. Conteúdo dos passos alinhado à VISION. Em `/faq`, scroll para #contact na mesma página.
+- **ExpertiseReveal (Capabilities)**: Áreas (Arquitetura Cloud, I.A. e Dados, SaaS Premium, Automações) com clique → #contact e sessionStorage; microcopy "Clique para falar com um especialista" no hover.
+- **SessionStorage**: Chave `conectadev_interest` usada por ExpertiseReveal e Process; uso no formulário de contato permanece opcional.
+### Modificado
+- **Stats**: Números (120+, 12k+, 5+ anos) substituídos por três pilares qualitativos (Foco em resultado, Parceria de longo prazo, Excelência em cada entrega).
+- **Marquee**: Conteúdo da faixa atualizado (Design UI/UX, Arquitetura Cloud, I.A. e Dados, SaaS Premium, Automações, Sites e Landing Pages, SEO e Performance, DevOps e Infraestrutura).
+- **Partners**: Reframe para "Tecnologias e plataformas que utilizamos". Logos oficiais via Simple Icons CDN: Google, Meta, Firebase, Firestore, Anthropic, React, TypeScript, Vite, Tailwind CSS, Figma, Sanity. Grayscale por padrão, cor no hover.
+- **FAQ (componente)**: Textos das respostas melhorados; duas novas perguntas (processo de trabalho; atendimento além de clínicas/restaurantes). Respostas podem incluir link para #process.
+- **Documentação**: SITE.md (rotas, seções Home, página FAQ, fontes de dados, sessionStorage); PLANO_IMPLEMENTACAO.md (seção "Evoluções pós-Fase 5"); ARCHITECTURE.md (rotas, lead context); PRODUCT.md e BACKLOG.md (itens concluídos e pendências).
+
 ## [2026-03-07] - Sprint 7.1: Carrossel de Imagens Cinematográfico
 ### Adicionado
 - **Motor de Carrossel no DeviceMockup**: Implementação de transição lateral (lateral slide) com efeito de mola (spring) e auto-play de 1,5s.

@@ -70,26 +70,50 @@ Trabalhamos com arquiteturas orientadas a eventos e microserviços quando a esca
 export const CASE_STUDIES: CaseStudy[] = [
     {
         id: '1',
-        slug: 'crm-automotivo-elite-motors',
-        title: 'CRM Automotivo de Alta Conversão',
-        client: 'Elite Motors',
-        description: 'Desenvolvimento de uma plataforma personalizada para gestão de leads e vendas.',
+        slug: 'soapia-ai',
+        title: 'SOAPIA AI',
+        client: 'Gestão Healthtech',
+        description: 'Ecossistema completo de gestão clínica inteligente com IA adaptativa.',
         content: `
-# O Desafio: Gestão de Leads Fragmentada
-A Elite Motors enfrentava um problema comum: leads chegando por diversos canais sem uma centralização eficiente, resultando em perda de oportunidades de venda.
+# O produto
+SOAPIA AI é nosso SaaS de gestão clínica: prontuário, agendamento, fluxos de atendimento e painéis orientados por IA para decisão e eficiência operacional.
 
-# Nossa Solução
-Desenvolvemos um CRM proprietário focado na jornada do comprador de veículos, integrando APIs de mensageria e sistemas de estoque em tempo real.
+# Por que Healthtech
+Clínicas e operadores de saúde precisam de sistemas que unam segurança de dados (LGPD), experiência do paciente e inteligência aplicada. O SOAPIA AI foi desenhado para ser o ecossistema único que a gestão clínica de elite exige.
 
-# O Resultado
-Em apenas 3 meses, a taxa de conversão subiu drasticamente, e a equipe de vendas passou a gerir o dobro de contatos no mesmo período de tempo.
+# Diferenciais
+Interface cinematográfica, IA adaptativa para insights e recomendações, e arquitetura escalável para crescer com a operação. Design e engenharia de software aplicados à saúde.
         `,
         metrics: [
-            { label: 'Conversão', value: '+45%' },
-            { label: 'Resposta', value: '-30% tempo' },
-            { label: 'ROI', value: '250%' }
+            { label: 'Gestão clínica', value: 'Completa' },
+            { label: 'IA adaptativa', value: 'Integrada' },
+            { label: 'LGPD', value: 'Conformidade' }
         ],
-        results: ['+45% em conversão', '-30% tempo de resposta', 'Integração total via WhatsApp'],
-        image: '/assets/cases/crm-auto.jpg'
+        results: ['Ecossistema completo de gestão clínica', 'IA adaptativa para decisão', 'Interface e UX de alto impacto'],
+        image: '/assets/cases/soapia.jpg'
+    },
+    {
+        id: '2',
+        slug: 'vibefood',
+        title: 'VIBE FOOD™',
+        client: 'Gestão Gastronômica',
+        description: 'Ecossistema SaaS focado em mobilidade, segurança e UX acelerada para o setor gastronômico.',
+        content: `
+# O produto
+VIBE FOOD™ é nosso SaaS de gestão gastronômica de alta performance: cardápio digital, pedidos, autoatendimento, delivery próprio e fidelização em uma única plataforma.
+
+# Por que Gastronomia
+Restaurantes, bares, dark kitchens e redes precisam de tecnologia que aumente margem, reduza dependência de agregadores e encante o cliente. O VIBE FOOD™ entrega mobilidade, segurança e uma UX pensada para o ritmo da cozinha e da mesa.
+
+# Diferenciais
+Foco em performance, experiência do usuário acelerada e arquitetura preparada para picos de demanda. Design cinematográfico e engenharia de software aplicados ao setor de alimentos e bebidas.
+        `,
+        metrics: [
+            { label: 'Mobilidade', value: 'First-class' },
+            { label: 'Segurança', value: 'Alta' },
+            { label: 'UX', value: 'Acelerada' }
+        ],
+        results: ['Cardápio digital e autoatendimento', 'Delivery próprio e integrações', 'Fidelização e gestão operacional'],
+        image: '/assets/cases/vibefood.jpg'
     }
 ];

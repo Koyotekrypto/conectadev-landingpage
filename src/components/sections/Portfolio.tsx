@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { motion, AnimatePresence, useAnimation } from 'framer-motion';
 import { X, ExternalLink, ArrowRight, TrendingUp, Users, Clock, Quote } from 'lucide-react';
 import { useSanityQueries } from '../../hooks/useSanityQueries';
@@ -293,11 +294,18 @@ export function Portfolio() {
     return (
         <section className="py-24 bg-background-dark grid-pattern relative border-y border-white/5" id="portfolio">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="text-center md:text-left mb-16 md:flex justify-between items-end">
+                <div className="text-center md:text-left mb-16 md:flex justify-between items-end gap-6">
                     <div>
                         <p className="text-sm font-bold tracking-widest text-text-muted-dark uppercase mb-3">Nossos Projetos</p>
-                        <h2 className="text-4xl md:text-5xl font-bold text-white">Resultados <span className="text-primary">SaaS</span></h2>
+                        <h2 className="text-4xl md:text-5xl font-bold text-white">Projetos em <span className="text-primary">destaque</span></h2>
                     </div>
+                    <Link
+                        to="/cases"
+                        className="group inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white/5 backdrop-blur-md text-white border border-white/10 hover:bg-primary hover:text-black transition-all shadow-lg hover:shadow-[0_0_20px_rgba(206,240,46,0.3)] shrink-0 mt-6 md:mt-0"
+                    >
+                        <span className="font-semibold text-sm tracking-wider">Conheça nossos cases de sucesso</span>
+                        <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                    </Link>
                 </div>
 
                 {/* Premium Device Mockups Grid */}

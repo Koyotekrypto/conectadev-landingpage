@@ -4,5 +4,6 @@ export default defineCliConfig({
     api: {
         projectId: 's2g38qvd',
         dataset: 'production'
-    }
+    },
+    studioHost: 'conectadev-cms'
 })

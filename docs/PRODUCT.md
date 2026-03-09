@@ -1,7 +1,7 @@
 # PROJECT: CONECTADEV - Landingpage
 
 ## Purpose
-Landing page for the CONECTADEV platform, focusing on showcasing services and capturing leads. (Atualmente traduzida para PT-BR com foco em "Desenvolvimento e inteligência EMPRESARIAL").
+Landing page da ConectaDev: agência de desenvolvimento de software (ecossistema de elite — design cinematográfico + engenharia de software). Foco em showcase de serviços, cases de sucesso (SOAPIA e VIBEFOOD) e captura de leads. PT-BR, "Desenvolvimento e inteligência EMPRESARIAL". Clínicas e restaurantes são especialização comprovada.
 
 ## Integrations
 - **Stitch MCP**: Connected to Antigravity for advanced agentic capabilities.
@@ -27,5 +27,12 @@ Landing page for the CONECTADEV platform, focusing on showcasing services and ca
 - [x] Sprint 7: Atmosfera & Interatividade (Lamp e 3D Cards).
 - [x] Integrate 3D Card Effects (Services Section Refinement).
 - [x] Sprint 7.1: Carrossel de Imagens Cinematográfico (Transições laterais, Auto-play 1.5s, Regras de Estabilidade).
+- [x] FAQ em página dedicada `/faq` (accordion + Process + Contact; conteúdo melhorado e 6 perguntas).
+- [x] Process (Nosso Processo): conteúdo alinhado à VISION; cards clicáveis com efeito 3D no hover; clique → #contact + sessionStorage.
+- [x] ExpertiseReveal (Capabilities): áreas com clique → #contact + sessionStorage; microcopy de CTA.
+- [x] Stats qualitativos (pilares sem números): Foco em resultado, Parceria de longo prazo, Excelência em cada entrega.
+- [x] Marquee: conteúdo atualizado (Arquitetura Cloud, I.A. e Dados, SaaS Premium, etc.).
+- [x] Partners: reframe para "Tecnologias e plataformas que utilizamos"; logos oficiais (Simple Icons CDN): Google, Meta, Firebase, Firestore, Anthropic, React, TypeScript, Vite, Tailwind, Figma, Sanity.
 - [ ] Sprint 8: Automação Deep (Integração total com CRM e Automação de Marketing).
 - [ ] Sprint 9: Global Expansion (Suporte Multi-idioma e Performance Global).
+- [ ] Uso de `conectadev_interest` no formulário de contato (pré-preenchimento ou payload do lead).

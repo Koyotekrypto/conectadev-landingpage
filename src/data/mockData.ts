@@ -23,7 +23,7 @@ export const HERO_CONTENT = {
 
 export const AUTHORITY_CONTENT = {
     title: 'Tecnologia com Intenção. Design com Alma.',
-    manifesto: 'Na ConectaDev, não apenas "entregamos código". Nós construímos ativos digitais. Unimos o impacto visual do Design Cinematográfico à robustez de SaaS de alta performance. Nossa especialização não é genérica: mergulhamos no dia a dia de Clínicas Médicas e Restaurantes para criar CRMs que realmente eliminam gargalos operacionais e transformam dados em lucro real.',
+    manifesto: 'Na ConectaDev somos uma agência de desenvolvimento de software que une Design Cinematográfico e Engenharia de Software. Nosso objetivo é o melhor produto para o seu negócio: tecnologia de ponta e design que encanta. Oferecemos desde sites e landing pages de alta performance até SaaS e aplicativos web sob medida. Em clínicas e restaurantes já comprovamos essa abordagem com SOAPIA e VIBEFOOD; atuamos também em outros setores que buscam o mesmo nível de excelência.',
     cta: 'Se o seu negócio exige o estado da arte em tecnologia, você está no lugar certo.',
 };
 

@@ -6,6 +6,9 @@ import { CustomCursor } from './components/ui/CustomCursor';
 import { Home } from './pages/Home';
 import { Blog } from './pages/Blog';
 import { Cases } from './pages/Cases';
+import { Clinicas } from './pages/Clinicas';
+import { Restaurantes } from './pages/Restaurantes';
+import FAQPage from './pages/FAQ';
 import BlogPost from './pages/BlogPost';
 import CaseDetail from './pages/CaseDetail';
 import ScrollToTop from './components/utils/ScrollToTop';
@@ -21,6 +24,9 @@ function AnimatedRoutes() {
                 <Route path="/blog/:slug" element={<BlogPost />} />
                 <Route path="/cases" element={<Cases />} />
                 <Route path="/cases/:slug" element={<CaseDetail />} />
+                <Route path="/clinicas" element={<Clinicas />} />
+                <Route path="/restaurantes" element={<Restaurantes />} />
+                <Route path="/faq" element={<FAQPage />} />
             </Routes>
         </AnimatePresence>
     );

@@ -1,17 +1,26 @@
 import React, { useMemo } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowLeft, Calendar, User, Tag, ChevronRight } from 'lucide-react';
-import { BLOG_POSTS } from '../data/contentData';
+import { ArrowLeft, Calendar, ChevronRight, ExternalLink } from 'lucide-react';
+import { useBlogPosts } from '../hooks/useSanityQueries';
 import { Badge } from '../components/ui/badge';
 
 const BlogPost: React.FC = () => {
     const { slug } = useParams<{ slug: string }>();
     const navigate = useNavigate();
+    const { posts, loading } = useBlogPosts();
 
     const post = useMemo(() =>
-        BLOG_POSTS.find(p => p.slug === slug),
-        [slug]);
+        posts.find(p => p.slug === slug),
+        [posts, slug]);
+
+    if (loading) {
+        return (
+            <div className="min-h-screen flex items-center justify-center bg-black">
+                <div className="w-10 h-10 border-2 border-primary border-t-transparent rounded-full animate-spin" />
+            </div>
+        );
+    }
 
     if (!post) {
         return (
@@ -66,6 +75,7 @@ const BlogPost: React.FC = () => {
                     </div>
                 </header>
 
+                {post.image && (
                 <div className="relative aspect-video rounded-3xl overflow-hidden mb-12 border border-zinc-800">
                     <img
                         src={post.image}
@@ -77,11 +87,34 @@ const BlogPost: React.FC = () => {
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                 </div>
+                )}
 
                 <article className="prose prose-invert prose-orange max-w-none">
+                    {post.content ? (
                     <div className="whitespace-pre-line text-zinc-300 leading-relaxed text-lg">
                         {post.content}
                     </div>
+                    ) : post.sourceUrl ? (
+                    <div className="text-zinc-300 leading-relaxed text-lg space-y-4">
+                        <p>{post.description}</p>
+                        <a
+                            href={post.sourceUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-2 bg-primary text-black px-6 py-3 rounded-full font-bold hover:bg-primary/90 transition-colors"
+                        >
+                            Leia a notícia completa
+                            <ExternalLink size={18} />
+                        </a>
+                        {post.sourceName && (
+                            <p className="text-sm text-zinc-500">Fonte: {post.sourceName}</p>
+                        )}
+                    </div>
+                    ) : (
+                    <div className="whitespace-pre-line text-zinc-300 leading-relaxed text-lg">
+                        {post.description}
+                    </div>
+                    )}
                 </article>
 
                 <footer className="mt-20 pt-10 border-t border-zinc-800">

@@ -64,7 +64,8 @@ export default {
             },
             fontFamily: {
                 display: ['Inter', 'sans-serif'],
-                serif: ['Playfair Display', 'serif']
+                serif: ['Playfair Display', 'serif'],
+                drama: ['Playfair Display', 'serif'] /* italic para destaques; use font-drama italic */
             },
             borderRadius: {
                 lg: 'var(--radius)',

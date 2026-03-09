@@ -7,7 +7,6 @@ import { ExpertiseReveal } from '../components/sections/ExpertiseReveal';
 import { Stats } from '../components/sections/Stats';
 import { Marquee } from '../components/sections/Marquee';
 import { Process } from '../components/sections/Process';
-import { FAQ } from '../components/sections/FAQ';
 import { Partners } from '../components/sections/Partners';
 import { Testimonials } from '../components/sections/Testimonials';
 import { Contact } from '../components/sections/Contact';
@@ -24,7 +23,6 @@ export const Home = () => {
             <Stats />
             <Marquee />
             <Process />
-            <FAQ />
             <Partners />
             <Testimonials />
             <Contact />

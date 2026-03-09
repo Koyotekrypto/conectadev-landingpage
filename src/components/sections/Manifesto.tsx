@@ -19,8 +19,11 @@ export function Manifesto() {
                     </div>
                     <div className="bg-surface-dark/50 backdrop-blur-xl border-l-4 border-primary p-8 rounded-r-2xl shadow-[0_20px_50px_rgba(0,0,0,0.5)] relative">
                         <div className="absolute -inset-1 bg-gradient-to-r from-primary/10 to-transparent blur-xl -z-10 rounded-2xl opacity-50"></div>
+                        <p className="text-lg text-gray-300 leading-relaxed mb-6">
+                            Na ConectaDev somos uma agência de desenvolvimento de software que une Design Cinematográfico e Engenharia de Software. Nosso objetivo é o melhor produto para o seu negócio: tecnologia de ponta e design que encanta.
+                        </p>
                         <p className="text-lg text-gray-300 leading-relaxed mb-8">
-                            Na ConectaDev, não apenas "entregamos código". Nós construímos ativos digitais. Unimos o impacto visual do Design Cinematográfico à robustez de SaaS de alta performance. Nossa especialização não é genérica: mergulhamos no dia a dia de Clínicas Médicas e Restaurantes para criar CRMs que realmente eliminam gargalos operacionais e transformam dados em lucro real.
+                            Oferecemos desde sites e landing pages de alta performance até SaaS e aplicativos web sob medida. Em clínicas e restaurantes já comprovamos essa abordagem com SOAPIA e VIBEFOOD; atuamos também em outros setores que buscam o mesmo nível de excelência.
                         </p>
                         <p className="text-sm font-bold text-white uppercase tracking-wider mb-10">
                             Se o seu negócio exige o estado da arte em tecnologia, você está no lugar certo.

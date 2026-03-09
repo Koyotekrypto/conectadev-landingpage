@@ -1,20 +1,38 @@
+import type { ReactNode } from "react";
+
 export function FAQ() {
-    const faqs = [
+    const faqs: { question: string; answer: ReactNode }[] = [
         {
             question: "Terceirizar para uma agência web vale a pena?",
-            answer: "Sim, construir aplicações web e ativos digitais de alta performance sob medida pode gerar um ROI significativo, aumentando as taxas de conversão, simplificando operações e elevando a percepção da marca."
+            answer: "Sim. Desenvolver aplicações e ativos digitais sob medida gera ROI real: maior conversão, operação mais enxuta e marca mais forte. Atuamos de landing pages de alta performance a SaaS completos — como os cases SOAPIA (gestão clínica com IA) e VIBEFOOD (gestão gastronômica), que validam esse impacto."
         },
         {
             question: "Como vocês garantem resultados?",
-            answer: "Focamos na otimização avançada de SEO, entregando estudos de caso excepcionais e criando landing pages cinematográficas que engajam e vendem. Nossa arquitetura converte."
+            answer: "Com processo definido: briefing para alinhamento, design e arquitetura pensados para o seu negócio, desenvolvimento ágil com testes e feedback contínuo. Priorizamos performance, SEO e experiência do usuário. Nossos cases em clínicas e restaurantes mostram resultados concretos em conversão e operação."
         },
         {
             question: "Por que escolher uma agência especializada?",
-            answer: "Uma agência de elite traz expertise multidisciplinar — combinando UI/UX de alto nível, engenharia de ponta e estratégia — sendo extremamente difícil e caro construir esse nível de time internamente."
+            answer: "Unimos design cinematográfico e engenharia de elite — é caro e raro replicar isso internamente. Temos especialização comprovada em clínicas e restaurantes (SOAPIA, VIBEFOOD), mas o mesmo nível de cuidado vale para qualquer setor que exija produto digital de alto impacto."
         },
         {
             question: "Meu projeto pode ficar pronto em menos de uma semana?",
-            answer: "Embora templates simples possam ser lançados rapidamente, nossos ativos digitais de alta engenharia exigem um processo estruturado de briefing, design e desenvolvimento minucioso para garantir qualidade e impacto máximos."
+            answer: "Projetos com alta engenharia e design sob medida seguem um processo estruturado; os prazos variam conforme escopo e complexidade. Priorizamos qualidade e impacto em vez de prazos irreais — assim o resultado sustenta o crescimento do seu negócio."
+        },
+        {
+            question: "Como funciona o processo de trabalho?",
+            answer: (
+                <>
+                    <span className="block mb-3">Briefing (alinhamento estratégico), Ideia (design e arquitetura), Desenvolvimento (ciclos ágeis, testes e feedback) e Entrega (deploy, suporte e evolução contínua).</span>
+                    <a href="#process" className="text-primary font-semibold hover:underline inline-flex items-center gap-1">
+                        Conheça cada etapa
+                        <span className="material-symbols-outlined text-lg">arrow_forward</span>
+                    </a>
+                </>
+            )
+        },
+        {
+            question: "Vocês atendem apenas clínicas e restaurantes?",
+            answer: "Não. Clínicas e restaurantes são nossa especialização comprovada em produto (SOAPIA e VIBEFOOD). Atendemos outros setores com o mesmo padrão: sites, landing pages e SaaS sob medida, com foco em tecnologia de ponta e design que converte."
         }
     ];
 
@@ -34,7 +52,9 @@ export function FAQ() {
                                     <span className="material-symbols-outlined text-primary">expand_more</span>
                                 </span>
                             </summary>
-                            <p className="text-gray-400 mt-4 leading-relaxed text-sm">{faq.answer}</p>
+                            <div className="text-gray-400 mt-4 leading-relaxed text-sm">
+                                {faq.answer}
+                            </div>
                         </details>
                     ))}
                 </div>

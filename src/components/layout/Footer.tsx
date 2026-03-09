@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { Facebook, Instagram, Linkedin } from 'lucide-react';
 
 export function Footer() {
@@ -69,6 +70,8 @@ export function Footer() {
                             <li><a className="hover:text-primary transition-colors" href="#">Início</a></li>
                             <li><a className="hover:text-primary transition-colors" href="#services">Serviços</a></li>
                             <li><a className="hover:text-primary transition-colors" href="#portfolio">Portfólio</a></li>
+                            <li><Link className="hover:text-primary transition-colors" to="/clinicas">Clínicas</Link></li>
+                            <li><Link className="hover:text-primary transition-colors" to="/restaurantes">Restaurantes</Link></li>
                             <li><a className="hover:text-primary transition-colors" href="#process">Como funciona</a></li>
                             <li><a className="hover:text-primary transition-colors" href="#contact">Contato</a></li>
                         </ul>

@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { initialProfiles, funnelPathsMap, commonFinalSteps, FunnelStepDefinition } from '../../constants/funnelPaths';
 import { motion, AnimatePresence } from 'framer-motion';
 import { MagneticButton } from '../ui/MagneticButton';
+
+const STORAGE_INTEREST_KEY = 'conectadev_interest';
 
 type FunnelData = {
     profile: string; // id
@@ -16,6 +18,7 @@ type FunnelData = {
     email: string;
     whatsapp: string;
     contextUrl: string;
+    areaOfInterest: string; // preenchido por ExpertiseReveal/Process (sessionStorage)
 };
 
 const initialData: FunnelData = {
@@ -29,7 +32,8 @@ const initialData: FunnelData = {
     name: '',
     email: '',
     whatsapp: '',
-    contextUrl: ''
+    contextUrl: '',
+    areaOfInterest: ''
 };
 
 const formatWhatsApp = (value: string) => {
@@ -57,6 +61,13 @@ export const LeadFunnel: React.FC = () => {
     const [formData, setFormData] = useState<FunnelData>(initialData);
     const [isSubmitting, setIsSubmitting] = useState(false);
 
+    useEffect(() => {
+        try {
+            const interest = sessionStorage.getItem(STORAGE_INTEREST_KEY);
+            if (interest) setFormData(prev => ({ ...prev, areaOfInterest: interest }));
+        } catch (_) {}
+    }, []);
+
     const WHATSAPP_NUMBER = "5585981096763";
     // Endpoint para Formspree ou similar (substituir pelo real se houver)
     const EMAIL_ENDPOINT = "https://formspree.io/f/xvgzlowz";
@@ -81,6 +92,7 @@ export const LeadFunnel: React.FC = () => {
                 body: JSON.stringify({
                     subject: `Novo Lead Qualificado: ${formData.name} (${formData.profileLabel})`,
                     ...formData,
+                    areaOfInterest: formData.areaOfInterest || undefined,
                     source: 'Site Oficial - Funil Multi-Etapas'
                 })
             });
@@ -110,7 +122,7 @@ Gostaria de agendar minha análise estratégica baseada no perfil abaixo:
 
 📬 *CANAIS:*
 📧 ${formData.email}
-🌐 ${formData.contextUrl || 'Não informado'}
+🌐 ${formData.contextUrl || 'Não informado'}${formData.areaOfInterest ? `\n🎯 *ÁREA DE INTERESSE:* ${formData.areaOfInterest}` : ''}
 
 *Qual o próximo passo para iniciarmos o diagnóstico? Aguardo o retorno para validarmos essas métricas.*`;
 
