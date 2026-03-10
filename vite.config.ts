@@ -6,6 +6,12 @@ import autoprefixer from 'autoprefixer'
 
 // https://vitejs.dev/config/
 export default defineConfig({
+    test: {
+        globals: true,
+        environment: 'jsdom',
+        setupFiles: ['./src/test/setup.ts'],
+        include: ['src/**/*.{test,spec}.{ts,tsx}'],
+    },
     server: {
         port: 3000,
     },
