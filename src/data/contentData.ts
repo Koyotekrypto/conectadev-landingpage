@@ -98,6 +98,20 @@ export const PROJECT_FEATURES: Record<string, string[]> = {
         'Integração WhatsApp e redes sociais',
         'Botão flutuante Fale Conosco persistente',
         'Paleta e tipografia profissionais'
+    ],
+    'thays-morais-contabilidade': [
+        'Design institucional de alto impacto',
+        'Hero e CTAs otimizados para conversão',
+        'Formulário de contato com validação',
+        'Seção Quem Somos com credibilidade profissional',
+        'Serviços de consultoria contábil em destaque',
+        'Depoimentos e prova social',
+        'Blog/Notícias para autoridade e SEO',
+        'FAQ em accordion para dúvidas frequentes',
+        'Layout responsivo e performance otimizada',
+        'Integração WhatsApp e redes sociais',
+        'Botão flutuante Fale Conosco persistente',
+        'Paleta e tipografia profissionais'
     ]
 };
 
@@ -237,5 +251,41 @@ Design com paleta institucional (verde-azulado e amarelo-esverdeado em destaque)
         ],
         link: 'https://www.luanenascimentoadvogados.com/',
         features: PROJECT_FEATURES['luane-nascimento-advogados']
+    },
+    {
+        id: '4',
+        slug: 'thays-morais-contabilidade',
+        title: 'Thays Morais | Consultoria & Analista Contábil',
+        client: 'Site Institucional · Consultoria Contábil',
+        description: 'Site institucional de alto impacto para consultoria contábil, com foco em conversão, credibilidade e captura de leads.',
+        content: `
+# O produto
+Site institucional para Thays Morais, Consultoria & Analista Contábil. Uma presença digital elegante que transmite profissionalismo e facilita o primeiro contato com clientes em busca de serviços contábeis.
+
+# Por que um site que converte
+Profissionais de contabilidade e consultoria precisam de um site que não só informe, mas convença: apresentação clara dos serviços, credibilidade (formação, experiência), depoimentos e um caminho óbvio para "Fale Conosco". O site foi desenhado para capturar leads com múltiplos CTAs, formulário de contato e botão flutuante.
+
+# Diferenciais
+Design com paleta institucional, tipografia e hierarquia visual claras, seções Quem Somos, Serviços, Cases de sucesso, Depoimentos e FAQ. Tecnologias modernas para performance e boa experiência em qualquer dispositivo.
+        `,
+        metrics: [
+            { label: 'Conversão', value: 'CTAs em destaque' },
+            { label: 'Credibilidade', value: 'Profissional' },
+            { label: 'Performance', value: 'Otimizada' }
+        ],
+        results: [
+            'Design institucional de alto impacto e captura de leads',
+            'Formulário de contato e CTAs estratégicos (Fale Conosco)',
+            'Seções de serviços, cases de sucesso e depoimentos'
+        ],
+        image: '/assets/projects/thays/1.jpeg',
+        images: [
+            '/assets/projects/thays/1.jpeg',
+            '/assets/projects/thays/2.jpeg',
+            '/assets/projects/thays/3.jpeg',
+            '/assets/projects/thays/4.jpeg'
+        ],
+        link: 'https://thays-morais-landingpage.vercel.app/',
+        features: PROJECT_FEATURES['thays-morais-contabilidade']
     }
 ];

@@ -1,4 +1,6 @@
 import { motion } from 'framer-motion';
+import { PageSEO } from '../components/seo/PageSEO';
+import { SEO_BY_PATH } from '../data/seoContent';
 import { CASE_STUDIES } from '../data/contentData';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -7,6 +9,7 @@ import { Link } from 'react-router-dom';
 export const Cases = () => {
     return (
         <main className="pt-32 pb-24 px-6 min-h-screen">
+            <PageSEO meta={SEO_BY_PATH['/cases']} />
             <div className="max-w-7xl mx-auto">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
@@ -14,10 +17,10 @@ export const Cases = () => {
                     className="mb-16 text-center"
                 >
                     <h1 className="text-5xl md:text-7xl font-display font-black text-white mb-6 tracking-tighter uppercase">
-                        Casos de <span className="text-primary italic font-drama lowercase">Sucesso</span>
+                        Quais resultados a ConectaDev entrega em projetos reais?
                     </h1>
                     <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                        Como transformamos desafios complexos de engenharia em ativos digitais de alto impacto.
+                        <strong className="text-white">Resposta direta:</strong> Gestão clínica com IA (SOAPIA AI), gestão gastronômica (VIBEFOOD) e sites institucionais de alto impacto. Abaixo, os casos de sucesso com entregas concretas.
                     </p>
                 </motion.div>
 
@@ -47,7 +50,8 @@ export const Cases = () => {
                                     <div className="md:w-1/2 aspect-video rounded-[2rem] bg-gray-950 border border-white/5 overflow-hidden relative">
                                         <img
                                             src={study.image}
-                                            alt={`Preview: ${study.title}`}
+                                            alt={`Preview do case ${study.title}: ${study.description}`}
+                                            title={study.title}
                                             className="absolute inset-0 w-full h-full object-cover object-top"
                                             loading="lazy"
                                             decoding="async"

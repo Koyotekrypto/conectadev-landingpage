@@ -13,8 +13,7 @@ describe('Cases', () => {
         )
         const main = document.querySelector('main')
         expect(main).toBeInTheDocument()
-        expect(screen.getByText(/Casos de/i)).toBeInTheDocument()
-        expect(screen.getByText(/Sucesso/i)).toBeInTheDocument()
+        expect(screen.getByRole('heading', { name: /Quais resultados a ConectaDev entrega/i })).toBeInTheDocument()
     })
 
     it('renders all case study cards', () => {

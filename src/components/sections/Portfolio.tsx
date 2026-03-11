@@ -71,7 +71,8 @@ const ModalImageCarousel = ({ images, title }: { images: string[]; title: string
                 >
                     <img
                         src={images[currentIndex]}
-                        alt={`${title} - tela ${currentIndex + 1}`}
+                        alt={`Projeto ${title}: captura de tela ${currentIndex + 1} da interface`}
+                        title={`${title} — tela ${currentIndex + 1}`}
                         className="max-w-full max-h-full w-auto h-auto object-contain"
                         loading="lazy"
                         decoding="async"
@@ -375,6 +376,27 @@ export function Portfolio() {
                 { label: "Performance", value: "Otimizada", icon: Clock }
             ],
             features: PROJECT_FEATURES['luane-nascimento-advogados']
+        },
+        {
+            id: 4,
+            title: "Thays Morais | Consultoria & Analista Contábil",
+            category: "Site Institucional · Consultoria Contábil",
+            shortDescription: "Site institucional de alto impacto para consultoria contábil, com foco em conversão e captura de leads.",
+            fullDescription: "Site institucional para Thays Morais, Consultoria & Analista Contábil. Design elegante com paleta institucional, múltiplos CTAs (Fale Conosco), formulário de contato, seções Quem Somos, Serviços, Cases de sucesso e Depoimentos. Foco em credibilidade e conversão.",
+            image: "/assets/projects/thays/1.jpeg",
+            images: [
+                "/assets/projects/thays/1.jpeg",
+                "/assets/projects/thays/2.jpeg",
+                "/assets/projects/thays/3.jpeg",
+                "/assets/projects/thays/4.jpeg"
+            ],
+            link: "https://thays-morais-landingpage.vercel.app/",
+            metrics: [
+                { label: "Conversão", value: "CTAs em destaque", icon: TrendingUp },
+                { label: "Credibilidade", value: "Profissional", icon: Users },
+                { label: "Performance", value: "Otimizada", icon: Clock }
+            ],
+            features: PROJECT_FEATURES['thays-morais-contabilidade']
         }
     ];
 
@@ -406,11 +428,18 @@ export function Portfolio() {
         "/assets/projects/luane/4.png",
         "/assets/projects/luane/5.png"
     ];
+    const ASSETS_THAYS = [
+        "/assets/projects/thays/1.jpeg",
+        "/assets/projects/thays/2.jpeg",
+        "/assets/projects/thays/3.jpeg",
+        "/assets/projects/thays/4.jpeg"
+    ];
     const projects = rawProjects.map((p: Project) => {
         const t = p.title.toLowerCase();
         if (t.includes("soapia")) return { ...p, image: ASSETS_SOAPIA[0], images: ASSETS_SOAPIA, features: p.features ?? PROJECT_FEATURES['soapia-ai'] };
         if (t.includes("vibe food") || t.includes("vibefood")) return { ...p, image: ASSETS_VIBEFOOD[0], images: ASSETS_VIBEFOOD, features: p.features ?? PROJECT_FEATURES['vibefood'] };
         if (t.includes("luane")) return { ...p, image: ASSETS_LUANE[0], images: ASSETS_LUANE, features: p.features ?? PROJECT_FEATURES['luane-nascimento-advogados'] };
+        if (t.includes("thays")) return { ...p, image: ASSETS_THAYS[0], images: ASSETS_THAYS, features: p.features ?? PROJECT_FEATURES['thays-morais-contabilidade'] };
         return p;
     });
 

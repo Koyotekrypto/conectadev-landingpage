@@ -1,7 +1,11 @@
 import React, { useMemo } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { Helmet } from 'react-helmet-async';
 import { ArrowLeft, Calendar, ChevronRight, ExternalLink } from 'lucide-react';
+import { PageSEO } from '../components/seo/PageSEO';
+import { BASE_URL, getBlogPostSeo } from '../data/seoContent';
+import { SEO_BY_PATH } from '../data/seoContent';
 import { useBlogPosts } from '../hooks/useSanityQueries';
 import { Badge } from '../components/ui/badge';
 
@@ -17,6 +21,7 @@ const BlogPost: React.FC = () => {
     if (loading) {
         return (
             <div className="min-h-screen flex items-center justify-center bg-black">
+                <PageSEO meta={SEO_BY_PATH['/blog']} />
                 <div className="w-10 h-10 border-2 border-primary border-t-transparent rounded-full animate-spin" />
             </div>
         );
@@ -25,6 +30,7 @@ const BlogPost: React.FC = () => {
     if (!post) {
         return (
             <div className="min-h-screen flex flex-col items-center justify-center bg-black text-white p-4">
+                <PageSEO meta={SEO_BY_PATH['/blog']} />
                 <h1 className="text-4xl font-bold mb-4">Post não encontrado</h1>
                 <Link to="/blog" className="text-orange-500 flex items-center gap-2 hover:underline">
                     <ArrowLeft size={20} /> Voltar para o Blog
@@ -33,6 +39,17 @@ const BlogPost: React.FC = () => {
         );
     }
 
+    const articleSchema = {
+        '@context': 'https://schema.org',
+        '@type': 'Article',
+        headline: post.title,
+        description: post.description || post.title,
+        author: { '@type': 'Person', name: post.author },
+        datePublished: post.dateISO || post.date,
+        publisher: { '@type': 'Organization', name: 'ConectaDev', url: BASE_URL },
+        mainEntityOfPage: { '@type': 'WebPage', '@id': `${BASE_URL}/blog/${post.slug}` },
+    };
+
     return (
         <motion.div
             initial={{ opacity: 0 }}
@@ -40,6 +57,10 @@ const BlogPost: React.FC = () => {
             exit={{ opacity: 0 }}
             className="pt-32 pb-20 bg-black min-h-screen text-white"
         >
+            <PageSEO meta={getBlogPostSeo(post.title, post.description || '', post.category)} />
+            <Helmet>
+                <script type="application/ld+json">{JSON.stringify(articleSchema)}</script>
+            </Helmet>
             <div className="max-w-4xl mx-auto px-4">
                 <Link
                     to="/blog"
@@ -79,7 +100,8 @@ const BlogPost: React.FC = () => {
                 <div className="relative aspect-video rounded-3xl overflow-hidden mb-12 border border-zinc-800">
                     <img
                         src={post.image}
-                        alt={post.title}
+                        alt={`Imagem do artigo: ${post.title}. ${post.description || ''}`}
+                        title={post.title}
                         className="w-full h-full object-cover"
                         loading="lazy"
                         decoding="async"

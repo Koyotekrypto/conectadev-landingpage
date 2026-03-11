@@ -6,13 +6,18 @@
   <link rel="icon" type="image/png" href="/assets/logo.png" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- SEO -->
-  <title>ConectaDev | Desenvolvimento e Inteligência Empresarial</title>
+  <!-- SEO (fallback; react-helmet-async atualiza por rota) -->
+  <title>Como ter desenvolvimento de software e inteligência empresarial de alto impacto? | ConectaDev</title>
   <meta name="description"
-    content="Especialistas em Engenharia de Software Elite. Criamos ativos digitais de impacto cinematográfico, CRMs verticais e soluções de IA para empresas que buscam o extraordinário." />
+    content="Desenvolvimento de software de elite e ativos digitais de impacto: landing pages, SaaS e CRMs verticais. Casos reais: SOAPIA AI (clínicas) e VIBEFOOD (restaurantes). Converse com a gente." />
   <meta name="keywords"
-    content="Desenvolvimento de Software, Engenharia de Software, CRM, Inteligência Artificial, ConectaDev, Anderson Cardoso, Software Business" />
+    content="desenvolvimento de software, engenharia de software, inteligência artificial empresarial, CRM clínicas, sistema restaurante, agência web especializada, ConectaDev" />
   <meta name="author" content="ConectaDev" />
+  <!-- Crawlers e IA -->
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+  <meta name="googlebot" content="index, follow" />
+  <meta name="bingbot" content="index, follow" />
+  <meta name="ai-content-type" content="commercial" />
 
   <!-- Open Graph / Social Media -->
   <meta property="og:type" content="website" />
@@ -27,6 +32,33 @@
 
   <!-- theme-color para barra de status/UI do browser em mobile -->
   <meta name="theme-color" content="#0e1111" />
+
+  <!-- Schema.org JSON-LD (Organization + WebSite) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "name": "ConectaDev",
+        "url": "https://conectadev.com.br",
+        "description": "Desenvolvimento de software de elite e ativos digitais de impacto: landing pages, SaaS e CRMs verticais para clínicas e restaurantes.",
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "contactType": "customer service",
+          "telephone": "+55-85-98109-6763",
+          "availableLanguage": "Portuguese"
+        }
+      },
+      {
+        "@type": "WebSite",
+        "name": "ConectaDev",
+        "url": "https://conectadev.com.br",
+        "description": "Como ter desenvolvimento de software e inteligência empresarial de alto impacto. Casos: SOAPIA AI, VIBEFOOD e mais."
+      }
+    ]
+  }
+  </script>
 
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
     rel="stylesheet" />

@@ -36,7 +36,7 @@ describe('Blog', () => {
         )
         const main = document.querySelector('main')
         expect(main).toBeInTheDocument()
-        expect(screen.getByText(/blog|post/i)).toBeInTheDocument()
+        expect(screen.getByRole('heading', { name: /insights de.*engenharia|IA empresarial/i })).toBeInTheDocument()
     })
 
     it('shows posts when not loading', () => {

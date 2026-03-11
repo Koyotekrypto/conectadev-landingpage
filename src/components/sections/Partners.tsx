@@ -33,7 +33,8 @@ export function Partners() {
                             <span className="block grayscale group-hover:grayscale-0 transition-all duration-300">
                                 <img
                                     src={`${CDN_BASE}/${tech.slug}`}
-                                    alt={tech.name}
+                                    alt={`Logo ${tech.name} — tecnologia utilizada pela ConectaDev`}
+                                    title={tech.name}
                                     className="w-9 h-9 md:w-10 md:h-10 opacity-70 group-hover:opacity-100 transition-opacity duration-300"
                                     width={40}
                                     height={40}

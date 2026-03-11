@@ -10,7 +10,7 @@ const Home = lazy(() => import('./pages/Home').then((m) => ({ default: m.Home })
 const Blog = lazy(() => import('./pages/Blog').then((m) => ({ default: m.Blog })));
 const BlogPost = lazy(() => import('./pages/BlogPost'));
 const Cases = lazy(() => import('./pages/Cases').then((m) => ({ default: m.Cases })));
-const CaseDetail = lazy(() => import('./pages/CaseDetail').then((m) => ({ default: m.CaseDetail })));
+const CaseDetail = lazy(() => import('./pages/CaseDetail'));
 const FAQPage = lazy(() => import('./pages/FAQ'));
 
 function RouteFallback() {

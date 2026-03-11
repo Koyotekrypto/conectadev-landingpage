@@ -1,7 +1,10 @@
 import React, { useMemo, useState, useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Helmet } from 'react-helmet-async';
 import { ArrowLeft, CheckCircle2, ChevronRight, BarChart3, Target, Rocket, Check, Code2, BarChart2, Palette, ExternalLink } from 'lucide-react';
+import { PageSEO } from '../components/seo/PageSEO';
+import { BASE_URL, getCaseSeo, SEO_BY_PATH } from '../data/seoContent';
 import { CASE_STUDIES, type CaseStudy } from '../data/contentData';
 
 const CAROUSEL_INTERVAL_MS = 1500;
@@ -42,7 +45,8 @@ function CasePreviewCarousel({ study }: { study: CaseStudy }) {
                 >
                     <img
                         src={images[currentIndex]}
-                        alt={`${study.title} - tela ${currentIndex + 1}`}
+                        alt={`${study.title}: captura de tela ${currentIndex + 1} do produto — ${study.description}`}
+                        title={`${study.title} — tela ${currentIndex + 1}`}
                         className="max-w-full max-h-full w-auto h-auto object-contain"
                         loading="lazy"
                         decoding="async"
@@ -119,6 +123,7 @@ const CaseDetail: React.FC = () => {
     if (!study) {
         return (
             <div className="min-h-screen flex flex-col items-center justify-center bg-black text-white p-4">
+                <PageSEO meta={SEO_BY_PATH['/cases']} />
                 <h1 className="text-4xl font-bold mb-4">Estudo de Case não encontrado</h1>
                 <Link to="/cases" className="text-primary flex items-center gap-2 hover:underline">
                     <ArrowLeft size={20} /> Voltar para Cases
@@ -127,6 +132,16 @@ const CaseDetail: React.FC = () => {
         );
     }
 
+    const articleSchema = {
+        '@context': 'https://schema.org',
+        '@type': 'Article',
+        headline: study.title,
+        description: study.description,
+        author: { '@type': 'Organization', name: 'ConectaDev', url: BASE_URL },
+        publisher: { '@type': 'Organization', name: 'ConectaDev', url: BASE_URL },
+        mainEntityOfPage: { '@type': 'WebPage', '@id': `${BASE_URL}/cases/${study.slug}` },
+    };
+
     return (
         <motion.div
             initial={{ opacity: 0 }}
@@ -134,6 +149,10 @@ const CaseDetail: React.FC = () => {
             exit={{ opacity: 0 }}
             className="pt-32 pb-20 bg-black min-h-screen text-white"
         >
+            <PageSEO meta={getCaseSeo(study.slug, study.title, study.description)} />
+            <Helmet>
+                <script type="application/ld+json">{JSON.stringify(articleSchema)}</script>
+            </Helmet>
             <div className="max-w-5xl mx-auto px-4">
                 <Link
                     to="/cases"
@@ -288,10 +307,10 @@ const CaseDetail: React.FC = () => {
                     className="mt-16 p-8 md:p-12 rounded-3xl border border-primary/20 bg-primary/5 text-center"
                 >
                     <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">
-                        {study.slug === 'luane-nascimento-advogados' ? 'Quer um site como este?' : 'Quer um sistema como este?'}
+                        {study.slug === 'luane-nascimento-advogados' || study.slug === 'thays-morais-contabilidade' ? 'Quer um site como este?' : 'Quer um sistema como este?'}
                     </h3>
                     <p className="text-zinc-400 mb-8 max-w-xl mx-auto">
-                        {study.slug === 'luane-nascimento-advogados'
+                        {study.slug === 'luane-nascimento-advogados' || study.slug === 'thays-morais-contabilidade'
                             ? 'Fale com nossa equipe e transforme sua presença digital em um case de sucesso.'
                             : 'Fale com nossa equipe e transforme sua operação em um case de sucesso.'}
                     </p>

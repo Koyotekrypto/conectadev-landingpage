@@ -1,5 +1,7 @@
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
+import { PageSEO } from '../components/seo/PageSEO';
+import { DEFAULT_SEO } from '../data/seoContent';
 import { NewHero } from '../components/sections/NewHero';
 import { Hero } from '../components/sections/Hero';
 import { HeroPreview } from '../components/sections/HeroPreview';
@@ -10,7 +12,7 @@ import { ExpertiseReveal } from '../components/sections/ExpertiseReveal';
 import { Stats } from '../components/sections/Stats';
 import { Marquee } from '../components/sections/Marquee';
 import { Process } from '../components/sections/Process';
-import { Partners } from '../components/sections/Partners';
+import { Stack } from '../components/sections/Stack';
 import { Testimonials } from '../components/sections/Testimonials';
 import { Contact } from '../components/sections/Contact';
 
@@ -26,6 +28,7 @@ export const Home = () => {
 
     return (
         <main>
+            <PageSEO meta={DEFAULT_SEO} />
             <NewHero />
             <Hero />
             <HeroPreview />
@@ -36,7 +39,7 @@ export const Home = () => {
             <Stats />
             <Marquee />
             <Process />
-            <Partners />
+            <Stack />
             <Testimonials />
             <Contact />
         </main>

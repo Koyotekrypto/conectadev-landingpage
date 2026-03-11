@@ -1,5 +1,7 @@
 import { useMemo, useState } from 'react';
 import { motion } from 'framer-motion';
+import { PageSEO } from '../components/seo/PageSEO';
+import { SEO_BY_PATH } from '../data/seoContent';
 import { useBlogPosts } from '../hooks/useSanityQueries';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -47,6 +49,7 @@ export const Blog = () => {
 
     return (
         <main className="pt-32 pb-24 px-6 min-h-screen">
+            <PageSEO meta={SEO_BY_PATH['/blog']} />
             <div className="max-w-7xl mx-auto">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
@@ -54,10 +57,10 @@ export const Blog = () => {
                     className="mb-12 text-center"
                 >
                     <h1 className="text-5xl md:text-7xl font-display font-black text-white mb-6 tracking-tighter uppercase">
-                        Insights de <span className="text-primary italic font-drama lowercase">Engenharia</span>
+                        Onde encontrar insights de <span className="text-primary italic font-drama lowercase">engenharia</span> e IA empresarial?
                     </h1>
                     <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                        Artigos técnicos, tendências de mercado e o futuro da inteligência empresarial.
+                        <strong className="text-white">Resposta direta:</strong> Aqui no blog ConectaDev. Artigos técnicos, tendências de mercado e o futuro da inteligência empresarial.
                     </p>
                 </motion.div>
 
@@ -154,7 +157,8 @@ export const Blog = () => {
                                         {post.image ? (
                                             <img
                                                 src={post.image}
-                                                alt=""
+                                                alt={`Imagem do artigo: ${post.title}. ${post.description || ''}`}
+                                                title={post.title}
                                                 className="w-full h-full object-cover"
                                                 loading="lazy"
                                                 decoding="async"

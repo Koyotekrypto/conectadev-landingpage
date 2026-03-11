@@ -49,9 +49,11 @@ export function Navbar() {
                 <div className="flex justify-between items-center h-16">
                     <Link to="/" className="flex-shrink-0 flex items-center gap-2 group z-50">
                         <img
-                            alt="ConectaDev Logo"
+                            alt="ConectaDev — desenvolvimento de software e inteligência empresarial"
+                            title="ConectaDev"
                             className="h-12 sm:h-24 md:h-40 lg:h-56 w-auto object-contain transition-transform group-hover:scale-105"
                             src="/assets/logo.png?v=v9.0"
+                            decoding="async"
                         />
                         <span className="font-bold flex flex-col justify-center">
                             <span className="hidden sm:inline text-[10px] md:text-xs text-text-light/80 dark:text-text-dark/80 tracking-wider">

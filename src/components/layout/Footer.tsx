@@ -9,7 +9,8 @@ export function Footer() {
                     <div className="col-span-1 lg:col-span-2 flex flex-col items-center md:items-start text-center md:text-left">
                         <div className="flex items-center gap-2 mb-6">
                             <img
-                                alt="Logo ConectaDev"
+                                alt="Logo ConectaDev — desenvolvimento de software e inteligência empresarial"
+                                title="ConectaDev"
                                 className="h-40 md:h-64 lg:h-96 w-auto object-contain"
                                 src="/assets/logo.png?v=v9.0"
                                 loading="lazy"

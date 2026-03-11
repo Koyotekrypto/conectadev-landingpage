@@ -50,12 +50,9 @@ export function NewHero() {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: 0.2 }}
-                    className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter mb-6 leading-[1.1] text-white drop-shadow-2xl"
+                    className="text-4xl md:text-6xl lg:text-7xl font-black tracking-tighter mb-6 leading-[1.1] text-white drop-shadow-2xl"
                 >
-                    Desenvolvimento e <br className="hidden md:block" />
-                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-[#ff8a00] to-primary bg-[length:200%_auto] animate-pulse select-none">
-                        Inteligência Empresarial
-                    </span>
+                    Como ter <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-[#ff8a00] to-primary bg-[length:200%_auto] animate-pulse select-none">desenvolvimento de software</span> e inteligência empresarial de alto impacto?
                 </motion.h1>
 
                 <motion.p
@@ -64,7 +61,7 @@ export function NewHero() {
                     transition={{ duration: 0.8, delay: 0.4 }}
                     className="text-lg md:text-xl text-gray-300 mb-10 max-w-2xl mx-auto font-light leading-relaxed drop-shadow-lg"
                 >
-                    Elevamos sua marca com tecnologia de ponta, design cinematográfico e arquitetura de alto impacto. O futuro do seu negócio começa aqui.
+                    <strong className="text-white font-medium">Resposta direta:</strong> Com tecnologia de ponta, design cinematográfico e arquitetura de alto impacto — landing pages, SaaS e CRMs verticais (como SOAPIA AI e VIBEFOOD). O futuro do seu negócio começa aqui.
                 </motion.p>
 
                 <motion.div
